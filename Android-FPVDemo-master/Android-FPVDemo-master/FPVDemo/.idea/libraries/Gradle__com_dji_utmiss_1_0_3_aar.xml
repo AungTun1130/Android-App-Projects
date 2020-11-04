@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.dji:utmiss:1.0.3@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/482c9f80b59b3dc29b1d8b52f2d8fbc5/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/482c9f80b59b3dc29b1d8b52f2d8fbc5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/482c9f80b59b3dc29b1d8b52f2d8fbc5/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

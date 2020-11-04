@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="Gradle: com.dji:dji-sdk:4.13.1@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/72b2975766dbb8690ef2a350b13afa90/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/72b2975766dbb8690ef2a350b13afa90/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/72b2975766dbb8690ef2a350b13afa90/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/72b2975766dbb8690ef2a350b13afa90/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/72b2975766dbb8690ef2a350b13afa90/jars/libs/adapter-rxjava2-2.2.0.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/72b2975766dbb8690ef2a350b13afa90/jars/libs/converter-gson-2.2.0.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/72b2975766dbb8690ef2a350b13afa90/jars/libs/dji-reactive-streams-1.0.0.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/72b2975766dbb8690ef2a350b13afa90/jars/libs/dji-rxjava-1.1.3.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/72b2975766dbb8690ef2a350b13afa90/jars/libs/logging-interceptor-3.6.0.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/72b2975766dbb8690ef2a350b13afa90/jars/libs/retrofit-2.2.0.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/72b2975766dbb8690ef2a350b13afa90/jars/libs/rxandroid-1.1.0.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/72b2975766dbb8690ef2a350b13afa90/jars/libs/rxjava-computation-expressions-0.21.1.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/72b2975766dbb8690ef2a350b13afa90/jars/libs/sqlbrite-0.6.2.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/72b2975766dbb8690ef2a350b13afa90/jars/libs/sqlcipher.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
