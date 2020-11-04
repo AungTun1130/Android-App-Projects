@@ -54,7 +54,7 @@
         -->
         <meta-data
             android:name="com.dji.sdk.API_KEY"
-            android:value="Please enter your App Key here." />
+            android:value="bc03976ede0c03867942d502" />
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="" /> <!-- 输入申请的API key启用高德地图服务 -->
