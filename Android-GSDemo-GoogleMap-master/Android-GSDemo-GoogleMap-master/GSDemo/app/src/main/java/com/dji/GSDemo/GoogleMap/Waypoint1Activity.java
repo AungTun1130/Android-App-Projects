@@ -8,9 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +16,10 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -35,7 +36,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import dji.common.error.DJIError;
 import dji.common.flightcontroller.FlightControllerState;
+import dji.common.gimbal.CapabilityKey;
 import dji.common.mission.waypoint.Waypoint;
 import dji.common.mission.waypoint.WaypointMission;
 import dji.common.mission.waypoint.WaypointMissionDownloadEvent;
@@ -46,14 +49,19 @@ import dji.common.mission.waypoint.WaypointMissionHeadingMode;
 import dji.common.mission.waypoint.WaypointMissionUploadEvent;
 import dji.common.useraccount.UserAccountState;
 import dji.common.util.CommonCallbacks;
+import dji.common.util.DJIParamCapability;
 import dji.sdk.base.BaseProduct;
 import dji.sdk.flightcontroller.FlightController;
-import dji.common.error.DJIError;
 import dji.sdk.mission.waypoint.WaypointMissionOperator;
 import dji.sdk.mission.waypoint.WaypointMissionOperatorListener;
 import dji.sdk.products.Aircraft;
 import dji.sdk.sdkmanager.DJISDKManager;
 import dji.sdk.useraccount.UserAccountManager;
+
+
+import dji.sdk.gimbal.Gimbal;
+import dji.common.gimbal.GimbalMode;
+import dji.common.gimbal.Rotation;
 
 public class Waypoint1Activity extends FragmentActivity implements View.OnClickListener, GoogleMap.OnMapClickListener, OnMapReadyCallback {
 
@@ -80,6 +88,10 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
     private WaypointMissionOperator instance;
     private WaypointMissionFinishedAction mFinishedAction = WaypointMissionFinishedAction.NO_ACTION;
     private WaypointMissionHeadingMode mHeadingMode = WaypointMissionHeadingMode.AUTO;
+
+
+    private Gimbal gimbal = null;
+    private int currentGimbalId = 0;
 
     @Override
     protected void onResume(){
@@ -161,7 +173,10 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
         IntentFilter filter = new IntentFilter();
         filter.addAction(DJIDemoApplication.FLAG_CONNECTION_CHANGE);
         registerReceiver(mReceiver, filter);
-
+        if(getWaypointMissionOperator() == null) {
+            setResultToToast("Not support Waypoint1.0");
+            return;
+        }
         initUI();
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -495,16 +510,81 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
         } catch (Exception e) {return false;}
         return true;
     }
+    private Gimbal getGimbalInstance() {
+        if (gimbal == null) {
+            initGimbal();
+        }
+        return gimbal;
+    }
+
+    private void initGimbal() {
+        if (DJISDKManager.getInstance() != null) {
+            BaseProduct product = DJISDKManager.getInstance().getProduct();
+            if (product != null) {
+                if (product instanceof Aircraft) {
+                    gimbal = ((Aircraft) product).getGimbals().get(currentGimbalId);
+                } else {
+                    gimbal = product.getGimbal();
+                }
+            }
+        }
+    }
+    private boolean isFeatureSupported(CapabilityKey key) {
+
+        Gimbal gimbal = getGimbalInstance();
+        if (gimbal == null) {
+            return false;
+        }
+
+        DJIParamCapability capability = null;
+        if (gimbal.getCapabilities() != null) {
+            capability = gimbal.getCapabilities().get(key);
+        }
+
+        if (capability != null) {
+            return capability.isSupported();
+        }
+        return false;
+    }
+
+
 
     private void configWayPointMission(){
+        Boolean support = isFeatureSupported(CapabilityKey.ADJUST_YAW);
+//        gimbal.setYawSimultaneousFollowEnabled(true,new CommonCallbacks.CompletionCallback() {
+//            @Override
+//            public void onResult(DJIError error) {
+//                if (error == null) {
+//                    setResultToToast("Aircraft Heading Set Follow");
+//                } else {
+//                    setResultToToast("Failed set heading : Follow");
+//                }
+//            }
+//        });
+        if (getGimbalInstance() != null) {
+            getGimbalInstance().setMode(GimbalMode.YAW_FOLLOW, new CommonCallbacks.CompletionCallback() {
+                @Override
+                public void onResult(DJIError error) {
 
+                }
+            });
+        } else {
+            setResultToToast("Product disconnected");
+        }
+        gimbal.setPitchRangeExtensionEnabled(true ,new CommonCallbacks.CompletionCallback() {
+            @Override
+            public void onResult(DJIError error) {
+
+            }
+        });
         if (waypointMissionBuilder == null){
 
             waypointMissionBuilder = new WaypointMission.Builder().finishedAction(mFinishedAction)
                     .headingMode(mHeadingMode)
                     .autoFlightSpeed(mSpeed)
                     .maxFlightSpeed(mSpeed)
-                    .flightPathMode(WaypointMissionFlightPathMode.NORMAL);
+                    .flightPathMode(WaypointMissionFlightPathMode.NORMAL)
+                    .setGimbalPitchRotationEnabled(true);
 
         }else
         {
@@ -512,7 +592,8 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
                     .headingMode(mHeadingMode)
                     .autoFlightSpeed(mSpeed)
                     .maxFlightSpeed(mSpeed)
-                    .flightPathMode(WaypointMissionFlightPathMode.NORMAL);
+                    .flightPathMode(WaypointMissionFlightPathMode.NORMAL)
+                    .setGimbalPitchRotationEnabled(true);
 
         }
 
@@ -520,6 +601,22 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
 
             for (int i=0; i< waypointMissionBuilder.getWaypointList().size(); i++){
                 waypointMissionBuilder.getWaypointList().get(i).altitude = altitude;
+                if (i==0){
+                    waypointMissionBuilder.getWaypointList().get(i).gimbalPitch = -10;
+                    //waypointMissionBuilder.getWaypointList().get(i).heading = 90;
+                }
+                if (i==1){
+                    waypointMissionBuilder.getWaypointList().get(i).gimbalPitch = -30;
+                }
+                if (i==2){
+                    waypointMissionBuilder.getWaypointList().get(i).gimbalPitch = -60;
+                    //waypointMissionBuilder.getWaypointList().get(i).heading = -90;
+                }
+                if (i==3){
+                    waypointMissionBuilder.getWaypointList().get(i).gimbalPitch = 10;
+                    //waypointMissionBuilder.getWaypointList().get(i).heading = -90;
+                }
+
             }
 
             setResultToToast("Set Waypoint attitude successfully");

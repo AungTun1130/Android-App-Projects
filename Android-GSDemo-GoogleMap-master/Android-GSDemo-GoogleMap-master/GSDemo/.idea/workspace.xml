@@ -7,74 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f274555a-a47c-4f25-abc9-85d73f307f85" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_annotation_annotation_1_0_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_arch_core_core_common_2_0_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_collection_collection_1_0_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_1_1_3_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_solver_1_1_3_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_core_core_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_fragment_fragment_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_0_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_extensions_2_0_0_rc01_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_process_2_0_0_rc01_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_service_2_0_0_rc01_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_multidex_multidex_2_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_multidex_multidex_instrumentation_2_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__com_dji_dji_sdk_4_13_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__com_dji_dji_sdk_provided_4_13_1_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__com_dji_library_networkrtk_helper_2_0_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__com_dji_utmiss_1_0_3_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_2_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__com_lmax_disruptor_3_3_9_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__com_mapzen_android_lost_3_0_4_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__com_squareup_okio_okio_1_15_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__com_squareup_otto_1_3_8_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__com_squareup_wire_wire_runtime_2_2_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__com_vividsolutions_jts_1_8_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__org_apache_http_legacy_android_28.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__org_bouncycastle_bcpkix_jdk15on_1_57_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__org_bouncycastle_bcprov_jdk15on_1_57_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__org_greenrobot_eventbus_3_0_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/libraries/Gradle__org_reactivestreams_reactive_streams_1_0_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-Gaode-Map-master/GSDemo/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-Gaode-Map-master/GSDemo/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-Gaode-Map-master/GSDemo/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-Gaode-Map-master/GSDemo/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/googlemap.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/activity_maps.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/activity_maps.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/l.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/l.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +58,13 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
@@ -133,11 +76,18 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="4100cc3df2e29133" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-11-04T15:33:46.198Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Android-GSDemo-Gaode-Map-master/GSDemo" />
     <property name="not.eligible.for.single.variant.sync" value="true" />
     <property name="settings.editor.selected.configurable" value="Errors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.dji.GSDemo.GoogleMap" />
+    </key>
   </component>
   <component name="RunManager" selected="Android App.GSDemo-app">
     <configuration default="true" type="Applet">
@@ -330,33 +280,57 @@
       <option name="presentableId" value="Default" />
       <updated>1571237169840</updated>
     </task>
+    <task id="LOCAL-00001" summary="wp1">
+      <created>1604503561986</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1604503561986</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="wp1" />
+    <option name="LAST_COMMIT_MESSAGE" value="wp1" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="192" y="341" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1604524932448">
+      <screen x="0" y="0" width="1536" height="832" />
+    </state>
+    <state x="192" y="341" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.832@0.0.1536.832" timestamp="1604524932448" />
+    <state x="499" y="162" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1604526239273">
+      <screen x="0" y="0" width="1536" height="832" />
+    </state>
+    <state x="499" y="162" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.832@0.0.1536.832" timestamp="1604526239273" />
     <state x="297" y="243" width="941" height="346" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog" timestamp="1604500926288">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
     <state x="297" y="243" width="941" height="346" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog/0.0.1536.832@0.0.1536.832" timestamp="1604500926288" />
+    <state x="365" y="9" key="CommitChangelistDialog2" timestamp="1604503560590">
+      <screen x="0" y="0" width="1536" height="832" />
+    </state>
+    <state x="365" y="9" key="CommitChangelistDialog2/0.0.1536.832@0.0.1536.832" timestamp="1604503560590" />
     <state x="549" y="157" key="FileChooserDialogImpl" timestamp="1604501103737">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
     <state x="549" y="157" key="FileChooserDialogImpl/0.0.1536.832@0.0.1536.832" timestamp="1604501103737" />
-    <state width="1487" height="211" key="GridCell.Tab.0.bottom" timestamp="1604497430386">
+    <state width="1487" height="70" key="GridCell.Tab.0.bottom" timestamp="1604526679739">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
-    <state width="1487" height="211" key="GridCell.Tab.0.bottom/0.0.1536.832@0.0.1536.832" timestamp="1604497430386" />
-    <state width="1487" height="211" key="GridCell.Tab.0.center" timestamp="1604497430386">
+    <state width="1487" height="70" key="GridCell.Tab.0.bottom/0.0.1536.832@0.0.1536.832" timestamp="1604526679739" />
+    <state width="1487" height="70" key="GridCell.Tab.0.center" timestamp="1604526679739">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
-    <state width="1487" height="211" key="GridCell.Tab.0.center/0.0.1536.832@0.0.1536.832" timestamp="1604497430386" />
-    <state width="1487" height="211" key="GridCell.Tab.0.left" timestamp="1604497430386">
+    <state width="1487" height="70" key="GridCell.Tab.0.center/0.0.1536.832@0.0.1536.832" timestamp="1604526679739" />
+    <state width="1487" height="70" key="GridCell.Tab.0.left" timestamp="1604526679738">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
-    <state width="1487" height="211" key="GridCell.Tab.0.left/0.0.1536.832@0.0.1536.832" timestamp="1604497430386" />
-    <state width="1487" height="211" key="GridCell.Tab.0.right" timestamp="1604497430386">
+    <state width="1487" height="70" key="GridCell.Tab.0.left/0.0.1536.832@0.0.1536.832" timestamp="1604526679738" />
+    <state width="1487" height="70" key="GridCell.Tab.0.right" timestamp="1604526679739">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
-    <state width="1487" height="211" key="GridCell.Tab.0.right/0.0.1536.832@0.0.1536.832" timestamp="1604497430386" />
+    <state width="1487" height="70" key="GridCell.Tab.0.right/0.0.1536.832@0.0.1536.832" timestamp="1604526679739" />
     <state x="465" y="9" width="681" height="813" key="find.popup" timestamp="1604500954886">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
