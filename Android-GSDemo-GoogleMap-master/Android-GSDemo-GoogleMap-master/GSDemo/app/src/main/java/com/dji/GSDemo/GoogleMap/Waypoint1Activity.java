@@ -75,6 +75,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
     private boolean isAdd = false;
 
     private double droneLocationLat = 181, droneLocationLng = 181;
+    private float droneHeadingDir;
     private final Map<Integer, Marker> mMarkers = new ConcurrentHashMap<Integer, Marker>();
     private Marker droneMarker = null;
 
@@ -228,11 +229,12 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
 
         if (mFlightController != null) {
             mFlightController.setStateCallback(new FlightControllerState.Callback() {
-
+                //Here is where the DJI app update the state of the drone to the app -Aung
                 @Override
                 public void onUpdate(FlightControllerState djiFlightControllerCurrentState) {
                     droneLocationLat = djiFlightControllerCurrentState.getAircraftLocation().getLatitude();
                     droneLocationLng = djiFlightControllerCurrentState.getAircraftLocation().getLongitude();
+                    droneHeadingDir = djiFlightControllerCurrentState.getAircraftHeadDirection();
                     updateDroneLocation();
                 }
             });
@@ -325,6 +327,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
         final MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(pos);
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.aircraft));
+        markerOptions.rotation(droneHeadingDir);
 
         runOnUiThread(new Runnable() {
             @Override

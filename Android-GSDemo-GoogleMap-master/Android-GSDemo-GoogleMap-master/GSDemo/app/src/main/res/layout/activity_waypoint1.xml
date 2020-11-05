@@ -1,83 +1,126 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FFFFFF"
-    tools:context="com.dji.GSDemo.GoogleMap.MainActivity">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/ConnectStatusTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="GSDemo"
-            android:gravity="center"
-            android:textColor="#000000"
-            android:textSize="21sp"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/locate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Locate"
-            android:layout_weight="1"/>
-        <Button
-            android:id="@+id/add"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add"
-            android:layout_weight="1"/>
-        <Button
-            android:id="@+id/clear"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Clear"
-            android:layout_weight="1"/>
-    </LinearLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/config"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Config"
-            android:layout_weight="0.9"/>
-        <Button
-            android:id="@+id/upload"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Upload"
-            android:layout_weight="0.9"/>
-        <Button
-            android:id="@+id/start"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Start"
-            android:layout_weight="1"/>
-        <Button
-            android:id="@+id/stop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Stop"
-            android:layout_weight="1"/>
-    </LinearLayout>
+        android:layout_height="match_parent">
 
-    <fragment
-        android:id="@+id/map"
+        <include
+            layout="@layout/googlemap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/upload"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_weight="0.1"
+                android:text="Upload" />
+
+            <Button
+                android:id="@+id/config"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_weight="0.1"
+                android:text="Config" />
+
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_weight="0.1"
+                android:text="Clear" />
+
+            <Button
+                android:id="@+id/add"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_weight="0.1"
+                android:text="Add" />
+
+            <Button
+                android:id="@+id/locate"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_weight="0.1"
+                android:text="Locate" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center|left"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <Button
+                android:id="@+id/start"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="Start" />
+
+            <Button
+                android:id="@+id/stop"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="Stop" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        class="com.google.android.gms.maps.SupportMapFragment" />
+        android:layout_height="wrap_content">
 
-</LinearLayout>
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+
+            app:toolbarId="@+id/toolbar">
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"></androidx.appcompat.widget.Toolbar>
+
+            <TextView
+                android:id="@+id/ConnectStatusTextView"
+                android:layout_width="109dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="GSDemo"
+                android:textColor="#000000"
+                android:textSize="21sp" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

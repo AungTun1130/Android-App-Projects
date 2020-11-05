@@ -6,12 +6,7 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f274555a-a47c-4f25-abc9-85d73f307f85" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/googlemap.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/activity_maps.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/activity_maps.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/l.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/l.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f274555a-a47c-4f25-abc9-85d73f307f85" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,6 +57,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -307,6 +303,14 @@
       <screen x="0" y="0" width="1536" height="832" />
     </state>
     <state x="297" y="243" width="941" height="346" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog/0.0.1536.832@0.0.1536.832" timestamp="1604500926288" />
+    <state x="349" y="171" key="AndroidCreateResourceFileDialog" timestamp="1604608838491">
+      <screen x="0" y="0" width="1536" height="832" />
+    </state>
+    <state x="349" y="171" key="AndroidCreateResourceFileDialog/0.0.1536.832@0.0.1536.832" timestamp="1604608838491" />
+    <state x="626" y="228" key="AndroidCreateXmlResourceDialog" timestamp="1604612910778">
+      <screen x="0" y="0" width="1536" height="832" />
+    </state>
+    <state x="626" y="228" key="AndroidCreateXmlResourceDialog/0.0.1536.832@0.0.1536.832" timestamp="1604612910778" />
     <state x="365" y="9" key="CommitChangelistDialog2" timestamp="1604503560590">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
