@@ -29,9 +29,16 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <!--
+        This two line allow the screen to automatically change depending on sensor
+            android:screenOrientation="sensor"
+            android:configChanges="orientation|screenSize|keyboardHidden">
+        -->
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps">
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="sensor"
+            android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -5,8 +5,15 @@
       <config />
     </shared>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="f274555a-a47c-4f25-abc9-85d73f307f85" name="Default Changelist" comment="" />
+    <list default="true" id="f274555a-a47c-4f25-abc9-85d73f307f85" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/java/com/example/googlemap/MapsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/java/com/example/googlemap/MapsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/activity_maps.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/activity_maps.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -291,6 +298,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="wp1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser" timestamp="1604926873173">
+      <screen x="0" y="0" width="1536" height="832" />
+    </state>
+    <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser/0.0.1536.832@0.0.1536.832" timestamp="1604926873173" />
     <state x="192" y="341" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1604524932448">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
@@ -315,29 +326,41 @@
       <screen x="0" y="0" width="1536" height="832" />
     </state>
     <state x="365" y="9" key="CommitChangelistDialog2/0.0.1536.832@0.0.1536.832" timestamp="1604503560590" />
-    <state x="549" y="157" key="FileChooserDialogImpl" timestamp="1604501103737">
+    <state x="549" y="157" key="FileChooserDialogImpl" timestamp="1604935751072">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
-    <state x="549" y="157" key="FileChooserDialogImpl/0.0.1536.832@0.0.1536.832" timestamp="1604501103737" />
-    <state width="1487" height="70" key="GridCell.Tab.0.bottom" timestamp="1604526679739">
+    <state x="549" y="157" key="FileChooserDialogImpl/0.0.1536.832@0.0.1536.832" timestamp="1604935751072" />
+    <state width="1487" height="167" key="GridCell.Tab.0.bottom" timestamp="1604668121871">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
+    <state width="1487" height="167" key="GridCell.Tab.0.bottom/0.0.1536.832/1920.0.1280.994@0.0.1536.832" timestamp="1604668121871" />
     <state width="1487" height="70" key="GridCell.Tab.0.bottom/0.0.1536.832@0.0.1536.832" timestamp="1604526679739" />
-    <state width="1487" height="70" key="GridCell.Tab.0.center" timestamp="1604526679739">
+    <state width="1487" height="167" key="GridCell.Tab.0.center" timestamp="1604668121871">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
+    <state width="1487" height="167" key="GridCell.Tab.0.center/0.0.1536.832/1920.0.1280.994@0.0.1536.832" timestamp="1604668121871" />
     <state width="1487" height="70" key="GridCell.Tab.0.center/0.0.1536.832@0.0.1536.832" timestamp="1604526679739" />
-    <state width="1487" height="70" key="GridCell.Tab.0.left" timestamp="1604526679738">
+    <state width="1487" height="167" key="GridCell.Tab.0.left" timestamp="1604668121870">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
+    <state width="1487" height="167" key="GridCell.Tab.0.left/0.0.1536.832/1920.0.1280.994@0.0.1536.832" timestamp="1604668121870" />
     <state width="1487" height="70" key="GridCell.Tab.0.left/0.0.1536.832@0.0.1536.832" timestamp="1604526679738" />
-    <state width="1487" height="70" key="GridCell.Tab.0.right" timestamp="1604526679739">
+    <state width="1487" height="167" key="GridCell.Tab.0.right" timestamp="1604668121871">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
+    <state width="1487" height="167" key="GridCell.Tab.0.right/0.0.1536.832/1920.0.1280.994@0.0.1536.832" timestamp="1604668121871" />
     <state width="1487" height="70" key="GridCell.Tab.0.right/0.0.1536.832@0.0.1536.832" timestamp="1604526679739" />
+    <state x="467" y="240" key="com.intellij.ide.util.TipDialog" timestamp="1604924758497">
+      <screen x="0" y="0" width="1536" height="832" />
+    </state>
+    <state x="467" y="240" key="com.intellij.ide.util.TipDialog/0.0.1536.832@0.0.1536.832" timestamp="1604924758497" />
     <state x="465" y="9" width="681" height="813" key="find.popup" timestamp="1604500954886">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
     <state x="465" y="9" width="681" height="813" key="find.popup/0.0.1536.832@0.0.1536.832" timestamp="1604500954886" />
+    <state x="425" y="189" key="run.anything.popup" timestamp="1604934905412">
+      <screen x="0" y="0" width="1536" height="832" />
+    </state>
+    <state x="425" y="189" key="run.anything.popup/0.0.1536.832@0.0.1536.832" timestamp="1604934905412" />
   </component>
 </project>

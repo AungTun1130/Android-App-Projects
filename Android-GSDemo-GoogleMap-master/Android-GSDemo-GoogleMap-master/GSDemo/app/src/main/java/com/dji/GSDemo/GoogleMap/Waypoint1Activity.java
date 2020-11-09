@@ -30,6 +30,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,11 +65,14 @@ import dji.sdk.gimbal.Gimbal;
 import dji.common.gimbal.GimbalMode;
 import dji.common.gimbal.Rotation;
 
-public class Waypoint1Activity extends FragmentActivity implements View.OnClickListener, GoogleMap.OnMapClickListener, OnMapReadyCallback {
+public class Waypoint1Activity extends FragmentActivity implements View.OnClickListener, GoogleMap.OnMapClickListener, OnMapReadyCallback
+        , GoogleMap.OnPolylineClickListener, GoogleMap.OnMarkerDragListener{
 
     protected static final String TAG = "GSDemoActivity";
 
     private GoogleMap gMap;
+    private int movingMarker_Index;
+
 
     private Button locate, add, clear;
     private Button config, upload, start, stop;
@@ -75,7 +80,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
     private boolean isAdd = false;
 
     private double droneLocationLat = 181, droneLocationLng = 181;
-    private float droneHeadingDir;
+    private double droneHeadingDir;
     private final Map<Integer, Marker> mMarkers = new ConcurrentHashMap<Integer, Marker>();
     private Marker droneMarker = null;
 
@@ -83,6 +88,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
     private float mSpeed = 10.0f;
 
     private List<Waypoint> waypointList = new ArrayList<>();
+    private List<String> waypointListString = new ArrayList<>();
 
     public static WaypointMission.Builder waypointMissionBuilder;
     private FlightController mFlightController;
@@ -234,7 +240,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
                 public void onUpdate(FlightControllerState djiFlightControllerCurrentState) {
                     droneLocationLat = djiFlightControllerCurrentState.getAircraftLocation().getLatitude();
                     droneLocationLng = djiFlightControllerCurrentState.getAircraftLocation().getLongitude();
-                    droneHeadingDir = djiFlightControllerCurrentState.getAircraftHeadDirection();
+                    droneHeadingDir = djiFlightControllerCurrentState.getAttitude().yaw;
                     updateDroneLocation();
                 }
             });
@@ -292,14 +298,18 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
 
     private void setUpMap() {
         gMap.setOnMapClickListener(this);// add the listener for click for amap object
+        gMap.setOnPolylineClickListener(this);
+        gMap.setOnMarkerDragListener(this);
 
     }
 
     @Override
     public void onMapClick(LatLng point) {
         if (isAdd == true){
-            markWaypoint(point);
+            markWaypoint(point,waypointList);
             Waypoint mWaypoint = new Waypoint(point.latitude, point.longitude, altitude);
+
+
             //Add Waypoints to Waypoint arraylist;
             if (waypointMissionBuilder != null) {
                 waypointList.add(mWaypoint);
@@ -310,6 +320,11 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
                 waypointList.add(mWaypoint);
                 waypointMissionBuilder.waypointList(waypointList).waypointCount(waypointList.size());
             }
+            PolylineOptions polylineOptions =new PolylineOptions();
+            for( Waypoint i : waypointList)   {
+                polylineOptions.add(new LatLng(i.coordinate.getLatitude(),i.coordinate.getLongitude()));
+            }
+            gMap.addPolyline(polylineOptions);
         }else{
             setResultToToast("Cannot Add Waypoint");
         }
@@ -327,7 +342,9 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
         final MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(pos);
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.aircraft));
-        markerOptions.rotation(droneHeadingDir);
+        //This allow the drone to rotate - edited by Aung
+        markerOptions.rotation((float)droneHeadingDir);
+
 
         runOnUiThread(new Runnable() {
             @Override
@@ -343,10 +360,15 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
         });
     }
 
-    private void markWaypoint(LatLng point){
+    private void markWaypoint(LatLng point,List<Waypoint> list){
+        int lenOfList = list.toArray().length;
+        String name = "WayPoint#" + String.valueOf(lenOfList);
+        waypointListString.add(name);
         //Create MarkerOptions object
-        MarkerOptions markerOptions = new MarkerOptions();
+        MarkerOptions markerOptions = new MarkerOptions().title(name);
         markerOptions.position(point);
+        //This allow the user to drag the marker - edited by Aung
+        markerOptions.draggable(true);
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
         Marker marker = gMap.addMarker(markerOptions);
         mMarkers.put(mMarkers.size(), marker);
@@ -682,4 +704,41 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
         gMap.moveCamera(CameraUpdateFactory.newLatLng(shenzhen));
     }
 
+    @Override
+    public void onMarkerDragStart(Marker marker) {
+        //Debugging for checking if the index of the selected waypoint is correct
+        //Toast.makeText(getApplicationContext(),String.valueOf(waypointListString.indexOf(marker.getTitle())) ,Toast.LENGTH_SHORT).show();
+        movingMarker_Index = waypointListString.indexOf(marker.getTitle());
+    }
+
+    @Override
+    public void onMarkerDrag(Marker marker) {
+
+    }
+
+    @Override
+    public void onMarkerDragEnd(Marker marker) {
+        float marker_alt = waypointList.get(movingMarker_Index).altitude;
+        waypointList.set(movingMarker_Index,new Waypoint(marker.getPosition().latitude,marker.getPosition().longitude,marker_alt));
+        //Toast.makeText(getApplicationContext(),waypointList.toString(),Toast.LENGTH_SHORT).show();
+        gMap.clear();
+        for(int i =0; i<waypointList.toArray().length;i++){
+            gMap.addMarker(new MarkerOptions()
+                    .draggable(true)
+                    .position(new LatLng(waypointList.get(i).coordinate.getLatitude(),waypointList.get(i).coordinate.getLongitude()))
+                    .title(waypointListString.get(i))
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+        }
+
+        PolylineOptions polylineOptions =new PolylineOptions();
+        for( Waypoint i : waypointList)   {
+            polylineOptions.add(new LatLng(i.coordinate.getLatitude(),i.coordinate.getLongitude()));
+        }
+        gMap.addPolyline(polylineOptions);
+    }
+
+    @Override
+    public void onPolylineClick(Polyline polyline) {
+
+    }
 }
