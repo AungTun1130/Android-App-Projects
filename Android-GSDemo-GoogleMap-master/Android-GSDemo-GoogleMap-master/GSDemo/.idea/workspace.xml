@@ -10,9 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f274555a-a47c-4f25-abc9-85d73f307f85" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/java/com/example/googlemap/MapsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/java/com/example/googlemap/MapsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/activity_maps.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/activity_maps.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-UXSDKDemo-master/UXSDKDemo/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-UXSDKDemo-master/UXSDKDemo/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-UXSDKDemo-master/UXSDKDemo/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-UXSDKDemo-master/UXSDKDemo/.idea/gradle.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +26,7 @@
     <option name="testRunner" value="GRADLE" />
     <option name="delegatedBuild" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3a_XL_API_25" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="4100cc3df2e29133" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -83,7 +86,7 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-11-04T15:33:46.198Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Android-GSDemo-Gaode-Map-master/GSDemo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo" />
     <property name="not.eligible.for.single.variant.sync" value="true" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
@@ -314,10 +317,10 @@
       <screen x="0" y="0" width="1536" height="832" />
     </state>
     <state x="297" y="243" width="941" height="346" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog/0.0.1536.832@0.0.1536.832" timestamp="1604500926288" />
-    <state x="349" y="171" key="AndroidCreateResourceFileDialog" timestamp="1604608838491">
+    <state x="349" y="171" key="AndroidCreateResourceFileDialog" timestamp="1604941862132">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
-    <state x="349" y="171" key="AndroidCreateResourceFileDialog/0.0.1536.832@0.0.1536.832" timestamp="1604608838491" />
+    <state x="349" y="171" key="AndroidCreateResourceFileDialog/0.0.1536.832@0.0.1536.832" timestamp="1604941862132" />
     <state x="626" y="228" key="AndroidCreateXmlResourceDialog" timestamp="1604612910778">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
@@ -326,10 +329,10 @@
       <screen x="0" y="0" width="1536" height="832" />
     </state>
     <state x="365" y="9" key="CommitChangelistDialog2/0.0.1536.832@0.0.1536.832" timestamp="1604503560590" />
-    <state x="549" y="157" key="FileChooserDialogImpl" timestamp="1604935751072">
+    <state x="549" y="157" key="FileChooserDialogImpl" timestamp="1604941647461">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
-    <state x="549" y="157" key="FileChooserDialogImpl/0.0.1536.832@0.0.1536.832" timestamp="1604935751072" />
+    <state x="549" y="157" key="FileChooserDialogImpl/0.0.1536.832@0.0.1536.832" timestamp="1604941647461" />
     <state width="1487" height="167" key="GridCell.Tab.0.bottom" timestamp="1604668121871">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
