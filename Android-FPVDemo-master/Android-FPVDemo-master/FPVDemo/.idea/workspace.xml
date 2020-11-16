@@ -10,24 +10,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef5e2818-149b-4fef-811f-e67bf8609a8a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/layout/fpv_view.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/dialog_waypointsetting.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/panel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/java/com/dji/GSDemo/GoogleMap/ConnectionActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/java/com/dji/GSDemo/GoogleMap/ConnectionActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/java/com/dji/GSDemo/GoogleMap/DJIDemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/java/com/dji/GSDemo/GoogleMap/DJIDemoApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/java/com/dji/GSDemo/GoogleMap/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/java/com/dji/GSDemo/GoogleMap/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/java/com/dji/GSDemo/GoogleMap/Waypoint1Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/java/com/dji/GSDemo/GoogleMap/Waypoint1Activity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android-UXSDKDemo-master/UXSDKDemo/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-UXSDKDemo-master/UXSDKDemo/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android-UXSDKDemo-master/UXSDKDemo/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-UXSDKDemo-master/UXSDKDemo/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/layout/activity_waypoint1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/layout/activity_waypoint1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/layout/dialog_waypointsetting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/layout/dialog_waypointsetting.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/layout/fpv_view.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/java/com/example/googlemap/MapsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/java/com/example/googlemap/MapsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/activity_maps.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/activity_maps.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/googlemap.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/googlemap.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/l.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/l.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3a_XL_API_25" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="4100cc3df2e29133" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />

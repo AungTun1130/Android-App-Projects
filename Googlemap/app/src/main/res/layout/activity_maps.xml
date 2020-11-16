@@ -27,6 +27,64 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                map:layout_constraintBottom_toBottomOf="parent"
+                map:layout_constraintEnd_toEndOf="parent"
+                map:layout_constraintStart_toStartOf="parent"
+                map:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <include
+                        android:id="@+id/include"
+                        layout="@layout/googlemap"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:clickable="false"
+                        tools:layout_editor_absoluteX="91dp"
+                        tools:layout_editor_absoluteY="0dp" />
+
+                    <Button
+                        android:id="@+id/btn_open_panel"
+                        android:layout_width="57dp"
+                        android:layout_height="63dp"
+                        android:layout_marginTop="36dp"
+                        android:layout_weight="1"
+                        android:drawableRight="@drawable/ic_baseline_arrow_right_24"
+                        map:layout_constraintEnd_toEndOf="parent"
+                        map:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <include
+                    layout="@layout/panel"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <include
+                android:id="@+id/camera"
+                layout="@layout/l"
+                android:layout_width="191dp"
+                android:layout_height="132dp"
+                android:visibility="visible"
+                map:layout_constraintBottom_toBottomOf="parent"
+                map:layout_constraintEnd_toEndOf="parent"
+                map:layout_constraintHorizontal_bias="0.0"
+                map:layout_constraintStart_toStartOf="parent"
+                map:layout_constraintTop_toTopOf="parent"
+                map:layout_constraintVertical_bias="1.0"
+                tools:visibility="visible" />
+
             <Button
                 android:id="@+id/Edit"
                 android:layout_width="wrap_content"
@@ -37,28 +95,19 @@
                 map:layout_constraintHorizontal_bias="0.024"
                 map:layout_constraintStart_toStartOf="parent"
                 map:layout_constraintTop_toTopOf="parent"
-                map:layout_constraintVertical_bias="0.955" />
+                map:layout_constraintVertical_bias="0.05" />
 
-            <include
-                android:id="@+id/include"
-                layout="@layout/googlemap"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="97dp" />
-
-            <include
-                layout="@layout/l"
-                android:layout_width="191dp"
-                android:layout_height="132dp"
-                android:visibility="visible"
+            <Button
+                android:id="@+id/config"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Config"
                 map:layout_constraintBottom_toBottomOf="parent"
                 map:layout_constraintEnd_toEndOf="parent"
-                map:layout_constraintHorizontal_bias="1.0"
+                map:layout_constraintHorizontal_bias="0.2"
                 map:layout_constraintStart_toStartOf="parent"
                 map:layout_constraintTop_toTopOf="parent"
-                map:layout_constraintVertical_bias="1.0"
-                tools:visibility="visible" />
+                map:layout_constraintVertical_bias="0.05" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

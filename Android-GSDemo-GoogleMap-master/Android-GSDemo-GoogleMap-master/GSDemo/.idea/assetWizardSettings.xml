@@ -24,7 +24,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\yoyot\AppData\Local\Temp\baseline_location_on_24.xml" />
+                                                <entry key="imagePath" value="C:\Users\yoyot\AppData\Local\Temp\baseline_chevron_left_24.xml" />
                                                 <entry key="opacityPercent" value="60" />
                                                 <entry key="paddingPercent" value="5" />
                                               </map>
@@ -37,7 +37,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/F:/Android%20studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/location_on/baseline_location_on_24.xml" />
+                                                <entry key="url" value="jar:file:/F:/Android%20studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/chevron_left/baseline_chevron_left_24.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -81,7 +81,7 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="Locate" />
+                                      <entry key="outputName" value="arrow_left" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -321,7 +321,39 @@
         </entry>
         <entry key="vectorWizard">
           <value>
-            <PersistentState />
+            <PersistentState>
+              <option name="children">
+                <map>
+                  <entry key="vectorAssetStep">
+                    <value>
+                      <PersistentState>
+                        <option name="children">
+                          <map>
+                            <entry key="clipartAsset">
+                              <value>
+                                <PersistentState>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="url" value="jar:file:/F:/Android%20studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/chevron_right/baseline_chevron_right_24.xml" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                        <option name="values">
+                          <map>
+                            <entry key="outputName" value="ic_baseline_chevron_right_24" />
+                            <entry key="sourceFile" value="F:\Android-App-Projects\Android-GSDemo-GoogleMap-master\Android-GSDemo-GoogleMap-master\GSDemo" />
+                          </map>
+                        </option>
+                      </PersistentState>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </PersistentState>
           </value>
         </entry>
       </map>

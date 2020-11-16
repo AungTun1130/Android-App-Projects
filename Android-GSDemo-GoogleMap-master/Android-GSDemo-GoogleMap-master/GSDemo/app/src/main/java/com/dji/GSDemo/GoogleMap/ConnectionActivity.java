@@ -1,4 +1,4 @@
-package com.dji.GSDemo.GoogleMap;
+        package com.dji.GSDemo.GoogleMap;
 
 import android.Manifest;
 import android.app.Activity;

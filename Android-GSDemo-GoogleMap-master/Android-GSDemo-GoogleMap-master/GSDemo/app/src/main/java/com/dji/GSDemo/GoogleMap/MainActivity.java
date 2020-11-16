@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_waypoint2:
                 startActivity(MainActivity.this, Waypoint2Activity.class);
                 break;
+            case R.id.btn_importKML:
+                break;
         }
     };
 

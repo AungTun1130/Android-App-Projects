@@ -26,31 +26,28 @@
         android:layout_width="150dp"
         android:layout_height="55dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="350dp"
+        android:layout_marginBottom="404dp"
         android:background="@drawable/round_btn"
         android:text="Waypoint2.0"
         android:textColor="@color/colorWhite"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_waypoint1" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <Button
-        android:id="@+id/btn_camera"
+        android:id="@+id/btn_importKML"
         android:layout_width="150dp"
         android:layout_height="55dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="350dp"
         android:background="@drawable/round_btn"
-        android:text="camera"
+        android:text="Import KML"
         android:textColor="@color/colorWhite"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_waypoint1"
-        app:layout_constraintVertical_bias="0.518" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_waypoint2"
+        app:layout_constraintVertical_bias="0.303" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
