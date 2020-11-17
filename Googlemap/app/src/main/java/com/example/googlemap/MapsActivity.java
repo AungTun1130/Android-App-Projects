@@ -1,16 +1,25 @@
 package com.example.googlemap;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.FileUriExposedException;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,28 +36,60 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.maps.android.collections.GroundOverlayManager;
+import com.google.maps.android.collections.MarkerManager;
+import com.google.maps.android.collections.PolygonManager;
+import com.google.maps.android.collections.PolylineManager;
+import com.google.maps.android.data.kml.KmlContainer;
+import com.google.maps.android.data.kml.KmlLayer;
+import com.google.maps.android.data.kml.KmlPlacemark;
+import com.google.maps.android.data.kml.KmlPolygon;
+import com.google.maps.android.data.geojson.GeoJsonFeature;
+import com.google.maps.android.data.geojson.GeoJsonLayer;
+import com.google.maps.android.data.geojson.GeoJsonLineStringStyle;
 
+
+
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MapsActivity extends FragmentActivity implements
-        SeekBar.OnSeekBarChangeListener ,View.OnClickListener, GoogleMap.OnMapClickListener, OnMapReadyCallback , GoogleMap.OnPolylineClickListener, GoogleMap.OnMarkerDragListener {
+        SeekBar.OnSeekBarChangeListener ,View.OnClickListener, GoogleMap.OnMapClickListener, OnMapReadyCallback , GoogleMap.OnPolylineClickListener, GoogleMap.OnMarkerDragListener{
+
+    private static  final int PERMISSION_REQUEST_STORAGE =1000;
+    private static  final int READ_REQUEST_CODE =42;
 
     private GoogleMap mMap;
+    private boolean mIsRestore;
     private final Map<Integer, Marker> mMarkers = new ConcurrentHashMap<Integer, Marker>();
     private List<LatLng> waypointList = new ArrayList<>();
     private List<String> waypointListString = new ArrayList<>();
     private int movingMarker_Index;
 
+    private TextView KML_path;
+    private TextView KML_file;
+
     private SeekBar seekBar1;
     private EditText editText1;
 
+    private Button load_kml;
     private Button Edit;
     private Button OpenPanel;
     private LinearLayout Panel;
@@ -58,6 +99,8 @@ public class MapsActivity extends FragmentActivity implements
     private boolean isOpenPanel = false;
 
     private void initUI(){
+
+        KML_path = findViewById(R.id.KML_path);
         seekBar1 = findViewById(R.id.seekBar1);
         editText1 = findViewById(R.id.editText1);
         Edit = findViewById(R.id.Edit);
@@ -67,17 +110,168 @@ public class MapsActivity extends FragmentActivity implements
         Edit.setOnClickListener(this);
         OpenPanel.setOnClickListener(this);
         seekBar1.setOnSeekBarChangeListener(this);
+        load_kml = findViewById(R.id.Load_kml);
+        load_kml.setOnClickListener(this);
+        KML_file = findViewById(R.id.KML_file);
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mIsRestore = savedInstanceState != null;
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         initUI();
         mapFragment.getMapAsync(this);
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE )!= PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},PERMISSION_REQUEST_STORAGE);
+        }
+    }
+
+    private void readKML(String input) {
+        StringBuilder sb = new StringBuilder();
+        try{
+            // Shared object managers - used to support multiple layer types on the map simultaneously
+            // [START maps_multilayer_demo_init1]
+            MarkerManager markerManager = new MarkerManager(mMap);
+            GroundOverlayManager groundOverlayManager = new GroundOverlayManager(mMap);
+            PolygonManager polygonManager = new PolygonManager(mMap);
+            PolylineManager polylineManager = new PolylineManager(mMap);
+            // [END maps_multilayer_demo_init1]
+
+            File file = new File(System.getenv("EXTERNAL_STORAGE")+"/InspectionTrajectory.kml");
+            InputStream inputStream = new FileInputStream(file);
+            KmlLayer layer = new KmlLayer(mMap,getResources().openRawResource(R.raw.), this, markerManager, polygonManager, polylineManager, groundOverlayManager,null);
+//
+//            if ( inputStream != null){
+//                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+//                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+//                String line = null;
+//                while((line=bufferedReader.readLine()) != null){
+//                    sb.append(line + "\n");
+//                }
+//                Toast.makeText(this, sb, Toast.LENGTH_SHORT).show();
+//                inputStream.close();
+//            }
+
+            addKmlToMap(layer);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
+        }
+        catch (XmlPullParserException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Failed1", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+    private void addKmlToMap(KmlLayer kmlLayer) {
+        if (kmlLayer != null) {
+            kmlLayer.addLayerToMap();
+            kmlLayer.setOnFeatureClickListener(feature -> {Toast.makeText(this,
+                    "Feature clicked: " + feature.getId(),
+                    Toast.LENGTH_SHORT).show();});
+            moveCameraToKml(kmlLayer);
+        }
+    }
+    private void moveCameraToKml(KmlLayer kmlLayer) {
+        if (mIsRestore) return;
+        try {
+            String oo ="1";
+            String ooo ="1";
+            for(KmlContainer container: kmlLayer.getContainers()){
+                oo += container.getProperties().toString();
+                oo+=container.getContainers().toString();
+                oo+=container.getPlacemarks().toString();
+                if(container.hasProperty("name")){
+                    //Toast.makeText(getApplicationContext(),container.getProperty("name"),Toast.LENGTH_LONG).show();
+                    KML_path.setText(System.getenv("EXTERNAL_STORAGE")
+                            + "|"+ System.getenv("SECONDARY_STORAGE")
+                            + "|"+ System.getenv("EXTERNAL_SDCARD_STORAGE"));
+                    File f = new File(System.getenv("EXTERNAL_SDCARD_STORAGE") + "/InspectionTrajectory.kml");
+                    Toast.makeText(getApplicationContext(),String.valueOf(f.exists()),Toast.LENGTH_LONG).show();
+                }
+            }
+            for(KmlPlacemark placemark1 : kmlLayer.getPlacemarks()){
+                oo += placemark1.getProperties().toString();
+
+            }
+            File file=new File("storage/");
+            File[] files = file.listFiles();
+            KML_file.setText(files.toString());
+            //Retrieve the first container in the KML layer
+            KmlContainer container = kmlLayer.getContainers().iterator().next();
+            //Retrieve a nested container within the first container
+            container = container.getContainers().iterator().next();
+            //Retrieve the first placemark in the nested container
+            KmlPlacemark placemark = container.getPlacemarks().iterator().next();
+            String o = container.getProperty("LineString");
+            Toast.makeText(getApplicationContext(),String.valueOf(placemark.getProperty("name")),Toast.LENGTH_SHORT).show();
+            //Retrieve a polygon object in a placemark
+            List<LatLng> latLng = placemark.getPolylineOptions().getPoints();
+
+            KML_file.setText(container.getPlacemarks().iterator().next().toString());
+
+            PolylineOptions polylines = placemark.getPolylineOptions();
+            mMap.addPolyline(polylines);
+            //Create LatLngBounds of the outer coordinates of the polygon
+//            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+//            for (LatLng latLng : polygon.getOuterBoundaryCoordinates()) {
+//                builder.include(latLng);
+//            }
+//
+//            int width = getResources().getDisplayMetrics().widthPixels;
+//            int height = getResources().getDisplayMetrics().heightPixels;
+//            mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), width, height, 1));
+        } catch (Exception e) {
+            // may fail depending on the KML being shown
+            e.printStackTrace();
+        }
+    }
+    private void performFileSearch(){
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        //Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.setType("*/*");
+        startActivityForResult(intent,READ_REQUEST_CODE);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                Uri uri = data.getData();
+                String path = uri.getPath();
+
+                path = path.substring(path.indexOf(":") + 1);
+
+                String filetype = path.substring(path.indexOf(".")+1);
+                //Toast.makeText(this, Environment.getExternalStorageDirectory().toString(), Toast.LENGTH_SHORT).show();
+                readKML(path);
+
+
+            }
+
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == PERMISSION_REQUEST_STORAGE){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this,"Permission Granted",Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(this,"Permission not granted", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
     }
 
     /**
@@ -165,6 +359,9 @@ public class MapsActivity extends FragmentActivity implements
                 showSettingDialog();
                 break;
             }
+            case R.id.Load_kml:
+                performFileSearch();
+                break;
             default:
                 break;
 
