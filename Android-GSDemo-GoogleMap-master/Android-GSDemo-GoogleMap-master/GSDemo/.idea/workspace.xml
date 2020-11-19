@@ -10,15 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f274555a-a47c-4f25-abc9-85d73f307f85" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../Googlemap/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/java/com/example/googlemap/MapsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/java/com/example/googlemap/MapsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/activity_maps.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/activity_maps.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/l.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/l.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Googlemap/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../android-maps-utils-master/demo/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../android-maps-utils-master/demo/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../android-maps-utils-master/demo/src/main/java/com/google/maps/android/utils/demo/KmlDemoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../android-maps-utils-master/demo/src/main/java/com/google/maps/android/utils/demo/KmlDemoActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../android-maps-utils-master/demo/src/main/java/com/google/maps/android/utils/demo/MultiLayerDemoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../android-maps-utils-master/demo/src/main/java/com/google/maps/android/utils/demo/MultiLayerDemoActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +22,7 @@
     <option name="testRunner" value="GRADLE" />
     <option name="delegatedBuild" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="4100cc3df2e29133" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3a_XL_API_25" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -69,8 +62,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="layoutResourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -85,8 +78,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="4100cc3df2e29133" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-11-13T15:29:54.819Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3a_XL_API_25" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-11-19T16:09:07.664Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo" />
@@ -310,10 +303,10 @@
       <screen x="0" y="0" width="1536" height="832" />
     </state>
     <state x="286" y="148" key="#PSD/0.0.1536.832@0.0.1536.832" timestamp="1605193377218" />
-    <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser" timestamp="1605205484443">
+    <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser" timestamp="1605788257335">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
-    <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser/0.0.1536.832@0.0.1536.832" timestamp="1605205484443" />
+    <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser/0.0.1536.832@0.0.1536.832" timestamp="1605788257335" />
     <state x="192" y="341" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1604524932448">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
@@ -386,10 +379,10 @@
       <screen x="0" y="0" width="1536" height="832" />
     </state>
     <state x="349" y="159" key="IDE.errors.dialog/0.0.1536.832@0.0.1536.832" timestamp="1605192754649" />
-    <state x="277" y="58" key="SettingsEditor" timestamp="1605197925167">
+    <state x="277" y="58" key="SettingsEditor" timestamp="1605786403666">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
-    <state x="277" y="58" key="SettingsEditor/0.0.1536.832@0.0.1536.832" timestamp="1605197925167" />
+    <state x="277" y="58" key="SettingsEditor/0.0.1536.832@0.0.1536.832" timestamp="1605786403666" />
     <state x="93" y="93" width="1350" height="646" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1605195691075">
       <screen x="0" y="0" width="1536" height="832" />
     </state>

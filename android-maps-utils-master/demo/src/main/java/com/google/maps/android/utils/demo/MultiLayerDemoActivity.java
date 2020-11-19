@@ -112,7 +112,7 @@ public class MultiLayerDemoActivity extends BaseDemoActivity {
         try {
             // KML Polyline
             // [START maps_multilayer_demo_init4]
-            KmlLayer kmlPolylineLayer = new KmlLayer(getMap(), R.raw.south_london_line_kml, this, markerManager, polygonManager, polylineManager, groundOverlayManager, null);
+            KmlLayer kmlPolylineLayer = new KmlLayer(getMap(), R.raw.inspectiontrajectory, this, markerManager, polygonManager, polylineManager, groundOverlayManager, null);
             // [END maps_multilayer_demo_init4]
             // [START maps_multilayer_demo_init6]
             kmlPolylineLayer.addLayerToMap();

@@ -66,6 +66,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -131,9 +132,10 @@ public class MapsActivity extends FragmentActivity implements
         }
     }
 
-    private void readKML(String input) {
+    private void readKML(Uri input) {
         StringBuilder sb = new StringBuilder();
         try{
+
             // Shared object managers - used to support multiple layer types on the map simultaneously
             // [START maps_multilayer_demo_init1]
             MarkerManager markerManager = new MarkerManager(mMap);
@@ -142,30 +144,20 @@ public class MapsActivity extends FragmentActivity implements
             PolylineManager polylineManager = new PolylineManager(mMap);
             // [END maps_multilayer_demo_init1]
 
-            File file = new File(System.getenv("EXTERNAL_STORAGE")+"/InspectionTrajectory.kml");
-            InputStream inputStream = new FileInputStream(file);
-            KmlLayer layer = new KmlLayer(mMap,getResources().openRawResource(R.raw.), this, markerManager, polygonManager, polylineManager, groundOverlayManager,null);
-//
-//            if ( inputStream != null){
-//                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-//                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-//                String line = null;
-//                while((line=bufferedReader.readLine()) != null){
-//                    sb.append(line + "\n");
-//                }
-//                Toast.makeText(this, sb, Toast.LENGTH_SHORT).show();
-//                inputStream.close();
-//            }
+            //Sources for converting uri to InputStream
+            //https://stackoverflow.com/questions/43774287/how-to-convert-the-uri-to-inputstream-data-and-upload-the-stream-data-into-serve
 
+            InputStream inputStream = getContentResolver().openInputStream(input);
+            KmlLayer layer = new KmlLayer(mMap,inputStream, this, markerManager, polygonManager, polylineManager, groundOverlayManager,null);
             addKmlToMap(layer);
         }
         catch (IOException e){
             e.printStackTrace();
-            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Import Failed", Toast.LENGTH_SHORT).show();
         }
         catch (XmlPullParserException e) {
             e.printStackTrace();
-            Toast.makeText(this, "Failed1", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Failed reading the KML file", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -182,42 +174,43 @@ public class MapsActivity extends FragmentActivity implements
         if (mIsRestore) return;
         try {
             String oo ="1";
-            String ooo ="1";
+
+            Toast.makeText(this,String.valueOf( kmlLayer.hasPlacemarks()), Toast.LENGTH_SHORT).show();
+            if(kmlLayer.hasPlacemarks()){
+                oo+=String.valueOf(kmlLayer.hasPlacemarks());
+
+                for(KmlPlacemark i : kmlLayer.getPlacemarks()) {
+                    oo+= Arrays.asList(i.getPolygonOptions().getPoints());
+                }
+            }
             for(KmlContainer container: kmlLayer.getContainers()){
                 oo += container.getProperties().toString();
                 oo+=container.getContainers().toString();
                 oo+=container.getPlacemarks().toString();
+                oo+=kmlLayer.getFeatures().toString();
+                //oo+= Arrays.toString(kmlLayer.getDefaultLineStringStyle().getGeometryType());
                 if(container.hasProperty("name")){
-                    //Toast.makeText(getApplicationContext(),container.getProperty("name"),Toast.LENGTH_LONG).show();
-                    KML_path.setText(System.getenv("EXTERNAL_STORAGE")
-                            + "|"+ System.getenv("SECONDARY_STORAGE")
-                            + "|"+ System.getenv("EXTERNAL_SDCARD_STORAGE"));
-                    File f = new File(System.getenv("EXTERNAL_SDCARD_STORAGE") + "/InspectionTrajectory.kml");
-                    Toast.makeText(getApplicationContext(),String.valueOf(f.exists()),Toast.LENGTH_LONG).show();
+
                 }
             }
             for(KmlPlacemark placemark1 : kmlLayer.getPlacemarks()){
                 oo += placemark1.getProperties().toString();
 
             }
-            File file=new File("storage/");
-            File[] files = file.listFiles();
-            KML_file.setText(files.toString());
             //Retrieve the first container in the KML layer
             KmlContainer container = kmlLayer.getContainers().iterator().next();
             //Retrieve a nested container within the first container
-            container = container.getContainers().iterator().next();
+            //container = container.getContainers().iterator().next();
             //Retrieve the first placemark in the nested container
             KmlPlacemark placemark = container.getPlacemarks().iterator().next();
-            String o = container.getProperty("LineString");
-            Toast.makeText(getApplicationContext(),String.valueOf(placemark.getProperty("name")),Toast.LENGTH_SHORT).show();
+            KML_file.setText(oo);
             //Retrieve a polygon object in a placemark
-            List<LatLng> latLng = placemark.getPolylineOptions().getPoints();
-
-            KML_file.setText(container.getPlacemarks().iterator().next().toString());
-
-            PolylineOptions polylines = placemark.getPolylineOptions();
-            mMap.addPolyline(polylines);
+//            List<LatLng> latLng = placemark.getPolylineOptions().getPoints();
+//
+//            KML_file.setText(container.getPlacemarks().iterator().next().toString());
+//
+//            PolylineOptions polylines = placemark.getPolylineOptions();
+//            mMap.addPolyline(polylines);
             //Create LatLngBounds of the outer coordinates of the polygon
 //            LatLngBounds.Builder builder = new LatLngBounds.Builder();
 //            for (LatLng latLng : polygon.getOuterBoundaryCoordinates()) {
@@ -237,7 +230,6 @@ public class MapsActivity extends FragmentActivity implements
         //Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.setType("*/*");
         startActivityForResult(intent,READ_REQUEST_CODE);
-
     }
 
     @Override
@@ -247,12 +239,24 @@ public class MapsActivity extends FragmentActivity implements
             if (data != null) {
                 Uri uri = data.getData();
                 String path = uri.getPath();
+                //readKML(uri);
+                read_csv file= new read_csv();
 
-                path = path.substring(path.indexOf(":") + 1);
+                path =System.getenv("EXTERNAL_STORAGE") +"/"+path.substring(path.indexOf(":") + 1);
 
-                String filetype = path.substring(path.indexOf(".")+1);
-                //Toast.makeText(this, Environment.getExternalStorageDirectory().toString(), Toast.LENGTH_SHORT).show();
-                readKML(path);
+
+                //InputStream inputStream = getResources().openRawResource(R.raw.csv_inspectiontrajectory);
+                FileInputStream inputStream = null;
+                try {
+                    File f = new File(path);
+                    inputStream = new FileInputStream(f);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                file.setInputStream(inputStream);
+                List<Parawind_waypoint> waypointList_csv = file.getWaypoints_csv();
+                boolean r = waypointList_csv.get(3).isViewPoint();
+                Toast.makeText(this, String.valueOf(r), Toast.LENGTH_SHORT).show();
 
 
             }

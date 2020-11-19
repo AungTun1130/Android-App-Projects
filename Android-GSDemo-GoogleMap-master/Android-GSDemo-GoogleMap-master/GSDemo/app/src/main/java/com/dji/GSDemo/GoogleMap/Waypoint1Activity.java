@@ -133,6 +133,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
     private float altitude = 100.0f;
     private float mSpeed = 10.0f;
 
+    private List<Parawind_waypoints> parawindWaypointsList = new ArrayList<>();
     private List<Waypoint> waypointList = new ArrayList<>();
     private List<String> waypointListString = new ArrayList<>();
     private List<List<Float>> ActionItems = new ArrayList<>();
@@ -304,7 +305,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
                             Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.ACCESS_FINE_LOCATION,
                             Manifest.permission.CHANGE_WIFI_STATE, Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS,
                             Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SYSTEM_ALERT_WINDOW,
-                            Manifest.permission.READ_PHONE_STATE,
+                            Manifest.permission.READ_PHONE_STATE
                     }
                     , 1);
         }
@@ -325,6 +326,12 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
         mapFragment.getMapAsync(this);
         edit_eachWaypoint();
         addListener();
+        //####################################################
+        //Collecting Parawind waypoints
+        //####################################################
+        if(MainActivity.ImportSuccess){
+            parawindWaypointsList = MainActivity.parawindWaypointsList;
+        }
 
         //####################################################
         //Initialize Camera - start
@@ -348,13 +355,6 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
                 @Override
                 public void onUpdate(SystemState cameraSystemState) {
                     if (null != cameraSystemState) {
-
-//                        int recordTime = cameraSystemState.getCurrentVideoRecordingTimeInSeconds();
-//                        int minutes = (recordTime % 3600) / 60;
-//                        int seconds = recordTime % 60;
-
-//                        final String timeString = String.format("%02d:%02d", minutes, seconds);
-//                        final boolean isVideoRecording = cameraSystemState.isRecording();
 
                         Waypoint1Activity.this.runOnUiThread(new Runnable() {
 
@@ -509,102 +509,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
         return instance;
     }
 
-    //####################################################
-    //Initialize clicker on the GoogleMap
-    //####################################################
-    private void setUpMap() {
-        gMap.setOnMapClickListener(this);// add the listener for click for amap object
-        gMap.setOnPolylineClickListener(this);
-        gMap.setOnMarkerDragListener(this);
 
-    }
-    //####################################################
-    //Click action on the GoogleMap
-    //####################################################
-    @Override
-    public void onMapClick(LatLng point) {
-        if (isAdd == true){
-            markWaypoint(point,waypointList);
-            Waypoint mWaypoint = new Waypoint(point.latitude, point.longitude, altitude);
-
-
-            //Add Waypoints to Waypoint arraylist;
-            if (waypointMissionBuilder != null) {
-                waypointList.add(mWaypoint);
-                waypointMissionBuilder.waypointList(waypointList).waypointCount(waypointList.size());
-            }else
-            {
-                waypointMissionBuilder = new WaypointMission.Builder();
-                waypointList.add(mWaypoint);
-                waypointMissionBuilder.waypointList(waypointList).waypointCount(waypointList.size());
-            }
-            PolylineOptions polylineOptions =new PolylineOptions();
-            for( Waypoint i : waypointList)   {
-                polylineOptions.add(new LatLng(i.coordinate.getLatitude(),i.coordinate.getLongitude()));
-            }
-            gMap.addPolyline(polylineOptions);
-            Waypoint_index = waypointList.size()-1;
-            addNewWaypoint();
-            Update_waypointInfo_panel();
-        }else{
-            setResultToToast("Cannot Add Waypoint");
-        }
-    }
-
-    public static boolean checkGpsCoordination(double latitude, double longitude) {
-        return (latitude > -90 && latitude < 90 && longitude > -180 && longitude < 180) && (latitude != 0f && longitude != 0f);
-    }
-    //####################################################
-    // Update the drone location based on states from MCU.
-    //####################################################
-    private void updateDroneLocation(){
-
-        LatLng pos = new LatLng(droneLocationLat, droneLocationLng);
-        //Create MarkerOptions object
-        final MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(pos);
-        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.aircraft));
-        //This allow the drone to rotate - edited by Aung
-        markerOptions.rotation((float)droneHeadingDir);
-
-
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (droneMarker != null) {
-                    droneMarker.remove();
-                }
-
-                if (checkGpsCoordination(droneLocationLat, droneLocationLng)) {
-                    droneMarker = gMap.addMarker(markerOptions);
-                }
-            }
-        });
-    }
-    //####################################################
-    //Creating marker as user click on the map
-    //####################################################
-    private void markWaypoint(LatLng point,List<Waypoint> list){
-        int lenOfList = list.toArray().length;
-        String name = "WayPoint#" + String.valueOf(lenOfList);
-        waypointListString.add(name);
-        //Create MarkerOptions object
-        MarkerOptions markerOptions = new MarkerOptions().title(name);
-        markerOptions.position(point);
-        //This allow the user to drag the marker - edited by Aung
-        markerOptions.draggable(true);
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-        Marker marker = gMap.addMarker(markerOptions);
-        mMarkers.put(mMarkers.size(), marker);
-    }
-
-    private void cameraUpdate(){
-        LatLng pos = new LatLng(droneLocationLat, droneLocationLng);
-        float zoomlevel = (float) 18.0;
-        CameraUpdate cu = CameraUpdateFactory.newLatLngZoom(pos, zoomlevel);
-        gMap.moveCamera(cu);
-
-    }
     //####################################################
     //Action of each button on the UI
     //####################################################
@@ -630,6 +535,9 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
 
                 });
                 waypointList.clear();
+                ActionItems.clear();
+                waypointListString.clear();
+                Aircraft_yawList.clear();
                 waypointMissionBuilder.waypointList(waypointList);
                 updateDroneLocation();
                 break;
@@ -804,14 +712,14 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
         gimbal_roll_value = action.get(1);
         gimbal_yaw_value = action.get(2);
 
-        Waypoint_TextView.setText("Waypoint#"+index);
+
+        Waypoint_TextView.setText("Waypoint#"+(index+1));
         Aircraft_yaw_TextView.setText(String.valueOf(Aircraft_yaw_value));
         Aircraft_yaw_slider.setProgress((int) Aircraft_yaw_value +180);
         Payload_pitch_TextView.setText(String.valueOf(gimbal_pitch_value));
         Payload_pitch_slider.setProgress((int) gimbal_pitch_value+90);
     }
     private  void addNewWaypoint(){
-        int index = Waypoint_index;
         Aircraft_yaw_value=0;
         gimbal_pitch_value=0;
         gimbal_roll_value=0;
@@ -824,12 +732,6 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
     //Configuration of the whole flight plan
     //####################################################
     private void showSettingDialog(){
-//        LinearLayout wayPointSettings = (LinearLayout)getLayoutInflater().inflate(R.layout.dialog_waypointsetting, null);
-//
-//        final TextView wpAltitude_TV = (TextView) wayPointSettings.findViewById(R.id.altitude);
-//        RadioGroup speed_RG = (RadioGroup) wayPointSettings.findViewById(R.id.speed);
-//        RadioGroup actionAfterFinished_RG = (RadioGroup) wayPointSettings.findViewById(R.id.actionAfterFinished);
-//        RadioGroup heading_RG = (RadioGroup) wayPointSettings.findViewById(R.id.heading);
 
         speed_RG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
 
@@ -881,30 +783,6 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
             }
         });
 
-//        new AlertDialog.Builder(this)
-//                .setTitle("")
-//                .setView(wayPointSettings)
-//                .setPositiveButton("Finish",new DialogInterface.OnClickListener(){
-//                    public void onClick(DialogInterface dialog, int id) {
-//
-//                        String altitudeString = wpAltitude_TV.getText().toString();
-//                        altitude = Integer.parseInt(nulltoIntegerDefalt(altitudeString));
-//                        Log.e(TAG,"altitude "+altitude);
-//                        Log.e(TAG,"speed "+mSpeed);
-//                        Log.e(TAG, "mFinishedAction "+mFinishedAction);
-//                        Log.e(TAG, "mHeadingMode "+mHeadingMode);
-//                        configWayPointMission();
-//                    }
-//
-//                })
-//                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        dialog.cancel();
-//                    }
-//
-//                })
-//                .create()
-//                .show();
     }
 
     String nulltoIntegerDefalt(String value){
@@ -1020,7 +898,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
         if (waypointMissionBuilder.getWaypointList().size() > 0){
 
             for (int i=0; i< waypointMissionBuilder.getWaypointList().size(); i++){
-                waypointMissionBuilder.getWaypointList().get(i).altitude = altitude;
+                waypointMissionBuilder.getWaypointList().get(i).altitude = waypointList.get(i).altitude;
                 List<Float> actions = ActionItems.get(i);
                 float gimbal_pitch_final_value = actions.get(0);
                 waypointMissionBuilder.getWaypointList().get(i).gimbalPitch = gimbal_pitch_final_value;
@@ -1028,7 +906,9 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
 
             }
 
-            setResultToToast("Set Waypoint attitude successfully");
+            //setResultToToast("Set Waypoint attitude successfully");
+            setResultToToast(String.valueOf(waypointMissionBuilder.getWaypointCount()));
+            setResultToToast(String.valueOf(waypointMissionBuilder.getWaypointList().size()) + "hi");
         }
 
         DJIError error = getWaypointMissionOperator().loadMission(waypointMissionBuilder.build());
@@ -1078,7 +958,102 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
         });
 
     }
+    //####################################################
+    //Initialize clicker on the GoogleMap
+    //####################################################
+    private void setUpMap() {
+        gMap.setOnMapClickListener(this);// add the listener for click for amap object
+        gMap.setOnPolylineClickListener(this);
+        gMap.setOnMarkerDragListener(this);
 
+    }
+    //####################################################
+    //Click action on the GoogleMap
+    //####################################################
+    @Override
+    public void onMapClick(LatLng point) {
+        if (isAdd == true){
+            markWaypoint(point,waypointList,waypointListString);
+            Waypoint mWaypoint = new Waypoint(point.latitude, point.longitude, altitude);
+
+
+            //Add Waypoints to Waypoint arraylist;
+            if (waypointMissionBuilder != null) {
+                waypointList.add(mWaypoint);
+                waypointMissionBuilder.waypointList(waypointList).waypointCount(waypointList.size());
+            }else
+            {
+                waypointMissionBuilder = new WaypointMission.Builder();
+                waypointList.add(mWaypoint);
+                waypointMissionBuilder.waypointList(waypointList).waypointCount(waypointList.size());
+            }
+            PolylineOptions polylineOptions =new PolylineOptions();
+            for( Waypoint i : waypointList)   {
+                polylineOptions.add(new LatLng(i.coordinate.getLatitude(),i.coordinate.getLongitude()));
+            }
+            gMap.addPolyline(polylineOptions);
+            Waypoint_index = waypointList.size()-1;
+            addNewWaypoint();
+            Update_waypointInfo_panel();
+        }else{
+            setResultToToast("Cannot Add Waypoint");
+        }
+    }
+
+    public static boolean checkGpsCoordination(double latitude, double longitude) {
+        return (latitude > -90 && latitude < 90 && longitude > -180 && longitude < 180) && (latitude != 0f && longitude != 0f);
+    }
+    //####################################################
+    // Update the drone location based on states from MCU.
+    //####################################################
+    private void updateDroneLocation(){
+
+        LatLng pos = new LatLng(droneLocationLat, droneLocationLng);
+        //Create MarkerOptions object
+        final MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(pos);
+        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.aircraft));
+        //This allow the drone to rotate - edited by Aung
+        markerOptions.rotation((float)droneHeadingDir);
+
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (droneMarker != null) {
+                    droneMarker.remove();
+                }
+
+                if (checkGpsCoordination(droneLocationLat, droneLocationLng)) {
+                    droneMarker = gMap.addMarker(markerOptions);
+                }
+            }
+        });
+    }
+    //####################################################
+    //Creating marker as user click on the map
+    //####################################################
+    private void markWaypoint(LatLng point,List<Waypoint> list,List<String> waypointListString){
+        int lenOfList = list.toArray().length;
+        String name = "WayPoint#" + String.valueOf(lenOfList);
+        waypointListString.add(name);
+        //Create MarkerOptions object
+        MarkerOptions markerOptions = new MarkerOptions().title(name);
+        markerOptions.position(point);
+        //This allow the user to drag the marker - edited by Aung
+        markerOptions.draggable(true);
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+        Marker marker = gMap.addMarker(markerOptions);
+        mMarkers.put(mMarkers.size(), marker);
+    }
+
+    private void cameraUpdate(){
+        LatLng pos = new LatLng(droneLocationLat, droneLocationLng);
+        float zoomlevel = (float) 18.0;
+        CameraUpdate cu = CameraUpdateFactory.newLatLngZoom(pos, zoomlevel);
+        gMap.moveCamera(cu);
+
+    }
     @Override
     public void onMapReady(GoogleMap googleMap) {
         if (gMap == null) {
@@ -1086,10 +1061,54 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
             setUpMap();
         }
 
-//        LatLng shenzhen = new LatLng(22.5362, 113.9454);
-//        gMap.addMarker(new MarkerOptions().position(shenzhen).title("Marker in Shenzhen"));
-//        gMap.moveCamera(CameraUpdateFactory.newLatLng(shenzhen));
-        //updateDroneLocation();
+        LatLng latLng = new LatLng(0,0);
+
+        for(Parawind_waypoints PW : parawindWaypointsList)
+        {
+            //Extracting the coordinate from csv saved list
+            List<Double> PW_coordinate = PW.getCoordinates();
+            Double PW_latitude         = PW_coordinate.get(1);
+            Double PW_longitude        = PW_coordinate.get(0);
+            Float PW_altitude          = PW_coordinate.get(2).floatValue();
+            gimbal_pitch_value         = -(float) Math.toDegrees(PW.getGimbalAngles().get(1));
+            gimbal_roll_value          = (float) Math.toDegrees(PW.getGimbalAngles().get(0));
+            gimbal_yaw_value           = 0;
+            Aircraft_yaw_value         = (float) Math.toDegrees(PW.getGimbalAngles().get(2));
+
+            //Creating new Latlng for GoogleMap variable and Waypoint for DJI
+            latLng                      = new LatLng(PW_latitude,PW_longitude);
+            Waypoint mWaypoint          = new Waypoint(PW_latitude, PW_longitude,PW_altitude);
+
+            //Draw a marker on the map
+            markWaypoint(latLng,waypointList,waypointListString);
+
+            //Add Waypoints to Waypoint arraylist;
+            if (waypointMissionBuilder != null) {
+                waypointList.add(mWaypoint);
+                waypointMissionBuilder.waypointList(waypointList).waypointCount(waypointList.size());
+            }else
+            {
+                waypointMissionBuilder = new WaypointMission.Builder();
+                waypointList.add(mWaypoint);
+                waypointMissionBuilder.waypointList(waypointList).waypointCount(waypointList.size());
+            }
+
+            ActionItems.add(Arrays.asList(gimbal_pitch_value,gimbal_roll_value,gimbal_yaw_value));
+            Aircraft_yawList.add(Aircraft_yaw_value);
+
+        }
+        PolylineOptions polylineOptions =new PolylineOptions();
+        for( Waypoint i : waypointList)   {
+            polylineOptions.add(new LatLng(i.coordinate.getLatitude(),i.coordinate.getLongitude()));
+        }
+        gMap.addPolyline(polylineOptions);
+        Waypoint_index = waypointList.size()-1;
+        Update_waypointInfo_panel();
+
+        float zoomlevel = (float) 18.0;
+        CameraUpdate cu = CameraUpdateFactory.newLatLngZoom(latLng, zoomlevel);
+        gMap.moveCamera(cu);
+
     }
 
     @Override
