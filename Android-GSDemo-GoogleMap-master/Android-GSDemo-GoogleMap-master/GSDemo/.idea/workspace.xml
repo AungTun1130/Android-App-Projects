@@ -5,24 +5,109 @@
       <config />
     </shared>
   </component>
-  <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="f274555a-a47c-4f25-abc9-85d73f307f85" name="Default Changelist" comment="">
+    <list default="true" id="140a720c-8b6d-4b07-b36d-51337c3b7635" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_activity_activity_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_annotation_annotation_1_1_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_annotation_annotation_experimental_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_arch_core_core_common_2_1_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_collection_collection_1_1_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_2_0_2_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_solver_2_0_2_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_core_core_1_3_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_fragment_fragment_1_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_2_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_extensions_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_process_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_service_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_savedstate_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_test_core_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_test_ext_junit_1_1_2_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_test_monitor_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_test_runner_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_transition_transition_1_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_viewpager2_viewpager2_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__com_google_android_gms_play_services_base_17_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_17_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__com_google_android_gms_play_services_maps_17_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_17_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__com_google_android_material_material_1_2_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_2_0_1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__com_google_maps_android_android_maps_utils_2_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__javax_inject_javax_inject_1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__junit_junit_4_12_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_lmax_disruptor_3_3_9_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_lmax_disruptor_3_3_9_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okio_okio_1_15_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okio_okio_1_15_0_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_otto_1_3_8_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_otto_1_3_8_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_wire_wire_runtime_2_2_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_wire_wire_runtime_2_2_0_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_vividsolutions_jts_1_8_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_vividsolutions_jts_1_8_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_http_legacy_android_28.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_http_legacy_android_28.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_bouncycastle_bcpkix_jdk15on_1_57_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_bouncycastle_bcpkix_jdk15on_1_57_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_bouncycastle_bcprov_jdk15on_1_57_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_bouncycastle_bcprov_jdk15on_1_57_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_greenrobot_eventbus_3_0_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_greenrobot_eventbus_3_0_0_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_reactivestreams_reactive_streams_1_0_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_reactivestreams_reactive_streams_1_0_0_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dji/GSDemo/GoogleMap/Parawind_waypoints.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dji/GSDemo/GoogleMap/Parawind_waypoints.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dji/GSDemo/GoogleMap/Waypoint1Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dji/GSDemo/GoogleMap/Waypoint1Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/dji/GSDemo/GoogleMap/readCSV.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/dji/GSDemo/GoogleMap/readCSV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_waypointsetting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_waypointsetting.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/waypoint_setting_panel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/waypoint_setting_panel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/java/com/example/googlemap/MapsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/java/com/example/googlemap/MapsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../android-maps-utils-master/demo/src/main/java/com/google/maps/android/utils/demo/MultiLayerDemoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../android-maps-utils-master/demo/src/main/java/com/google/maps/android/utils/demo/MultiLayerDemoActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/java/com/example/googlemap/Parawind_waypoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/java/com/example/googlemap/Parawind_waypoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/java/com/example/googlemap/read_csv.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/java/com/example/googlemap/read_csv.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
-  </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3a_XL_API_25" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="4100cc3df2e29133" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -31,46 +116,14 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <task path="$PROJECT_DIR$">
-          <activation />
-        </task>
-        <projects_view>
-          <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="GSDemo" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="GSDemo" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="GSDemo" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-            </expand>
-            <select />
-          </tree_state>
-        </projects_view>
+        <projects_view />
       </state>
     </system>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="layoutResourceFile" />
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="ProjectId" id="1jpFe5IhwtXv34oyApQzEMuSlGx" />
+  <component name="ProjectId" id="1l24MqASkG6LhtUvduvaAa5J7qv" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -78,53 +131,14 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3a_XL_API_25" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-11-19T16:09:07.664Z" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Android-FPVDemo-master/Android-FPVDemo-master/FPVDemo" />
-    <property name="not.eligible.for.single.variant.sync" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Googlemap/app" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.dji.GSDemo.GoogleMap" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Android App.GSDemo-app">
-    <configuration default="true" type="Applet">
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-    </configuration>
+  <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -132,58 +146,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GSDemo-app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
-      <module name="GSDemo-app" />
-      <option name="DEPLOY" value="true" />
-      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
-      <option name="DEPLOY_AS_INSTANT" value="false" />
-      <option name="ARTIFACT_NAME" value="" />
-      <option name="PM_INSTALL_OPTIONS" value="" />
-      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
-      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
-      <option name="MODE" value="default_activity" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
-      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
-      <option name="FORCE_STOP_RUNNING_APP" value="true" />
-      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
-      <Auto>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Auto>
-      <Hybrid>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Hybrid>
-      <Java />
-      <Native>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Native>
-      <Profilers>
-        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
-      </Profilers>
-      <option name="DEEP_LINK" value="" />
-      <option name="ACTIVITY_CLASS" value="" />
-      <method v="2">
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
@@ -234,174 +197,44 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="Application" factoryName="Application">
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GSDemo [build]" type="GradleRunConfiguration" factoryName="Gradle">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="TestNG">
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f274555a-a47c-4f25-abc9-85d73f307f85" name="Default Changelist" comment="" />
-      <created>1571237169840</created>
+      <changelist id="140a720c-8b6d-4b07-b36d-51337c3b7635" name="Default Changelist" comment="" />
+      <created>1606781806456</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1571237169840</updated>
+      <updated>1606781806456</updated>
     </task>
-    <task id="LOCAL-00001" summary="wp1">
-      <created>1604503561986</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1604503561986</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="wp1" />
-    <option name="LAST_COMMIT_MESSAGE" value="wp1" />
-  </component>
   <component name="WindowStateProjectService">
-    <state x="361" y="75" key="#Notifications" timestamp="1605197978093">
+    <state x="286" y="148" key="#PSD" timestamp="1606826919280">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
-    <state x="361" y="75" key="#Notifications/0.0.1536.832@0.0.1536.832" timestamp="1605197978093" />
-    <state x="286" y="148" key="#PSD" timestamp="1605193377218">
+    <state x="286" y="148" key="#PSD/0.0.1536.832/1920.0.1280.994@0.0.1536.832" timestamp="1606826919280" />
+    <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser" timestamp="1606824085924">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
-    <state x="286" y="148" key="#PSD/0.0.1536.832@0.0.1536.832" timestamp="1605193377218" />
-    <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser" timestamp="1605788257335">
+    <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser/0.0.1536.832/1920.0.1280.994@0.0.1536.832" timestamp="1606824085924" />
+    <state x="267" y="9" key="CommitChangelistDialog2" timestamp="1606820924628">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
-    <state x="574" y="126" key="#com.intellij.ide.util.MemberChooser/0.0.1536.832@0.0.1536.832" timestamp="1605788257335" />
-    <state x="192" y="341" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1604524932448">
+    <state x="267" y="9" key="CommitChangelistDialog2/0.0.1536.832/1920.0.1280.994@0.0.1536.832" timestamp="1606820924628" />
+    <state x="549" y="171" key="FileChooserDialogImpl" timestamp="1606781868826">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
-    <state x="192" y="341" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.832@0.0.1536.832" timestamp="1604524932448" />
-    <state x="499" y="162" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605193061736">
+    <state x="549" y="171" key="FileChooserDialogImpl/0.0.1536.832/1920.0.1280.994@0.0.1536.832" timestamp="1606781868826" />
+    <state x="277" y="58" key="SettingsEditor" timestamp="1606826903983">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
-    <state x="499" y="162" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.832@0.0.1536.832" timestamp="1605193061736" />
-    <state x="297" y="243" width="941" height="346" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog" timestamp="1604500926288">
+    <state x="277" y="58" key="SettingsEditor/0.0.1536.832/1920.0.1280.994@0.0.1536.832" timestamp="1606826903983" />
+    <state x="467" y="240" key="com.intellij.ide.util.TipDialog" timestamp="1606781812576">
       <screen x="0" y="0" width="1536" height="832" />
     </state>
-    <state x="297" y="243" width="941" height="346" key="#com.intellij.structuralsearch.plugin.ui.StructuralSearchDialog/0.0.1536.832@0.0.1536.832" timestamp="1604500926288" />
-    <state x="349" y="171" key="AndroidCreateResourceFileDialog" timestamp="1605105548976">
-      <screen x="0" y="0" width="1536" height="832" />
-    </state>
-    <state x="349" y="171" key="AndroidCreateResourceFileDialog/0.0.1536.832@0.0.1536.832" timestamp="1605105548976" />
-    <state x="626" y="228" key="AndroidCreateXmlResourceDialog" timestamp="1605204609392">
-      <screen x="0" y="0" width="1536" height="832" />
-    </state>
-    <state x="626" y="228" key="AndroidCreateXmlResourceDialog/0.0.1536.832@0.0.1536.832" timestamp="1605204609392" />
-    <state x="365" y="9" key="CommitChangelistDialog2" timestamp="1604503560590">
-      <screen x="0" y="0" width="1536" height="832" />
-    </state>
-    <state x="365" y="9" key="CommitChangelistDialog2/0.0.1536.832@0.0.1536.832" timestamp="1604503560590" />
-    <state x="549" y="157" key="FileChooserDialogImpl" timestamp="1605108743888">
-      <screen x="0" y="0" width="1536" height="832" />
-    </state>
-    <state x="549" y="157" key="FileChooserDialogImpl/0.0.1536.832@0.0.1536.832" timestamp="1605108743888" />
-    <state width="1487" height="155" key="GridCell.Tab.0.bottom" timestamp="1605523095366">
-      <screen x="0" y="0" width="1536" height="832" />
-    </state>
-    <state width="1487" height="155" key="GridCell.Tab.0.bottom/0.0.1536.832/1920.0.1280.994@0.0.1536.832" timestamp="1605523095366" />
-    <state width="1487" height="257" key="GridCell.Tab.0.bottom/0.0.1536.832@0.0.1536.832" timestamp="1605398435442" />
-    <state width="1487" height="155" key="GridCell.Tab.0.center" timestamp="1605523095366">
-      <screen x="0" y="0" width="1536" height="832" />
-    </state>
-    <state width="1487" height="155" key="GridCell.Tab.0.center/0.0.1536.832/1920.0.1280.994@0.0.1536.832" timestamp="1605523095366" />
-    <state width="1487" height="257" key="GridCell.Tab.0.center/0.0.1536.832@0.0.1536.832" timestamp="1605398435442" />
-    <state width="1487" height="155" key="GridCell.Tab.0.left" timestamp="1605523095365">
-      <screen x="0" y="0" width="1536" height="832" />
-    </state>
-    <state width="1487" height="155" key="GridCell.Tab.0.left/0.0.1536.832/1920.0.1280.994@0.0.1536.832" timestamp="1605523095365" />
-    <state width="1487" height="257" key="GridCell.Tab.0.left/0.0.1536.832@0.0.1536.832" timestamp="1605398435441" />
-    <state width="1487" height="155" key="GridCell.Tab.0.right" timestamp="1605523095366">
-      <screen x="0" y="0" width="1536" height="832" />
-    </state>
-    <state width="1487" height="155" key="GridCell.Tab.0.right/0.0.1536.832/1920.0.1280.994@0.0.1536.832" timestamp="1605523095366" />
-    <state width="1487" height="257" key="GridCell.Tab.0.right/0.0.1536.832@0.0.1536.832" timestamp="1605398435442" />
-    <state width="1487" height="155" key="GridCell.Tab.1.bottom" timestamp="1605523095368">
-      <screen x="0" y="0" width="1536" height="832" />
-    </state>
-    <state width="1487" height="155" key="GridCell.Tab.1.bottom/0.0.1536.832/1920.0.1280.994@0.0.1536.832" timestamp="1605523095368" />
-    <state width="1487" height="155" key="GridCell.Tab.1.bottom/0.0.1536.832@0.0.1536.832" timestamp="1605207804010" />
-    <state width="1487" height="155" key="GridCell.Tab.1.center" timestamp="1605523095367">
-      <screen x="0" y="0" width="1536" height="832" />
-    </state>
-    <state width="1487" height="155" key="GridCell.Tab.1.center/0.0.1536.832/1920.0.1280.994@0.0.1536.832" timestamp="1605523095367" />
-    <state width="1487" height="155" key="GridCell.Tab.1.center/0.0.1536.832@0.0.1536.832" timestamp="1605207804010" />
-    <state width="1487" height="155" key="GridCell.Tab.1.left" timestamp="1605523095367">
-      <screen x="0" y="0" width="1536" height="832" />
-    </state>
-    <state width="1487" height="155" key="GridCell.Tab.1.left/0.0.1536.832/1920.0.1280.994@0.0.1536.832" timestamp="1605523095367" />
-    <state width="1487" height="155" key="GridCell.Tab.1.left/0.0.1536.832@0.0.1536.832" timestamp="1605207804010" />
-    <state width="1487" height="155" key="GridCell.Tab.1.right" timestamp="1605523095367">
-      <screen x="0" y="0" width="1536" height="832" />
-    </state>
-    <state width="1487" height="155" key="GridCell.Tab.1.right/0.0.1536.832/1920.0.1280.994@0.0.1536.832" timestamp="1605523095367" />
-    <state width="1487" height="155" key="GridCell.Tab.1.right/0.0.1536.832@0.0.1536.832" timestamp="1605207804010" />
-    <state x="349" y="159" key="IDE.errors.dialog" timestamp="1605192754649">
-      <screen x="0" y="0" width="1536" height="832" />
-    </state>
-    <state x="349" y="159" key="IDE.errors.dialog/0.0.1536.832@0.0.1536.832" timestamp="1605192754649" />
-    <state x="277" y="58" key="SettingsEditor" timestamp="1605786403666">
-      <screen x="0" y="0" width="1536" height="832" />
-    </state>
-    <state x="277" y="58" key="SettingsEditor/0.0.1536.832@0.0.1536.832" timestamp="1605786403666" />
-    <state x="93" y="93" width="1350" height="646" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1605195691075">
-      <screen x="0" y="0" width="1536" height="832" />
-    </state>
-    <state x="93" y="93" width="1350" height="646" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1536.832@0.0.1536.832" timestamp="1605195691075" />
-    <state x="467" y="240" key="com.intellij.ide.util.TipDialog" timestamp="1604924758497">
-      <screen x="0" y="0" width="1536" height="832" />
-    </state>
-    <state x="467" y="240" key="com.intellij.ide.util.TipDialog/0.0.1536.832@0.0.1536.832" timestamp="1604924758497" />
-    <state x="150" y="34" width="1277" height="813" key="dock-window-1" timestamp="1605111755126">
-      <screen x="0" y="0" width="1536" height="832" />
-    </state>
-    <state x="150" y="34" width="1277" height="813" key="dock-window-1/0.0.1536.832@0.0.1536.832" timestamp="1605111755126" />
-    <state x="465" y="9" width="681" height="813" key="find.popup" timestamp="1604500954886">
-      <screen x="0" y="0" width="1536" height="832" />
-    </state>
-    <state x="465" y="9" width="681" height="813" key="find.popup/0.0.1536.832@0.0.1536.832" timestamp="1604500954886" />
-    <state x="425" y="189" key="run.anything.popup" timestamp="1605398764696">
-      <screen x="0" y="0" width="1536" height="832" />
-    </state>
-    <state x="425" y="189" key="run.anything.popup/0.0.1536.832@0.0.1536.832" timestamp="1605398764696" />
+    <state x="467" y="240" key="com.intellij.ide.util.TipDialog/0.0.1536.832/1920.0.1280.994@0.0.1536.832" timestamp="1606781812576" />
   </component>
 </project>

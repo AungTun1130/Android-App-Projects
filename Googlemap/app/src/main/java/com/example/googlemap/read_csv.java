@@ -18,11 +18,14 @@ public class read_csv extends MapsActivity{
 
 
 
-    private FileInputStream inputStream;
+    private InputStream inputStream;
 
     private List<Parawind_waypoint> waypoints_csv = new ArrayList<Parawind_waypoint>();
 
-    public void setInputStream(FileInputStream inputStream) {
+//    public void setInputStream(FileInputStream inputStream) {
+//        this.inputStream = inputStream;
+//    }
+    public void setInputStream(InputStream inputStream) {
         this.inputStream = inputStream;
     }
 
@@ -67,21 +70,24 @@ public class read_csv extends MapsActivity{
                     sample.setViewPoint(Boolean.parseBoolean(csv_data[4].trim().toLowerCase()));
 
                     List<Double> Gimbal= new ArrayList<>();
-                    if(Boolean.parseBoolean(csv_data[4].trim().toLowerCase())){
-
-                        for(String i : csv_data[5].substring(2,csv_data[5].length() -1).split(" ")){
-                            if(i.length()>1) {
-                                Gimbal.add(Double.parseDouble(i.trim()));
-                            }
+                    for(String i : csv_data[5].substring(2,csv_data[5].length() -1).split(" ")){
+                        if(i.length()>1) {
+                            Gimbal.add(Double.parseDouble(i.trim()));
                         }
                     }
-                    else{
-                        Gimbal.add(0.);
-                        Gimbal.add(0.);
-                        Gimbal.add(0.);
-                    }
-
                     sample.setGimbalAngles(Gimbal);
+
+                    List<Double> Drone= new ArrayList<>();
+                    Log.d("Drone", csv_data[6].substring(1,csv_data[6].length() -1));
+                    for(String i : csv_data[6].substring(1,csv_data[6].length() -1).split(" ")){
+                        if(i.length()>0) {
+                            Drone.add(Double.parseDouble(i.trim()));
+                        }
+                    }
+                    sample.setDroneAngles(Drone);
+
+                    sample.setActioID(csv_data[7]);
+                    sample.setActioParameter(csv_data[8]);
                     waypoints_csv.add(sample);
 
                 }

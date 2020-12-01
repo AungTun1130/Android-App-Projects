@@ -245,18 +245,20 @@ public class MapsActivity extends FragmentActivity implements
                 path =System.getenv("EXTERNAL_STORAGE") +"/"+path.substring(path.indexOf(":") + 1);
 
 
-                //InputStream inputStream = getResources().openRawResource(R.raw.csv_inspectiontrajectory);
-                FileInputStream inputStream = null;
-                try {
-                    File f = new File(path);
-                    inputStream = new FileInputStream(f);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+
+//                FileInputStream inputStream = null;
+//                try {
+//                    File f = new File(path);
+//                    inputStream = new FileInputStream(f);
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                }
+                InputStream inputStream = getResources().openRawResource(R.raw.inspection_trajectory_edited);
                 file.setInputStream(inputStream);
                 List<Parawind_waypoint> waypointList_csv = file.getWaypoints_csv();
-                boolean r = waypointList_csv.get(3).isViewPoint();
-                Toast.makeText(this, String.valueOf(r), Toast.LENGTH_SHORT).show();
+                for(Parawind_waypoint i: waypointList_csv){
+                    Log.e("CSV",i.getAllParameter());
+                }
 
 
             }

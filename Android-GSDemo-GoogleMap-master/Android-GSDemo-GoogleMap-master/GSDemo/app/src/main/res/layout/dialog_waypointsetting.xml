@@ -61,12 +61,14 @@
                 android:id="@+id/lowSpeed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="false"
                 android:text="Low" />
 
             <RadioButton
                 android:id="@+id/MidSpeed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:text="Mid" />
 
             <RadioButton
@@ -115,6 +117,7 @@
                 android:id="@+id/finishGoHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:text="GoHome"
                 android:textSize="5pt" />
 

@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
@@ -43,6 +44,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 import dji.common.camera.SystemState;
@@ -51,6 +53,8 @@ import dji.common.flightcontroller.FlightControllerState;
 import dji.common.flightcontroller.FlightMode;
 import dji.common.gimbal.CapabilityKey;
 import dji.common.mission.waypoint.Waypoint;
+import dji.common.mission.waypoint.WaypointAction;
+import dji.common.mission.waypoint.WaypointActionType;
 import dji.common.mission.waypoint.WaypointMission;
 import dji.common.mission.waypoint.WaypointMissionDownloadEvent;
 import dji.common.mission.waypoint.WaypointMissionExecutionEvent;
@@ -90,7 +94,11 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
     private int movingMarker_Index;
 
     private Switch Take_photo_switch;
+    private Switch Take_photo_dist_interval_switch;
     private boolean Take_photo_bool = false;
+    private boolean Take_photo_dist_interval_bool = false;
+
+    private EditText Photo_dist_interval;
 
     private SeekBar Payload_pitch_slider,Payload_roll_slider,Payload_yaw_slider;
     private SeekBar Aircraft_yaw_slider;
@@ -126,6 +134,8 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
     private double droneHeadingDir;
     private float Aircraft_yaw_value;
     private List<Float> Aircraft_yawList = new ArrayList<>();
+    private String ActionID,ActionParam;
+    private List<List<String>> ActionIDList;
 
     private final Map<Integer, Marker> mMarkers = new ConcurrentHashMap<Integer, Marker>();
     private Marker droneMarker = null;
@@ -220,13 +230,24 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
 
         //Init Switch
         Take_photo_switch = (Switch) findViewById(R.id.Take_photo_switch);
-        Take_photo_switch.setOnClickListener(new Switch.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Take_photo_bool = true;
-            }
+        Take_photo_switch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener(){
 
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Take_photo_bool = isChecked;
+            }
         });
+        Take_photo_dist_interval_switch = (Switch) findViewById(R.id.Take_photo_dist_interval_switch);
+        Take_photo_dist_interval_switch.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener(){
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Take_photo_dist_interval_bool = isChecked;
+            }
+        });
+
+        //Init Edit text
+        Photo_dist_interval = findViewById(R.id.Photo_dist_interval_editText);
 
         //Init Slider
         Aircraft_yaw_slider = (SeekBar) findViewById(R.id.slider_AircraftYaw);
@@ -707,17 +728,34 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
     private void Update_waypointInfo_panel(){
         int index = Waypoint_index;
         Aircraft_yaw_value=Aircraft_yawList.get(index);
-        List<Float> action = ActionItems.get(index);
-        gimbal_pitch_value = action.get(0);
-        gimbal_roll_value = action.get(1);
-        gimbal_yaw_value = action.get(2);
-
+        List<Float> GimbalAction = ActionItems.get(index);
+        gimbal_pitch_value = GimbalAction.get(0);
+        gimbal_roll_value = GimbalAction.get(1);
+        gimbal_yaw_value = GimbalAction.get(2);
 
         Waypoint_TextView.setText("Waypoint#"+(index+1));
         Aircraft_yaw_TextView.setText(String.valueOf(Aircraft_yaw_value));
         Aircraft_yaw_slider.setProgress((int) Aircraft_yaw_value +180);
         Payload_pitch_TextView.setText(String.valueOf(gimbal_pitch_value));
         Payload_pitch_slider.setProgress((int) gimbal_pitch_value+90);
+
+        if(ActionIDList.get(index).get(0) == "Take_photo"){
+            Take_photo_switch.setChecked(true);
+        }
+        else{
+            Take_photo_switch.setChecked(false);
+        }
+        if(ActionIDList.get(index).get(0) == "Take_photo_dist_interval"){
+            Take_photo_dist_interval_switch.setChecked(true);
+            Photo_dist_interval.setText(ActionIDList.get(index).get(1));
+        }
+        else{
+            Take_photo_dist_interval_switch.setChecked(false);
+            Photo_dist_interval.setText(ActionIDList.get(index).get(1));
+        }
+
+
+
     }
     private  void addNewWaypoint(){
         Aircraft_yaw_value=0;
@@ -899,16 +937,22 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
 
             for (int i=0; i< waypointMissionBuilder.getWaypointList().size(); i++){
                 waypointMissionBuilder.getWaypointList().get(i).altitude = waypointList.get(i).altitude;
-                List<Float> actions = ActionItems.get(i);
-                float gimbal_pitch_final_value = actions.get(0);
-                waypointMissionBuilder.getWaypointList().get(i).gimbalPitch = gimbal_pitch_final_value;
-                waypointMissionBuilder.getWaypointList().get(i).heading = (int) Aircraft_yawList.get(i).intValue();
+                List<Float> GimbalActions = ActionItems.get(i);
+                List<String> ActionsID = ActionIDList.get(i);
+//                waypointMissionBuilder.getWaypointList().get(i).gimbalPitch = GimbalActions.get(0);
+//                waypointMissionBuilder.getWaypointList().get(i).heading = (int) Aircraft_yawList.get(i).intValue();
+
+                waypointMissionBuilder.getWaypointList().get(i).addAction(new WaypointAction(WaypointActionType.GIMBAL_PITCH,GimbalActions.get(0).intValue()));
+                waypointMissionBuilder.getWaypointList().get(i).addAction(new WaypointAction(WaypointActionType.ROTATE_AIRCRAFT,Aircraft_yawList.get(i).intValue()));
+                if(ActionsID.get(0).equals("Take_photo")){
+                    waypointMissionBuilder.getWaypointList().get(i).addAction(new WaypointAction(WaypointActionType.START_TAKE_PHOTO,0));
+                }
+                if(ActionsID.get(0).equals("Take_photo_interval")){
+                    waypointMissionBuilder.getWaypointList().get(i).shootPhotoDistanceInterval = Float.parseFloat(ActionsID.get(1));
+                }
 
             }
 
-            //setResultToToast("Set Waypoint attitude successfully");
-            setResultToToast(String.valueOf(waypointMissionBuilder.getWaypointCount()));
-            setResultToToast(String.valueOf(waypointMissionBuilder.getWaypointList().size()) + "hi");
         }
 
         DJIError error = getWaypointMissionOperator().loadMission(waypointMissionBuilder.build());
@@ -972,10 +1016,9 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
     //####################################################
     @Override
     public void onMapClick(LatLng point) {
-        if (isAdd == true){
+        if (isAdd){
             markWaypoint(point,waypointList,waypointListString);
             Waypoint mWaypoint = new Waypoint(point.latitude, point.longitude, altitude);
-
 
             //Add Waypoints to Waypoint arraylist;
             if (waypointMissionBuilder != null) {
@@ -1034,7 +1077,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
     //Creating marker as user click on the map
     //####################################################
     private void markWaypoint(LatLng point,List<Waypoint> list,List<String> waypointListString){
-        int lenOfList = list.toArray().length;
+        int lenOfList = Objects.requireNonNull(list.toArray()).length;
         String name = "WayPoint#" + String.valueOf(lenOfList);
         waypointListString.add(name);
         //Create MarkerOptions object
@@ -1072,8 +1115,10 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
             Float PW_altitude          = PW_coordinate.get(2).floatValue();
             gimbal_pitch_value         = -(float) Math.toDegrees(PW.getGimbalAngles().get(1));
             gimbal_roll_value          = (float) Math.toDegrees(PW.getGimbalAngles().get(0));
-            gimbal_yaw_value           = 0;
-            Aircraft_yaw_value         = (float) Math.toDegrees(PW.getGimbalAngles().get(2));
+            gimbal_yaw_value           = (float) Math.toDegrees(PW.getGimbalAngles().get(2));
+            Aircraft_yaw_value         = (float) Math.toDegrees(PW.getDroneAngles().get(2));
+            ActionID                   = PW.getActioID();
+            ActionParam                = PW.getActioParameter();
 
             //Creating new Latlng for GoogleMap variable and Waypoint for DJI
             latLng                      = new LatLng(PW_latitude,PW_longitude);
@@ -1094,6 +1139,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
             }
 
             ActionItems.add(Arrays.asList(gimbal_pitch_value,gimbal_roll_value,gimbal_yaw_value));
+            ActionIDList.add(Arrays.asList(ActionID,ActionParam));
             Aircraft_yawList.add(Aircraft_yaw_value);
 
         }
