@@ -30,7 +30,10 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener clickListener = v -> {
         switch (v.getId()) {
             case R.id.btn_waypoint1:
-                startActivity(MainActivity.this, Waypoint1Activity.class);
+                if(ImportSuccess){
+                    startActivity(MainActivity.this, Waypoint1Activity.class);
+                }
+
                 break;
             case R.id.btn_waypoint2:
                 startActivity(MainActivity.this, Waypoint2Activity.class);
@@ -88,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 ImportSuccess = true;
 
 //                String r = parawindWaypointsList.get(1).getPart();
-//                Toast.makeText(this, r, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Import success", Toast.LENGTH_SHORT).show();
 
 
             }

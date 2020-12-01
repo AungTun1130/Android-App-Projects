@@ -39,7 +39,6 @@ public class readCSV extends MainActivity {
                 //Start reading next line
                 while ((line = bufferedReader.readLine())!= null){
                     String[] csv_data = line.split(",");
-                    Log.e("Tag",csv_data[0]);
                     Parawind_waypoints sample = new Parawind_waypoints();
 
                     sample.setID(Integer.parseInt(csv_data[0].trim()));

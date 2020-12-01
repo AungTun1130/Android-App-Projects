@@ -285,7 +285,6 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Dist [m]"
                     android:textAlignment="center" />
 
                 <TextView

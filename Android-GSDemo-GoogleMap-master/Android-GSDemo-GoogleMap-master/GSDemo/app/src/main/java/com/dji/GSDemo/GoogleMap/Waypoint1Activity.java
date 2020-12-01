@@ -38,8 +38,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -98,7 +96,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
     private boolean Take_photo_bool = false;
     private boolean Take_photo_dist_interval_bool = false;
 
-    private EditText Photo_dist_interval;
+    private EditText Photo_dist_interval_editText;
 
     private SeekBar Payload_pitch_slider,Payload_roll_slider,Payload_yaw_slider;
     private SeekBar Aircraft_yaw_slider;
@@ -135,7 +133,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
     private float Aircraft_yaw_value;
     private List<Float> Aircraft_yawList = new ArrayList<>();
     private String ActionID,ActionParam;
-    private List<List<String>> ActionIDList;
+    private List<List<String>> ActionIDList = new ArrayList<>();
 
     private final Map<Integer, Marker> mMarkers = new ConcurrentHashMap<Integer, Marker>();
     private Marker droneMarker = null;
@@ -247,7 +245,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
         });
 
         //Init Edit text
-        Photo_dist_interval = findViewById(R.id.Photo_dist_interval_editText);
+        Photo_dist_interval_editText = findViewById(R.id.Photo_dist_interval_editText);
 
         //Init Slider
         Aircraft_yaw_slider = (SeekBar) findViewById(R.id.slider_AircraftYaw);
@@ -595,6 +593,8 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
                     ChangeWaypoint_edit();
                     Waypoint_index = Waypoint_index -1;
                     Update_waypointInfo_panel();
+                    Toast.makeText(this,String.valueOf(Math.toRadians(gimbal_pitch_value)),Toast.LENGTH_SHORT).show();
+
                 }
                 break;
             case  R.id.btn_Next_waypoint_editMode:
@@ -603,6 +603,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
                     //Do sth here
                     Waypoint_index = Waypoint_index +1;
                     Update_waypointInfo_panel();
+                    Toast.makeText(this,String.valueOf(Math.toRadians(gimbal_pitch_value)),Toast.LENGTH_SHORT).show();
                 }
                 break;
             default:
@@ -614,7 +615,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
     //Opening / Closing the panel on the right
     //####################################################
     private  void OpenPanel_active(){
-        if(isOpenPanel == false){
+        if(!isOpenPanel){
             isOpenPanel = true;
             //Call the arrow img for the button
             arrow_right = getResources().getDrawable(R.drawable.ic_baseline_arrow_right_24);
@@ -643,7 +644,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
     //Enabling the user to add/save all the waypoints
     //####################################################
     private void enableDisableAdd(){
-        if (isAdd == false) {
+        if (!isAdd) {
             isAdd = true;
             add.setText("Save");
             isOpenPanel = false;
@@ -724,6 +725,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
         ActionItems.set(index,Arrays.asList(gimbal_pitch_value,gimbal_roll_value,gimbal_yaw_value));
         Aircraft_yawList.set(index,Aircraft_yaw_value);
 
+
     }
     private void Update_waypointInfo_panel(){
         int index = Waypoint_index;
@@ -739,19 +741,24 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
         Payload_pitch_TextView.setText(String.valueOf(gimbal_pitch_value));
         Payload_pitch_slider.setProgress((int) gimbal_pitch_value+90);
 
-        if(ActionIDList.get(index).get(0) == "Take_photo"){
+
+        if(ActionIDList.get(index).get(0).equals("Take_photo")){
             Take_photo_switch.setChecked(true);
+            Take_photo_bool = true;
         }
         else{
             Take_photo_switch.setChecked(false);
+            Take_photo_bool = false;
         }
-        if(ActionIDList.get(index).get(0) == "Take_photo_dist_interval"){
+        if(ActionIDList.get(index).get(0).equals("Take_photo_interval")){
             Take_photo_dist_interval_switch.setChecked(true);
-            Photo_dist_interval.setText(ActionIDList.get(index).get(1));
+            Photo_dist_interval_editText.setText(ActionIDList.get(index).get(1));
+            Take_photo_dist_interval_bool = true;
         }
         else{
             Take_photo_dist_interval_switch.setChecked(false);
-            Photo_dist_interval.setText(ActionIDList.get(index).get(1));
+            Photo_dist_interval_editText.setText(ActionIDList.get(index).get(1));
+            Take_photo_dist_interval_bool = false;
         }
 
 
@@ -857,7 +864,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
             }
         }
     }
-    private boolean isFeatureSupported(CapabilityKey key) {
+    private boolean isFeatureSupported() {
 
         Gimbal gimbal = getGimbalInstance();
         if (gimbal == null) {
@@ -866,7 +873,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
 
         DJIParamCapability capability = null;
         if (gimbal.getCapabilities() != null) {
-            capability = gimbal.getCapabilities().get(key);
+            capability = gimbal.getCapabilities().get(CapabilityKey.ADJUST_YAW);
         }
 
         if (capability != null) {
@@ -880,7 +887,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
     //Finalizing the flight plan
     //####################################################
     private void configWayPointMission(){
-        Boolean support = isFeatureSupported(CapabilityKey.ADJUST_YAW);
+        Boolean support = isFeatureSupported();
 //        gimbal.setYawSimultaneousFollowEnabled(true,new CommonCallbacks.CompletionCallback() {
 //            @Override
 //            public void onResult(DJIError error) {
@@ -1113,8 +1120,9 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
             Double PW_latitude         = PW_coordinate.get(1);
             Double PW_longitude        = PW_coordinate.get(0);
             Float PW_altitude          = PW_coordinate.get(2).floatValue();
-            gimbal_pitch_value         = -(float) Math.toDegrees(PW.getGimbalAngles().get(1));
-            gimbal_roll_value          = (float) Math.toDegrees(PW.getGimbalAngles().get(0));
+
+            gimbal_pitch_value         = (float) Math.toDegrees(PW.getGimbalAngles().get(0)*-1);
+            gimbal_roll_value          = (float) Math.toDegrees(PW.getGimbalAngles().get(1));
             gimbal_yaw_value           = (float) Math.toDegrees(PW.getGimbalAngles().get(2));
             Aircraft_yaw_value         = (float) Math.toDegrees(PW.getDroneAngles().get(2));
             ActionID                   = PW.getActioID();
@@ -1143,6 +1151,8 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
             Aircraft_yawList.add(Aircraft_yaw_value);
 
         }
+        Toast.makeText(getApplicationContext(),String.valueOf(ActionItems.get(0).get(0)),Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),String.valueOf(parawindWaypointsList.get(0).getGimbalAngles().get(0)),Toast.LENGTH_SHORT).show();
         PolylineOptions polylineOptions =new PolylineOptions();
         for( Waypoint i : waypointList)   {
             polylineOptions.add(new LatLng(i.coordinate.getLatitude(),i.coordinate.getLongitude()));
