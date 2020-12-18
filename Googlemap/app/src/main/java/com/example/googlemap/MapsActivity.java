@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -378,7 +379,7 @@ public class MapsActivity extends FragmentActivity implements
     private void enableDisableAdd(){
         if (isAdd == false) {
             isAdd = true;
-            Edit.setText("Exit");
+            Edit.setBackground(getResources().getDrawable(R.drawable.ic_baseline_save_24));
             isOpenPanel = false;
             OpenPanel_active();
             Camera.setVisibility(View.GONE);
@@ -386,7 +387,7 @@ public class MapsActivity extends FragmentActivity implements
 
         }else{
             isAdd = false;
-            Edit.setText("Add");
+            Edit.setBackground(getResources().getDrawable(R.drawable.ic_baseline_add_box_24));
             isOpenPanel=true;
             OpenPanel_active();
             Camera.setVisibility(View.VISIBLE);

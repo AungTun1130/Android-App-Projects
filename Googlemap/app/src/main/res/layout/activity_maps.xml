@@ -111,9 +111,9 @@
 
             <Button
                 android:id="@+id/Edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_baseline_add_box_24"
                 map:layout_constraintBottom_toBottomOf="parent"
                 map:layout_constraintEnd_toEndOf="parent"
                 map:layout_constraintHorizontal_bias="0.024"
@@ -126,6 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Config"
+                android:textColor="#000000"
                 map:layout_constraintBottom_toBottomOf="parent"
                 map:layout_constraintEnd_toEndOf="parent"
                 map:layout_constraintHorizontal_bias="0.2"

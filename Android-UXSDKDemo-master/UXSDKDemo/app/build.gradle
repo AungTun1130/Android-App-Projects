@@ -39,7 +39,6 @@ android {
     lintOptions {
         abortOnError false
     }
-
     packagingOptions {
         doNotStrip "*/*/libdjivideo.so"
         doNotStrip "*/*/libSDKRelativeJNI.so"

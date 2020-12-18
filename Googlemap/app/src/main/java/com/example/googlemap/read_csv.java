@@ -72,18 +72,27 @@ public class read_csv extends MapsActivity{
                     List<Double> Gimbal= new ArrayList<>();
                     for(String i : csv_data[5].substring(2,csv_data[5].length() -1).split(" ")){
                         if(i.length()>1) {
-                            Gimbal.add(Double.parseDouble(i.trim()));
+                            Double temp = Double.parseDouble(i.trim());
+                            if(temp> 180){
+                                temp -= 360;
+                            }
+                            Gimbal.add(temp);
                         }
                     }
                     sample.setGimbalAngles(Gimbal);
 
                     List<Double> Drone= new ArrayList<>();
-                    Log.d("Drone", csv_data[6].substring(1,csv_data[6].length() -1));
+
                     for(String i : csv_data[6].substring(1,csv_data[6].length() -1).split(" ")){
                         if(i.length()>0) {
-                            Drone.add(Double.parseDouble(i.trim()));
+                            Double temp = Double.parseDouble(i.trim());
+                            if(temp> 180){
+                                temp -= 360;
+                            }
+                            Drone.add(temp);
                         }
                     }
+                    Log.d("Drone", Drone.toArray().toString());
                     sample.setDroneAngles(Drone);
 
                     sample.setActioID(csv_data[7]);

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8789dab5-bbc7-4ce7-a461-a24bef4f1520" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/.idea/libraries/Gradle__com_dji_dji_sdk_provided_4_14_trial1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/ic_launcher_parawind-playstore.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable-hdpi/ic_Stop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable-hdpi/ic_erase.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable-hdpi/ic_upload.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable-mdpi/ic_Stop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable-mdpi/ic_erase.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable-mdpi/ic_upload.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable-xhdpi/ic_Stop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable-xhdpi/ic_erase.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable-xhdpi/ic_upload.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable-xxhdpi/ic_Stop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable-xxhdpi/ic_erase.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable-xxhdpi/ic_upload.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable-xxxhdpi/ic_Stop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable-xxxhdpi/ic_erase.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable-xxxhdpi/ic_upload.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable/Erase_icon2.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable/Logo/ParawindLogo.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable/Logo/Untitled.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable/Logo/Wallpaper1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable/Logo/Wallpaper2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable/Logo/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable/Stop_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable/Upload_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable/ic_baseline_add_location_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable/ic_baseline_camera_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable/ic_baseline_cancel_40.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable/ic_baseline_map_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable/ic_baseline_my_location_40.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable/ic_baseline_play_circle_filled_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/drawable/ic_baseline_save_40.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-anydpi-v26/ic_launcher_parawind.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-anydpi-v26/ic_launcher_parawind_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-hdpi/ic_Parawind.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-hdpi/ic_launcher_parawind.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-hdpi/ic_launcher_parawind_background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-hdpi/ic_launcher_parawind_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-hdpi/ic_launcher_parawind_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-mdpi/ic_Parawind.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-mdpi/ic_launcher_parawind.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-mdpi/ic_launcher_parawind_background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-mdpi/ic_launcher_parawind_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-mdpi/ic_launcher_parawind_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-xhdpi/ic_Parawind.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-xhdpi/ic_launcher_parawind.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-xhdpi/ic_launcher_parawind_background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-xhdpi/ic_launcher_parawind_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-xhdpi/ic_launcher_parawind_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-xxhdpi/ic_Parawind.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-xxhdpi/ic_launcher_parawind.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-xxhdpi/ic_launcher_parawind_background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-xxhdpi/ic_launcher_parawind_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-xxhdpi/ic_launcher_parawind_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-xxxhdpi/ic_Parawind.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-xxxhdpi/ic_launcher_parawind.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-xxxhdpi/ic_launcher_parawind_background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-xxxhdpi/ic_launcher_parawind_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/mipmap-xxxhdpi/ic_launcher_parawind_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/ic_launcher-playstore.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/drawable/Untitled.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/drawable/Wallpaper1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/drawable/Wallpaper2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/drawable/ic_baseline_add_box_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/drawable/ic_baseline_save_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/drawable/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/drawable/parawindlogo.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-hdpi/ic_launcher_background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-hdpi/ic_launcher_parawind.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-mdpi/ic_launcher_background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-mdpi/ic_launcher_parawind.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xhdpi/ic_launcher_background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xhdpi/ic_launcher_parawind.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xxhdpi/ic_launcher_background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xxhdpi/ic_launcher_parawind.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xxxhdpi/ic_launcher_background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xxxhdpi/ic_launcher_parawind.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/.idea/libraries/Gradle__com_dji_dji_sdk_4_13_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/.idea/libraries/Gradle__com_dji_dji_sdk_4_14_trial1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/.idea/libraries/Gradle__com_dji_dji_sdk_provided_4_13_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/.idea/libraries/Gradle__com_dji_fly_safe_database_1_0_18_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/.idea/libraries/Gradle__com_dji_fly_safe_database_1_0_19_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/.idea/libraries/Gradle__com_dji_library_networkrtk_helper_2_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/.idea/libraries/Gradle__com_dji_library_networkrtk_helper_2_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/java/com/dji/GSDemo/GoogleMap/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/java/com/dji/GSDemo/GoogleMap/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/java/com/dji/GSDemo/GoogleMap/Waypoint1Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/java/com/dji/GSDemo/GoogleMap/Waypoint1Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/java/com/dji/GSDemo/GoogleMap/readCSV.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/java/com/dji/GSDemo/GoogleMap/readCSV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/layout/activity_waypoint1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/layout/activity_waypoint1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/layout/dialog_waypointsetting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/layout/dialog_waypointsetting.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/layout/waypoint_setting_panel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android-GSDemo-GoogleMap-master/Android-GSDemo-GoogleMap-master/GSDemo/app/src/main/res/layout/waypoint_setting_panel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UXSDKDemo/.idea/caches/build_file_checksums.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UXSDKDemo/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../UXSDKDemo/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UXSDKDemo/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../UXSDKDemo/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/java/com/example/googlemap/MapsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/java/com/example/googlemap/MapsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/java/com/example/googlemap/read_csv.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/java/com/example/googlemap/read_csv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/activity_maps.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/layout/activity_maps.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/raw/.~lock.inspection_trajectory_edited.csv#" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/raw/inspection_trajectory_edited.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/raw/inspection_trajectory_edited.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Googlemap/app/src/main/res/values/colors.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="1lpsraproo0mC0zClfGeIo53EL1" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8789dab5-bbc7-4ce7-a461-a24bef4f1520" name="Default Changelist" comment="" />
+      <created>1608305567014</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608305567014</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="171" key="FileChooserDialogImpl" timestamp="1608305614432">
+      <screen x="0" y="0" width="1536" height="832" />
+    </state>
+    <state x="549" y="171" key="FileChooserDialogImpl/0.0.1536.832/1920.0.1280.994@0.0.1536.832" timestamp="1608305614432" />
+  </component>
+</project>
