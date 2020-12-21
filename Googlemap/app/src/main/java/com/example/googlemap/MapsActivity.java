@@ -93,6 +93,7 @@ public class MapsActivity extends FragmentActivity implements
 
     private Button load_kml;
     private Button Edit;
+    private Button switch_screen;
     private Button OpenPanel;
     private LinearLayout Panel;
     private ConstraintLayout Camera;
@@ -107,14 +108,17 @@ public class MapsActivity extends FragmentActivity implements
         editText1 = findViewById(R.id.editText1);
         Edit = findViewById(R.id.Edit);
         OpenPanel = findViewById(R.id.btn_open_panel);
-        Panel = findViewById(R.id.PanelInfo);
+        Panel = findViewById(R.id.include2);
         Camera = findViewById(R.id.camera);
         Edit.setOnClickListener(this);
         OpenPanel.setOnClickListener(this);
         seekBar1.setOnSeekBarChangeListener(this);
         load_kml = findViewById(R.id.Load_kml);
         load_kml.setOnClickListener(this);
-        KML_file = findViewById(R.id.KML_file);
+        switch_screen = findViewById(R.id.switch_screen_btn);
+        switch_screen.setOnClickListener(this);
+        gMap = findViewById(R.id.include);
+        //KML_file = findViewById(R.id.KML_file);
 
     }
 
@@ -369,6 +373,8 @@ public class MapsActivity extends FragmentActivity implements
             case R.id.Load_kml:
                 performFileSearch();
                 break;
+            case R.id.switch_screen_btn;
+
             default:
                 break;
 
@@ -396,7 +402,7 @@ public class MapsActivity extends FragmentActivity implements
         }
     }
     private  void OpenPanel_active(){
-        if(isOpenPanel == false){
+        if(!isOpenPanel){
             isOpenPanel = true;
 
             Drawable drawable = getResources().getDrawable(R.drawable.ic_baseline_arrow_right_24);

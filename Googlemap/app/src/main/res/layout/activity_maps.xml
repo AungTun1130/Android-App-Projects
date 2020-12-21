@@ -65,33 +65,20 @@
                         android:layout_marginTop="36dp"
                         android:layout_weight="1"
                         android:drawableRight="@drawable/ic_baseline_arrow_right_24"
-                        map:layout_constraintEnd_toEndOf="parent"
+                        map:layout_constraintEnd_toStartOf="@+id/include2"
                         map:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/KML_file"
-                        android:layout_width="199dp"
-                        android:layout_height="125dp"
-                        android:layout_marginStart="99dp"
-                        android:layout_marginLeft="99dp"
-                        android:layout_marginTop="99dp"
-                        android:layout_marginEnd="99dp"
-                        android:layout_marginRight="99dp"
-                        android:layout_marginBottom="99dp"
-                        android:text="TextView"
-                        map:layout_constraintBottom_toTopOf="@+id/include"
-                        map:layout_constraintEnd_toStartOf="@+id/include"
-                        map:layout_constraintStart_toEndOf="@+id/include"
-                        map:layout_constraintTop_toBottomOf="@+id/include" />
+                    <include
+                        android:id="@+id/include2"
+                        layout="@layout/panel"
+                        android:layout_width="350dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:visibility="gone"
+                        map:layout_constraintEnd_toEndOf="@+id/include"
+                        tools:layout_editor_absoluteY="4dp" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <include
-                    layout="@layout/panel"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:visibility="gone" />
 
             </LinearLayout>
 
@@ -108,6 +95,14 @@
                 map:layout_constraintTop_toTopOf="parent"
                 map:layout_constraintVertical_bias="1.0"
                 tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/switch_screen_btn"
+                android:layout_width="65dp"
+                android:layout_height="43dp"
+                android:text="Sw"
+                map:layout_constraintEnd_toEndOf="@+id/camera"
+                map:layout_constraintTop_toTopOf="@+id/camera" />
 
             <Button
                 android:id="@+id/Edit"
