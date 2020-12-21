@@ -78,7 +78,6 @@ import dji.sdk.products.Aircraft;
 import dji.sdk.sdkmanager.DJISDKManager;
 import dji.sdk.useraccount.UserAccountManager;
 
-
 import dji.sdk.gimbal.Gimbal;
 import dji.common.gimbal.GimbalMode;
 
@@ -1061,10 +1060,12 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
         LatLng pos = new LatLng(droneLocationLat, droneLocationLng);
         //Create MarkerOptions object
         final MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(pos);
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.aircraft));
         //This allow the drone to rotate - edited by Aung
+        markerOptions.anchor(0.5f,0.5f);
+        markerOptions.position(pos);
         markerOptions.rotation((float)droneHeadingDir);
+
 
 
         runOnUiThread(new Runnable() {
