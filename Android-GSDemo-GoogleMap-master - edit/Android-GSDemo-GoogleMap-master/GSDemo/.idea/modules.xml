@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/GSDemo.iml" filepath="$PROJECT_DIR$/.idea/modules/GSDemo.iml" group="GSDemo" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android-uxsdk-beta-core/android-uxsdk-beta-core.iml" filepath="$PROJECT_DIR$/.idea/modules/android-uxsdk-beta-core/android-uxsdk-beta-core.iml" group="GSDemo/android-uxsdk-beta-core" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="GSDemo/app" />
     </modules>
   </component>

@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.mapzen.android:lost:3.0.4@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e25946b84bef62bfb66ff52e0b2af78e/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e25946b84bef62bfb66ff52e0b2af78e/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e25946b84bef62bfb66ff52e0b2af78e/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9b2af5e95a301771c175cc42d35ffc76/jetified-lost-3.0.4/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9b2af5e95a301771c175cc42d35ffc76/jetified-lost-3.0.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9b2af5e95a301771c175cc42d35ffc76/jetified-lost-3.0.4/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mapzen.android/lost/3.0.4/ee1bca54220becc41c30e8ba362f289b9f3424ca/lost-3.0.4-javadoc.jar!/" />

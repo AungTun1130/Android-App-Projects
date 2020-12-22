@@ -2,34 +2,36 @@ package com.example.googlemap;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentContainerView;
 
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.FileUriExposedException;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -37,7 +39,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
@@ -49,23 +50,12 @@ import com.google.maps.android.collections.PolylineManager;
 import com.google.maps.android.data.kml.KmlContainer;
 import com.google.maps.android.data.kml.KmlLayer;
 import com.google.maps.android.data.kml.KmlPlacemark;
-import com.google.maps.android.data.kml.KmlPolygon;
-import com.google.maps.android.data.geojson.GeoJsonFeature;
-import com.google.maps.android.data.geojson.GeoJsonLayer;
-import com.google.maps.android.data.geojson.GeoJsonLineStringStyle;
-
 
 
 import org.xmlpull.v1.XmlPullParserException;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -96,10 +86,18 @@ public class MapsActivity extends FragmentActivity implements
     private Button switch_screen;
     private Button OpenPanel;
     private LinearLayout Panel;
-    private ConstraintLayout Camera;
+    private View Camera;
+
+    private VideoView small_cam;
+    private VideoView large_cam;
 
     private boolean isAdd = false;
     private boolean isOpenPanel = false;
+    private boolean switch_cam = false;
+    private FrameLayout largeMap;
+    private FragmentContainerView smallMap;
+    private View smallScreen;
+    private View largeScreen;
 
     private void initUI(){
 
@@ -108,7 +106,7 @@ public class MapsActivity extends FragmentActivity implements
         editText1 = findViewById(R.id.editText1);
         Edit = findViewById(R.id.Edit);
         OpenPanel = findViewById(R.id.btn_open_panel);
-        Panel = findViewById(R.id.include2);
+        //Panel = findViewById(R.id.include2);
         Camera = findViewById(R.id.camera);
         Edit.setOnClickListener(this);
         OpenPanel.setOnClickListener(this);
@@ -117,7 +115,13 @@ public class MapsActivity extends FragmentActivity implements
         load_kml.setOnClickListener(this);
         switch_screen = findViewById(R.id.switch_screen_btn);
         switch_screen.setOnClickListener(this);
-        gMap = findViewById(R.id.include);
+        small_cam = findViewById(R.id.videoView_small);
+        largeMap = findViewById(R.id.map_big);
+
+        largeScreen = findViewById(R.id.largeScreen);
+        smallScreen = findViewById(R.id.Camera);
+
+        //gMap = findViewById(R.id.include);
         //KML_file = findViewById(R.id.KML_file);
 
     }
@@ -129,7 +133,7 @@ public class MapsActivity extends FragmentActivity implements
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.map_big);
         initUI();
         mapFragment.getMapAsync(this);
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE )!= PackageManager.PERMISSION_GRANTED){
@@ -297,12 +301,27 @@ public class MapsActivity extends FragmentActivity implements
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        mMap.clear();
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         setUpMap();
+        if(waypointList.size()>0){
+            for(int i=0; i<waypointList.size(); i++) {
+                LatLng latLng = waypointList.get(i);
+                MarkerOptions mk = new MarkerOptions().position(latLng);
+
+
+                PolylineOptions polyline = new PolylineOptions();
+                for (LatLng ii : waypointList) {
+
+                    polyline.add(ii);
+                }
+                mMap.addMarker(mk);
+                mMap.addPolyline(polyline);
+            }
+        }
     }
 
     /**
@@ -373,8 +392,50 @@ public class MapsActivity extends FragmentActivity implements
             case R.id.Load_kml:
                 performFileSearch();
                 break;
-            case R.id.switch_screen_btn;
+            case R.id.switch_screen_btn:
+                Log.e("sw",String.valueOf(switch_cam) );
 
+                Log.e("map",String.valueOf( findViewById(R.id.map).getVisibility()));
+                if(!switch_cam){
+                    RelativeLayout main = (RelativeLayout) findViewById(R.id.largeScreen);
+                    RelativeLayout main1 = (RelativeLayout) findViewById(R.id.camera);
+//                    main.removeAllViews();
+//                    main1.removeAllViews();
+                    LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    RelativeLayout layout = (RelativeLayout) inflater.inflate(R.layout.l,main,true);
+                    RelativeLayout layout1 =(RelativeLayout) inflater.inflate(R.layout.google_map,main1,true);
+
+
+
+
+                    for(int i =0;i<main1.getChildCount();i++){
+                        RelativeLayout v = (RelativeLayout)main1.getChildAt(i);
+                        FrameLayout k = (FrameLayout) v.getChildAt(0);
+                        k.setVisibility(View.VISIBLE);
+
+                        Log.e("view",String.valueOf(v.toString() +k.toString()));
+
+                    }
+
+
+                    switch_cam = true;
+
+                }
+                else{
+                    RelativeLayout main = (RelativeLayout) findViewById(R.id.camera);
+                    RelativeLayout main1 = (RelativeLayout) findViewById(R.id.largeScreen);
+
+                    LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    RelativeLayout layout = (RelativeLayout) inflater.inflate(R.layout.l,main,false);
+                    RelativeLayout layout1 =(RelativeLayout) inflater.inflate(R.layout.googlemap,main1,false);
+                    main.removeAllViews();
+                    main.addView(layout);
+                    main1.removeAllViews();
+                    main1.addView(layout1);
+                    switch_cam = false;
+                }
+
+                break;
             default:
                 break;
 

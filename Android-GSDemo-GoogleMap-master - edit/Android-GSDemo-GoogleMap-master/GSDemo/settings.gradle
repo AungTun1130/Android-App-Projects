@@ -1,1 +1,4 @@
+include ':android-uxsdk-beta-core'
 include ':app'
+
+project(':android-uxsdk-beta-core').projectDir = new File(rootProject.projectDir, 'android-uxsdk-beta-core')

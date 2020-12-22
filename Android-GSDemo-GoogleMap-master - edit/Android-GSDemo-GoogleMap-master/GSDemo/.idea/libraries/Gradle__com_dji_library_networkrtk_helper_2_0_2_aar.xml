@@ -1,10 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: com.dji:library-networkrtk-helper:2.0.2@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fb01b87180b16273bb6abac382188f85/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fb01b87180b16273bb6abac382188f85/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fb01b87180b16273bb6abac382188f85/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fb01b87180b16273bb6abac382188f85/jars/libs/wz-rtcm-2.0.2-release.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/87a4ec2ec36e2cb7df6497d129de8171/jetified-library-networkrtk-helper-2.0.2/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/87a4ec2ec36e2cb7df6497d129de8171/jetified-library-networkrtk-helper-2.0.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/87a4ec2ec36e2cb7df6497d129de8171/jetified-library-networkrtk-helper-2.0.2/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/87a4ec2ec36e2cb7df6497d129de8171/jetified-library-networkrtk-helper-2.0.2/jars/libs/wz-rtcm-2.0.2-release.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

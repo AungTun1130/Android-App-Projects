@@ -30,57 +30,38 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/Constraint"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
+            <include
+                android:id="@+id/map"
+                layout="@layout/googlemap"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/btn_open_panel"
+                android:layout_width="57dp"
+                android:layout_height="63dp"
+                android:layout_weight="1"
+                android:drawableRight="@drawable/ic_baseline_arrow_right_24"
                 map:layout_constraintBottom_toBottomOf="parent"
-                map:layout_constraintEnd_toEndOf="parent"
-                map:layout_constraintStart_toStartOf="parent"
-                map:layout_constraintTop_toTopOf="parent">
+                map:layout_constraintEnd_toStartOf="@+id/include2"
+                map:layout_constraintTop_toTopOf="@+id/map"
+                map:layout_constraintVertical_bias="0.29000002" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <include
-                        android:id="@+id/include"
-                        layout="@layout/googlemap"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:clickable="false"
-                        tools:layout_editor_absoluteX="91dp"
-                        tools:layout_editor_absoluteY="0dp" />
-
-                    <Button
-                        android:id="@+id/btn_open_panel"
-                        android:layout_width="57dp"
-                        android:layout_height="63dp"
-                        android:layout_marginTop="36dp"
-                        android:layout_weight="1"
-                        android:drawableRight="@drawable/ic_baseline_arrow_right_24"
-                        map:layout_constraintEnd_toStartOf="@+id/include2"
-                        map:layout_constraintTop_toTopOf="parent" />
-
-                    <include
-                        android:id="@+id/include2"
-                        layout="@layout/panel"
-                        android:layout_width="350dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:visibility="gone"
-                        map:layout_constraintEnd_toEndOf="@+id/include"
-                        tools:layout_editor_absoluteY="4dp" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </LinearLayout>
+            <include
+                android:id="@+id/include2"
+                layout="@layout/panel"
+                android:layout_width="350dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="gone"
+                map:layout_constraintEnd_toEndOf="parent" />
 
             <include
                 android:id="@+id/camera"
@@ -135,8 +116,6 @@
                 android:layout_height="wrap_content"
                 android:text="Load_kml"
                 map:layout_constraintBottom_toBottomOf="parent"
-                map:layout_constraintEnd_toEndOf="@+id/linearLayout"
-                map:layout_constraintHorizontal_bias="0.07"
                 map:layout_constraintStart_toStartOf="parent"
                 map:layout_constraintTop_toTopOf="parent" />
 
