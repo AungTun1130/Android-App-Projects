@@ -151,6 +151,7 @@ public class DefaultLayoutActivity extends AppCompatActivity {
 
     // Map drawing
     private Bitmap marker_icon_unselected;
+    private Bitmap marker_icon_selected;
     private List<DJIMarker> markerList;
     private List<DJILatLng> djiLatLngList;
     private int current_map_type =0;
@@ -231,18 +232,13 @@ public class DefaultLayoutActivity extends AppCompatActivity {
 
 
     private void parawind_ui_addition_init(){
-        marker_icon_unselected = BitmapFactory.decodeResource(getResources(),R.drawable.ic_stop);
-
+        marker_icon_unselected = BitmapFactory.decodeResource(getResources(),R.drawable.ic_waypoint_off);
+        marker_icon_selected = BitmapFactory.decodeResource(getResources(),R.drawable.ic_waypoint_on);
+        // =================================================================================================
+        //                               Initialize Parawind layout
+        // =================================================================================================
         Parawind_layout = findViewById(R.id.Parawind_widget);
-        viewStub_map = findViewById(R.id.viewStub_map_setting_panel);
-        viewStub_map.inflate();
-        viewStub_waypoints = findViewById(R.id.viewStub_waypoints_setting_panel);
-        viewStub_waypoints.inflate();
-        viewStub_mission = findViewById(R.id.viewStub_mission_setting_panel);
-        viewStub_mission.inflate();
-
-        editing_panel = findViewById(R.id.editing_panel);
-
+        // Action button for the mission and map
         upload_btn = findViewById(R.id.upload_btn);
         upload_btn.setOnClickListener(view -> upload_mission());
         clear_waypoints_btn = findViewById(R.id.clear_waypoints_btn);
@@ -259,28 +255,46 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         stop_mission_btn = findViewById(R.id.stop_mission_btn);
         stop_mission_btn.setOnClickListener(view -> stop_mission_func());
 
+        // Editing panels for editing
+        // Initialize the panel for editing itself
+        editing_panel = findViewById(R.id.editing_panel);
+
+        // Map setting edit
+        viewStub_map = findViewById(R.id.viewStub_map_setting_panel);
+        viewStub_map.inflate();
         map_setting_btn = findViewById(R.id.map_setting_btn);
         map_setting_btn.setOnClickListener(view -> change_to_map_setting_panel());
+
+        // Waypoints setting edit
+        viewStub_waypoints = findViewById(R.id.viewStub_waypoints_setting_panel);
+        viewStub_waypoints.inflate();
         waypoint_setting_btn = findViewById(R.id.waypoint_setting_btn);
         waypoint_setting_btn.setOnClickListener(view -> change_to_waypoint_setting_panel());
+
+        // Mission setting Edit
+        viewStub_mission = findViewById(R.id.viewStub_mission_setting_panel);
+        viewStub_mission.inflate();
         mission_setting_btn = findViewById(R.id.mission_config_btn);
         mission_setting_btn.setOnClickListener(view -> change_to_mission_setting_panel());
 
+        // Button for opening and closing the editing panel
         open_close_panel_btn = findViewById(R.id.close_panel_btn);
         open_close_panel_btn.setOnClickListener(view -> open_close_editing_panel());
 
-
-
-        //initialize
+        // Variables for when editing panel is close and open
         isOpenPanel = false;
+        // Variable for allowing user to add/edit waypoints
         isAdd = false;
-
+        // Hiding all the editing panel and widget when app start
         Parawind_layout.setVisibility(View.GONE);
         open_close_panel_btn.setVisibility(View.GONE);
         editing_panel.setVisibility(View.GONE);
 
 
-        // all widget in the editing Panel
+        // All widget in the editing Panel
+        // =================================================================================================
+        // =========================             Waypoint edit               ===============================
+        // =================================================================================================
         // Textview
         Aircraft_altitude_TextView = findViewById(R.id.altitude_texview);
         Waypoint_TextView = findViewById(R.id.Waypoint_TextView);
@@ -288,7 +302,10 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         Payload_roll_TextView = findViewById(R.id.textView_PaylaodRoll);
         Payload_yaw_TextView = findViewById(R.id.textView_PayloadYaw);
         Aircraft_yaw_TextView = findViewById(R.id.textView_AircraftYaw);
-        // Button
+        // Button UI
+        //##########################################
+        // Next waypoint Button
+        //##########################################
         next_waypoint_btn = findViewById(R.id.btn_Next_waypoint_editMode);
         next_waypoint_btn.setOnClickListener(new Switch.OnClickListener(){
             @Override
@@ -297,11 +314,15 @@ public class DefaultLayoutActivity extends AppCompatActivity {
                     ChangeWaypoint_edit();
                     //Do sth here
                     Waypoint_index = Waypoint_index +1;
-                    Update_waypointInfo_panel();
+                    update_waypoint_markers(Waypoint_index);
+                    update_waypointInfo_panel();
                     Toast.makeText(DefaultLayoutActivity.this,String.valueOf(Math.toRadians(gimbal_pitch_value)),Toast.LENGTH_SHORT).show();
                 }
             }
         });
+        //##########################################
+        // Previous waypoint Button
+        //##########################################
         previous_waypoint_btn = findViewById(R.id.btn_Previous_waypoint_editMode);
         previous_waypoint_btn.setOnClickListener(new Switch.OnClickListener(){
             @Override
@@ -310,54 +331,33 @@ public class DefaultLayoutActivity extends AppCompatActivity {
                     ChangeWaypoint_edit();
                     //Do sth here
                     Waypoint_index = Waypoint_index -1;
-                    Update_waypointInfo_panel();
+                    update_waypoint_markers(Waypoint_index);
+                    update_waypointInfo_panel();
                     Toast.makeText(DefaultLayoutActivity.this,String.valueOf(Math.toRadians(gimbal_pitch_value)),Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
+        //##########################################
+        // Increase waypoint altitude Button
+        //##########################################
         altitude_increase_btn = findViewById(R.id.altitude_up_btn);
         altitude_increase_btn.setOnClickListener(view -> {
             DJIMap map = mapWidget.getMap();
             waypointList.get(Waypoint_index).altitude +=1.0f;
             Aircraft_altitude_TextView.setText(String.valueOf(waypointList.get(Waypoint_index).altitude));
-            int index = Waypoint_index;
-            djiLatLngList.get(index).altitude = waypointList.get(Waypoint_index).altitude;
-
-            DJIPolylineOptions polylineOptions = new DJIPolylineOptions().color(Color.BLUE)
-                    .width(5)
-                    .addAll(djiLatLngList);
-            map.clear();
-            for(DJILatLng latLng : djiLatLngList){
-                DJIMarker mMarker = map.addMarker(new DJIMarkerOptions().position(latLng).draggable(true).icon(DJIBitmapDescriptorFactory.fromBitmap(marker_icon_unselected)));
-                markerList.set(djiLatLngList.indexOf(latLng),mMarker);
-            }
-            map.addPolyline(polylineOptions);
-
-
         });
-
+        //##########################################
+        // Decrease waypoint altitude Button
+        //##########################################
         altitude_decrease_btn = findViewById(R.id.altitude_down_btn);
         altitude_decrease_btn.setOnClickListener(view -> {
             DJIMap map = mapWidget.getMap();
             waypointList.get(Waypoint_index).altitude -=1.0f;
             Aircraft_altitude_TextView.setText(String.valueOf(waypointList.get(Waypoint_index).altitude));
-            int index = Waypoint_index;
-            djiLatLngList.get(index).altitude = waypointList.get(Waypoint_index).altitude;
-
-            DJIPolylineOptions polylineOptions = new DJIPolylineOptions().color(Color.BLUE)
-                    .width(5)
-                    .addAll(djiLatLngList);
-            map.clear();
-            for(DJILatLng latLng : djiLatLngList){
-                DJIMarker mMarker = map.addMarker(new DJIMarkerOptions().position(latLng).draggable(true).icon(DJIBitmapDescriptorFactory.fromBitmap(marker_icon_unselected)));
-                markerList.set(djiLatLngList.indexOf(latLng),mMarker);
-            }
-            map.addPolyline(polylineOptions);
         });
-
-        // Delete waypoint
+        //##########################################
+        // Delete waypoint Button
+        //##########################################
         del_waypoint_btn = findViewById(R.id.del_waypoint_btn);
         del_waypoint_btn.setOnClickListener(view -> {
             int index = Waypoint_index;
@@ -369,19 +369,11 @@ public class DefaultLayoutActivity extends AppCompatActivity {
             djiLatLngList.remove(index);
             markerList.remove(index);
 
-            DJIPolylineOptions polylineOptions = new DJIPolylineOptions().color(Color.BLUE)
-                    .width(5)
-                    .addAll(djiLatLngList);
-            mapWidget.getMap().clear();
-            for(DJILatLng latLng : djiLatLngList){
-                DJIMarker mMarker = mapWidget.getMap().addMarker(new DJIMarkerOptions().position(latLng).draggable(true));
-                markerList.set(djiLatLngList.indexOf(latLng),mMarker);
-            }
-            mapWidget.getMap().addPolyline(polylineOptions);
             if(index>0 && waypointList.size()>0){
                 Waypoint_index -=1;
             }
-            Update_waypointInfo_panel();
+            update_waypoint_markers(index);
+            update_waypointInfo_panel();
 
         });
         //Init Switch
@@ -409,8 +401,15 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         Payload_pitch_slider = (SeekBar) findViewById(R.id.slider_PayloadPitch);
         Payload_roll_slider = (SeekBar) findViewById(R.id.slider_PayloadRoll);
         Payload_yaw_slider = (SeekBar) findViewById(R.id.slider_PayloadYaw);
+
         edit_eachWaypoint();
+
+        // ======================================================
+        // Accessing the mission control from DJI SDK
+        // ======================================================
         addListener();
+        // Check if the SDK support waypoint control mission and initializing the missionOpeartor
+        // This allow the developer to upload, start ,and stop the mission
         if(getWaypointMissionOperator() == null) {
             setResultToToast("Not support Waypoint1.0");
         }
@@ -419,8 +418,22 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         }
 
     }
+    // ================================================================================================================
+    //                                                   Parawind UI function
+    // ================================================================================================================
     /**
-     * Parawind UI addition to upload,clear,add_wyapoints,my_location,map_type,start_mission,stop mission, open/clase_panel buttons
+     * Parawind UI function for:
+     * upload
+     * clear all waypoints
+     * add waypoints
+     * show my_location
+     * change map_type
+     * start_mission
+     * stop mission
+     * open/clase editing panel
+     * open mission setting panel
+     * open waypoint setting panel
+     * open map setting panel
      */
 
     private void upload_mission(){
@@ -545,92 +558,8 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         viewStub_waypoints.setVisibility(View.GONE);
     }
 
-        //Add Listener for WaypointMissionOperator
-    private void addListener() {
-        if (getWaypointMissionOperator() != null){
-            setResultToToast("Add listener");
-            getWaypointMissionOperator().addListener(eventNotificationListener);
-        }
-    }
-
-    private void removeListener() {
-        if (getWaypointMissionOperator() != null) {
-            getWaypointMissionOperator().removeListener(eventNotificationListener);
-        }
-    }
-
-    private WaypointMissionOperatorListener eventNotificationListener = new WaypointMissionOperatorListener() {
-        @Override
-        public void onDownloadUpdate(WaypointMissionDownloadEvent downloadEvent) {
-
-        }
-
-        @Override
-        public void onUploadUpdate(WaypointMissionUploadEvent uploadEvent) {
-
-        }
-
-        @Override
-        public void onExecutionUpdate(WaypointMissionExecutionEvent executionEvent) {
-
-        }
-
-        @Override
-        public void onExecutionStart() {
-
-        }
-
-        @Override
-        public void onExecutionFinish(@Nullable final DJIError error) {
-            setResultToToast("Execution finished: " + (error == null ? "Success!" : error.getDescription()));
-        }
-    };
-
-    public WaypointMissionOperator getWaypointMissionOperator() {
-        if (instance == null) {
-            instance = DJISDKManager.getInstance().getMissionControl().getWaypointMissionOperator();
-            //instance = MissionControl.getInstance().getWaypointMissionOperator();
-        }
-        return instance;
-    }
-        private void setResultToToast(final String string){
-        DefaultLayoutActivity.this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(DefaultLayoutActivity.this, string, Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
-    //#################################################################################
-    //Uploading the mission to the dji drone
-    //#################################################################################
-    private void uploadWayPointMission(){
-
-        getWaypointMissionOperator().uploadMission(error -> {
-            if (error == null) {
-                setResultToToast("Mission upload successfully!");
-            } else {
-                setResultToToast("Mission upload failed, error: " + error.getDescription() + " retrying...");
-                getWaypointMissionOperator().retryUploadMission(null);
-            }
-        });
-
-    }
-
-    private void startWaypointMission(){
-
-        getWaypointMissionOperator().startMission(error -> setResultToToast("Mission Start: " + (error == null ? "Successfully" : error.getDescription())));
-    }
-
-    private void stopWaypointMission(){
-
-        getWaypointMissionOperator().stopMission(error -> setResultToToast("Mission Stop: " + (error == null ? "Successfully" : error.getDescription())));
-
-    }
-
-        //####################################################
-    //Editing each waypoint
+    //####################################################
+    //Editing each waypoint on sliders
     //####################################################
     private  void edit_eachWaypoint(){
         Payload_yaw_slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -678,17 +607,17 @@ public class DefaultLayoutActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
     }
+    // Saving the current waypoint parameter from UI widget before changing to next/previous waypoints
     private void ChangeWaypoint_edit(){
         int index = Waypoint_index;
-        //ActionItems.remove(index);
-        //Aircraft_yawList.remove(index);
-
         ActionItems.set(index,Arrays.asList(gimbal_pitch_value,gimbal_roll_value,gimbal_yaw_value));
         Aircraft_yawList.set(index,Aircraft_yaw_value);
     }
-    private void Update_waypointInfo_panel(){
+    // Refresh the waypoint setting panel and its UI for the selected waypoint
+    private void update_waypointInfo_panel(){
         if(waypointList.size()>0) {
             int index = Waypoint_index;
+            Log.e(TAG,String.valueOf(index));
             Aircraft_yaw_value = Aircraft_yawList.get(index);
             List<Float> GimbalAction = ActionItems.get(index);
             gimbal_pitch_value = GimbalAction.get(0);
@@ -721,6 +650,8 @@ public class DefaultLayoutActivity extends AppCompatActivity {
             }
         }
     }
+
+    // Add new variables when user add new waypoint on the map
     private  void addNewWaypoint(){
         Aircraft_yaw_value=0;
         gimbal_pitch_value=0;
@@ -729,6 +660,94 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         ActionIDList.add(Arrays.asList("None","None"));
         ActionItems.add(Arrays.asList(gimbal_pitch_value,gimbal_roll_value,gimbal_yaw_value));
         Aircraft_yawList.add(Aircraft_yaw_value);
+    }
+    //=========================================================================================================
+    //                                      DJI SDK related
+    //=========================================================================================================
+    //Add Listener for WaypointMissionOperator
+    private void addListener() {
+        if (getWaypointMissionOperator() != null){
+            getWaypointMissionOperator().addListener(eventNotificationListener);
+        }
+    }
+    // Remove listener for WaypointMissionOperator
+    private void removeListener() {
+        if (getWaypointMissionOperator() != null) {
+            getWaypointMissionOperator().removeListener(eventNotificationListener);
+        }
+    }
+
+    private WaypointMissionOperatorListener eventNotificationListener = new WaypointMissionOperatorListener() {
+        @Override
+        public void onDownloadUpdate(WaypointMissionDownloadEvent downloadEvent) {
+
+        }
+
+        @Override
+        public void onUploadUpdate(WaypointMissionUploadEvent uploadEvent) {
+
+        }
+
+        @Override
+        public void onExecutionUpdate(WaypointMissionExecutionEvent executionEvent) {
+
+        }
+
+        @Override
+        public void onExecutionStart() {
+
+        }
+
+        @Override
+        public void onExecutionFinish(@Nullable final DJIError error) {
+            setResultToToast("Execution finished: " + (error == null ? "Success!" : error.getDescription()));
+        }
+    };
+
+    public WaypointMissionOperator getWaypointMissionOperator() {
+        if (instance == null) {
+            instance = DJISDKManager.getInstance().getMissionControl().getWaypointMissionOperator();
+        }
+        return instance;
+    }
+    private void setResultToToast(final String string){
+        DefaultLayoutActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(DefaultLayoutActivity.this, string, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    //#################################################################################
+    //Uploading the mission to the dji drone
+    //#################################################################################
+    private void uploadWayPointMission(){
+
+        getWaypointMissionOperator().uploadMission(error -> {
+            if (error == null) {
+                setResultToToast("Mission upload successfully!");
+            } else {
+                setResultToToast("Mission upload failed, error: " + error.getDescription() + " retrying...");
+                getWaypointMissionOperator().retryUploadMission(null);
+            }
+        });
+
+    }
+    //#################################################################################
+    // Starting the mission to the dji drone
+    //#################################################################################
+    private void startWaypointMission(){
+
+        getWaypointMissionOperator().startMission(error -> setResultToToast("Mission Start: " + (error == null ? "Successfully" : error.getDescription())));
+    }
+    //#################################################################################
+    // Stopping the mission to the dji drone
+    //#################################################################################
+    private void stopWaypointMission(){
+
+        getWaypointMissionOperator().stopMission(error -> setResultToToast("Mission Stop: " + (error == null ? "Successfully" : error.getDescription())));
+
     }
     //####################################################
     //Configuration of the whole flight plan
@@ -832,167 +851,14 @@ public class DefaultLayoutActivity extends AppCompatActivity {
             setResultToToast("loadWaypoint failed " + error.getDescription());
         }
     }
-    // Parawind edit------
-    //region Lifecycle
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_default_layout);
-
-        parawind_ui_addition_init();
-
-        widgetHeight = (int) getResources().getDimension(R.dimen.mini_map_height);
-        widgetWidth = (int) getResources().getDimension(R.dimen.mini_map_width);
-        widgetMargin = (int) getResources().getDimension(R.dimen.mini_map_margin);
-
-        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        deviceHeight = displayMetrics.heightPixels;
-        deviceWidth = displayMetrics.widthPixels;
-
-        ButterKnife.bind(this);
-        markerList = new ArrayList<>();
-        djiLatLngList = new ArrayList<>();
-
-        MapWidget.OnMapReadyListener onMapReadyListener = map -> {
-            if(MainActivity.ImportSuccess){
-                add_waypoint_from_csv(map,parawindWaypointsList);
-                cameraUpdate();
-            }
-
-            map.setMapType(DJIMap.MapType.NORMAL);
-
-            //Add toasts when a marker is dragged
-            map.setOnMarkerDragListener(new DJIMap.OnMarkerDragListener() {
-                @Override
-                public void onMarkerDragStart(DJIMarker djiMarker) {
-                    if (markerList.contains(djiMarker) && !isMapMini) {
-                        Toast.makeText(DefaultLayoutActivity.this,
-                                getString(R.string.marker_drag_started, markerList.indexOf(djiMarker)),
-                                Toast.LENGTH_SHORT).show();
-
-                    }
-                }
-
-                @Override
-                public void onMarkerDrag(DJIMarker djiMarker) {
-                    //do nothing
-                }
-
-                @Override
-                public void onMarkerDragEnd(DJIMarker djiMarker) {
-                    if (markerList.contains(djiMarker) &&  !isMapMini) {
-                        Toast.makeText(DefaultLayoutActivity.this,
-                                getString(R.string.marker_drag_ended, markerList.indexOf(djiMarker)),
-                                Toast.LENGTH_SHORT).show();
-                        int index = markerList.indexOf(djiMarker);
-                        djiLatLngList.get(index).setLatitude(djiMarker.getPosition().latitude);
-                        djiLatLngList.get(index).setLongitude(djiMarker.getPosition().longitude);
-                        DJIPolylineOptions polylineOptions = new DJIPolylineOptions().color(Color.BLUE)
-                                .width(5)
-                                .addAll(djiLatLngList);
-                        map.clear();
-                        for(DJILatLng latLng : djiLatLngList){
-                            DJIMarker mMarker = map.addMarker(new DJIMarkerOptions().position(latLng).draggable(true).icon(DJIBitmapDescriptorFactory.fromBitmap(marker_icon_unselected)));
-                            markerList.set(djiLatLngList.indexOf(latLng),mMarker);
-                        }
-                        map.addPolyline(polylineOptions);
-                    }
-                }
-            });
-            //Add toasts when a marker is clicked
-            mapWidget.setOnMarkerClickListener(djiMarker -> {
-                if(!isMapMini) {
-                    Toast.makeText(DefaultLayoutActivity.this, getString(R.string.marker_clicked, markerList.indexOf(djiMarker)),
-                            Toast.LENGTH_SHORT).show();
-
-                }
-                else{
-                    onViewClick(mapWidget);
-                }
-                return true;
-            });
-            //Add a marker to the map when the map is clicked
-            map.setOnMapClickListener(djiLatLng -> {
-                if(!isMapMini) {
-                    if(isAdd) {
-                        if(getWaypointMissionOperator() == null) {
-                            setResultToToast("Not support Waypoint1.0");
-                        }
-
-                        assert djiLatLng != null;
-                        Waypoint mWaypoint = new Waypoint(djiLatLng.latitude, djiLatLng.longitude, 0);
-                        waypointList.add(mWaypoint);
-                        // add marker
-                        DJIMarker marker = map.addMarker(new DJIMarkerOptions().position(djiLatLng)
-                                .draggable(true)
-                                .icon(DJIBitmapDescriptorFactory.fromBitmap(marker_icon_unselected)));
-                        markerList.add(marker);
-                        djiLatLngList.add(djiLatLng);
-
-                        //Drawing polyline
-                        DJIPolylineOptions polylineOptions = new DJIPolylineOptions().color(Color.BLUE)
-                                                                                        .width(5)
-                                                                                        .addAll(djiLatLngList);
-                        map.addPolyline(polylineOptions);
-
-                        //Add Waypoints to Mission;
-                        if (waypointMissionBuilder != null) {
-                            waypointMissionBuilder.addWaypoint(mWaypoint);
-                            waypointMissionBuilder.waypointCount(waypointList.size());
-                        } else {
-                            waypointMissionBuilder = new WaypointMission.Builder();
-                            waypointMissionBuilder.addWaypoint(mWaypoint);
-                            waypointMissionBuilder.waypointCount(waypointList.size());
-                        }
-
-                        Waypoint_index = waypointList.size() - 1;
-                        addNewWaypoint();
-                        Update_waypointInfo_panel();
-                    }
-                    else{
-                        Toast.makeText(DefaultLayoutActivity.this,"Cannot add waypoint",Toast.LENGTH_SHORT).show();
-                    }
-                }
-                onViewClick(mapWidget);
-            });
-
-        };
-
-        //####################################################
-        //Collecting Parawind waypoints
-        //####################################################
-        if(MainActivity.ImportSuccess){
-            parawindWaypointsList = MainActivity.parawindWaypointsList;
-        }
-
-        mapWidget.initGoogleMap(onMapReadyListener);
-        mapWidget.getUserAccountLoginWidget().setVisibility(View.GONE);
-        mapWidget.onCreate(savedInstanceState);
-
-        // Setup top bar state callbacks
-        TopBarPanelWidget topBarPanel = findViewById(R.id.panel_top_bar);
-        SystemStatusWidget systemStatusWidget = topBarPanel.getSystemStatusWidget();
-        if (systemStatusWidget != null) {
-            systemStatusWidget.setStateChangeCallback(findViewById(R.id.widget_panel_system_status_list));
-        }
-
-        SimulatorIndicatorWidget simulatorIndicatorWidget = topBarPanel.getSimulatorIndicatorWidget();
-        if (simulatorIndicatorWidget != null) {
-            simulatorIndicatorWidget.setStateChangeCallback(findViewById(R.id.widget_simulator_control));
-        }
-
-        GPSSignalWidget gpsSignalWidget = topBarPanel.getGPSSignalWidget();
-        if (gpsSignalWidget != null) {
-            gpsSignalWidget.setStateChangeCallback(findViewById(R.id.widget_rtk));
-        }
-    }
-
+    // =================================================================================================
+    //                                         Map action related
+    // =================================================================================================
     //####################################################
-    //Creating marker as user click on the map
+    //Creating marker as on the map
     //####################################################
-    private DJIMarker markWaypoint(DJIMap map, DJILatLng point,List<Waypoint> list){
-        int lenOfList = list.toArray().length;
-        String name = "WayPoint#" + String.valueOf(lenOfList);
+    private DJIMarker markWaypoint(DJIMap map, DJILatLng point,List<DJILatLng> list){
+        String name = "WayPoint#" + String.valueOf(list.indexOf(point)+1);
         //Create MarkerOptions object
         DJIMarkerOptions markerOptions = new DJIMarkerOptions().title(name).draggable(true).icon(DJIBitmapDescriptorFactory.fromBitmap(marker_icon_unselected));
         markerOptions.position(point);
@@ -1001,6 +867,37 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         DJIMarker marker= map.addMarker(markerOptions);
         return marker;
     }
+    //####################################################
+    //Colored marker for selected waypoint as on the map
+    //####################################################
+    private void update_waypoint_markers(int selected_waypoint_index){
+        DJIMarker mMarker = null;
+        DJIMap map = mapWidget.getMap();
+        map.clear();
+        markerList.clear();
+        for(DJILatLng latLng : djiLatLngList){
+            String name = "WayPoint#" + String.valueOf(djiLatLngList.indexOf(latLng)+1);
+            DJIMarkerOptions djiMarkerOptions = new DJIMarkerOptions().position(latLng).draggable(true).title(name);
+            // Color unselected waypoint blue and selected waypoint red
+            if(djiLatLngList.indexOf(latLng) != selected_waypoint_index){
+                djiMarkerOptions.icon(DJIBitmapDescriptorFactory.fromBitmap(marker_icon_unselected));
+            }
+            else{
+                djiMarkerOptions.icon(DJIBitmapDescriptorFactory.fromBitmap(marker_icon_selected));
+            }
+            mMarker = mapWidget.getMap().addMarker(djiMarkerOptions);
+            markerList.add(mMarker);
+        }
+        //Drawing polyline
+        DJIPolylineOptions polylineOptions = new DJIPolylineOptions().color(Color.BLUE)
+                .width(5)
+                .addAll(djiLatLngList);
+        map.addPolyline(polylineOptions);
+
+    }
+    // =================================================================================================
+    //                   Ploting all the parawind waypoints and saving all the data
+    // =================================================================================================
     private void add_waypoint_from_csv(DJIMap map, List<Parawind_waypoints> parawindWaypointsList){
         for(Parawind_waypoints PW : parawindWaypointsList)
         {
@@ -1028,7 +925,7 @@ public class DefaultLayoutActivity extends AppCompatActivity {
 
             //Draw a marker on the map
             djiLatLngList.add(latLng);
-            markerList.add(markWaypoint(map,latLng,waypointList));
+            markerList.add(markWaypoint(map,latLng,djiLatLngList));
             // Draw polyline on the map
             DJIPolylineOptions polylineOptions = new DJIPolylineOptions().color(Color.BLUE).width(5);
             map.addPolyline(polylineOptions.addAll(djiLatLngList));
@@ -1048,11 +945,178 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         }
 
     }
+    // Parawind edit------
+    //region Lifecycle
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_default_layout);
+
+        parawind_ui_addition_init();
+
+        widgetHeight = (int) getResources().getDimension(R.dimen.mini_map_height);
+        widgetWidth = (int) getResources().getDimension(R.dimen.mini_map_width);
+        widgetMargin = (int) getResources().getDimension(R.dimen.mini_map_margin);
+
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        deviceHeight = displayMetrics.heightPixels;
+        deviceWidth = displayMetrics.widthPixels;
+
+        ButterKnife.bind(this);
+        markerList = new ArrayList<>();
+
+        // Parawind edit -------------------------------------------------------------------------------------------
+        // This here is all the action happen when the user interact on the map
+        // such as: Drag the waypoint, click on the waypoint
+        djiLatLngList = new ArrayList<>();
+        MapWidget.OnMapReadyListener onMapReadyListener = map -> {
+            if(MainActivity.ImportSuccess){
+                add_waypoint_from_csv(map,parawindWaypointsList);
+                cameraUpdate();
+            }
+            map.setMapType(DJIMap.MapType.NORMAL);
+
+            //Add toasts when a marker is dragged
+            map.setOnMarkerDragListener(new DJIMap.OnMarkerDragListener() {
+                @Override
+                public void onMarkerDragStart(DJIMarker djiMarker) {
+                    if (markerList.contains(djiMarker) && !isMapMini && isAdd) {
+//                        Toast.makeText(DefaultLayoutActivity.this,
+//                                getString(R.string.marker_drag_started, markerList.indexOf(djiMarker)),
+//                                Toast.LENGTH_SHORT).show();
+                        setResultToToast(djiMarker.getTitle() + "drag started");
+                        int index = markerList.indexOf(djiMarker);
+                        // Draw Marker drawing on the map
+                        update_waypoint_markers(index);
+                    }
+                }
+
+                @Override
+                public void onMarkerDrag(DJIMarker djiMarker) {
+                    //do nothing
+                }
+
+                @Override
+                public void onMarkerDragEnd(DJIMarker djiMarker) {
+                    if (markerList.contains(djiMarker) &&  !isMapMini && isAdd) {
+                        Toast.makeText(DefaultLayoutActivity.this,
+                                getString(R.string.marker_drag_ended, markerList.indexOf(djiMarker)),
+                                Toast.LENGTH_SHORT).show();
+                        int index = markerList.indexOf(djiMarker);
+                        // Update the waypoint position
+                        djiLatLngList.get(index).setLatitude(djiMarker.getPosition().latitude);
+                        djiLatLngList.get(index).setLongitude(djiMarker.getPosition().longitude);
+
+                        // Draw Marker drawing on the map
+                        update_waypoint_markers(index);
+
+                        //Update the data on the info panel
+                        Waypoint_index = index;
+                        update_waypointInfo_panel();
+                    }
+                }
+            });
+            //Add toasts when a marker is clicked
+            mapWidget.setOnMarkerClickListener(djiMarker -> {
+                if(!isMapMini) {
+//                    Toast.makeText(DefaultLayoutActivity.this, getString(R.string.marker_clicked, markerList.indexOf(djiMarker)),
+//                            Toast.LENGTH_SHORT).show();
+                    try {
+                        setResultToToast(djiMarker.getTitle());
+                        int index = markerList.indexOf(djiMarker);
+                        Waypoint_index = index;
+                        update_waypoint_markers(index);
+                        update_waypointInfo_panel();
+                    }catch (Exception e){
+                        setResultToToast("Waypoint does not exist");
+                    }
+
+
+                }
+                else{
+                    onViewClick(mapWidget);
+                }
+                return true;
+            });
+            //Add a marker to the map when the map is clicked
+            map.setOnMapClickListener(djiLatLng -> {
+                if(!isMapMini) {
+                    if(isAdd) {
+                        if(getWaypointMissionOperator() == null) {
+                            setResultToToast("Not support Waypoint1.0");
+                        }
+
+                        assert djiLatLng != null;
+                        Waypoint mWaypoint = new Waypoint(djiLatLng.latitude, djiLatLng.longitude, 0);
+                        waypointList.add(mWaypoint);
+                        // add new djiLatlng to list
+                        djiLatLngList.add(djiLatLng);
+                        // add marker
+                        markWaypoint(map,djiLatLng,djiLatLngList);
+                        update_waypoint_markers(djiLatLngList.indexOf(djiLatLng));
+
+
+                        //Add Waypoints to Mission;
+                        waypointMissionBuilder.addWaypoint(mWaypoint);
+                        if (waypointMissionBuilder != null) {
+                            waypointMissionBuilder.waypointCount(waypointList.size());
+                        } else {
+                            waypointMissionBuilder = new WaypointMission.Builder();
+                            waypointMissionBuilder.waypointCount(waypointList.size());
+                        }
+
+                        Waypoint_index = waypointList.size() - 1;
+                        addNewWaypoint();
+                        update_waypointInfo_panel();
+                    }
+                    else{
+                        Toast.makeText(DefaultLayoutActivity.this,"Cannot add waypoint",Toast.LENGTH_SHORT).show();
+                    }
+                }
+                onViewClick(mapWidget);
+            });
+
+        };
+
+        //####################################################
+        //Collecting Parawind waypoints
+        //####################################################
+        if(MainActivity.ImportSuccess){
+            parawindWaypointsList = MainActivity.parawindWaypointsList;
+        }
+
+        mapWidget.initGoogleMap(onMapReadyListener);
+        // Parawind edit -------------------------------------------------------------------------------------------
+        mapWidget.getUserAccountLoginWidget().setVisibility(View.GONE);
+        mapWidget.onCreate(savedInstanceState);
+
+        // Setup top bar state callbacks
+        TopBarPanelWidget topBarPanel = findViewById(R.id.panel_top_bar);
+        SystemStatusWidget systemStatusWidget = topBarPanel.getSystemStatusWidget();
+        if (systemStatusWidget != null) {
+            systemStatusWidget.setStateChangeCallback(findViewById(R.id.widget_panel_system_status_list));
+        }
+
+        SimulatorIndicatorWidget simulatorIndicatorWidget = topBarPanel.getSimulatorIndicatorWidget();
+        if (simulatorIndicatorWidget != null) {
+            simulatorIndicatorWidget.setStateChangeCallback(findViewById(R.id.widget_simulator_control));
+        }
+
+        GPSSignalWidget gpsSignalWidget = topBarPanel.getGPSSignalWidget();
+        if (gpsSignalWidget != null) {
+            gpsSignalWidget.setStateChangeCallback(findViewById(R.id.widget_rtk));
+        }
+    }
+
+
+
+
     @Override
     protected void onDestroy() {
         mapWidget.onDestroy();
         super.onDestroy();
         removeListener();
+        clear_all_waypoints();
     }
 
     @Override
@@ -1154,6 +1218,7 @@ public class DefaultLayoutActivity extends AppCompatActivity {
      *
      * @param view The thumbnail view that was clicked.
      */
+    // Parawind edit -----------------------------------------------------
     private void onViewClick(View view) {
         if (view == fpvWidget && !isMapMini) {
             //reorder widgets
@@ -1165,6 +1230,8 @@ public class DefaultLayoutActivity extends AppCompatActivity {
             fpvInteractionWidget.setInteractionEnabled(true);
             //disable user login widget on map
             //mapWidget.getUserAccountLoginWidget().setVisibility(View.GONE);
+
+            // Update the camera view on the map when Map is turn into mini version
             cameraUpdate();
             Parawind_layout.setVisibility(View.GONE);
             isMapMini = true;
@@ -1178,19 +1245,21 @@ public class DefaultLayoutActivity extends AppCompatActivity {
             fpvInteractionWidget.setInteractionEnabled(false);
             //enable user login widget on map
             //mapWidget.getUserAccountLoginWidget().setVisibility(View.VISIBLE);
+
+            // Update open the Parawind layout when Map is turn into large version
             Parawind_layout.setVisibility(View.VISIBLE);
             isMapMini = false;
         }
     }
-    private void cameraUpdate(){
-        if(waypointList.size()>0){
-            DJILatLng djiLatLng = new DJILatLng(waypointList.get(0).coordinate.getLatitude(),waypointList.get(0).coordinate.getLongitude());
-            assert mapWidget.getMap() != null;
+    private void cameraUpdate() {
+        if (waypointList.size() > 0 && mapWidget.getMap() != null) {
+            DJILatLng djiLatLng = new DJILatLng(waypointList.get(0).coordinate.getLatitude(), waypointList.get(0).coordinate.getLongitude());
+            int zoom_level = 15;
             mapWidget.getMap().moveCamera(DJICameraUpdateFactory.newCameraPosition(
-                    new DJICameraPosition(djiLatLng,15)));
+                    new DJICameraPosition(djiLatLng, zoom_level)));
         }
-
     }
+    // Parawind edit -----------------------------------------------------
     /**
      * Helper method to resize the FPV and Map Widgets.
      *
