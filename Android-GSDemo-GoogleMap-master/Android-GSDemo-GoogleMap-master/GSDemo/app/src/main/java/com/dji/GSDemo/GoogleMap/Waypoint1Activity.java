@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.SurfaceTexture;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
@@ -112,9 +114,9 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
     private RadioGroup heading_RG;
 
 
-    private Button locate, add, clear;
-    private Button config, upload, start, stop;
-    private Button OpenPanel,btn_EachWaypoint;
+    private ImageButton locate, add, clear;
+    private ImageButton upload, start, stop;
+    private Button  config,OpenPanel,btn_EachWaypoint;
     private Button Previous_waypoint_editMode,Next_waypoint_editMode;
 
     private LinearLayout wayPointSettings;
@@ -270,13 +272,13 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
             mVideoSurface.setSurfaceTextureListener(this);
         }
         //init Button
-        locate = (Button) findViewById(R.id.locate);
-        add = (Button) findViewById(R.id.add);
-        clear = (Button) findViewById(R.id.clear);
-        config = (Button) findViewById(R.id.config);
-        upload = (Button) findViewById(R.id.upload);
-        start = (Button) findViewById(R.id.start);
-        stop = (Button) findViewById(R.id.stop);
+        locate =  findViewById(R.id.locate);
+        add = findViewById(R.id.add);
+        clear =  findViewById(R.id.clear);
+        config =  findViewById(R.id.config);
+        upload =  findViewById(R.id.upload);
+        start =findViewById(R.id.start);
+        stop =  findViewById(R.id.stop);
         OpenPanel = (Button) findViewById(R.id.btn_OpenPanel);
         btn_EachWaypoint = (Button) findViewById(R.id.btn_EachWaypoint);
         Previous_waypoint_editMode = (Button) findViewById(R.id.btn_Previous_waypoint_editMode);
@@ -646,7 +648,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
     private void enableDisableAdd(){
         if (!isAdd) {
             isAdd = true;
-            add.setText("Save");
+            add.setImageResource(R.drawable.ic_baseline_save_24);
             isOpenPanel = false;
             OpenPanel_active();
             mVideoSurface.setVisibility(View.GONE);
@@ -654,7 +656,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
 
         }else{
             isAdd = false;
-            add.setText("Add");
+            add.setImageResource(R.drawable.ic_baseline_add_location_24);
             isOpenPanel=true;
             OpenPanel_active();
             mVideoSurface.setVisibility(View.VISIBLE);

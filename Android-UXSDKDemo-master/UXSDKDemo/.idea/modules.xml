@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Android-UXSDKDemo-master-UXSDKDemo.iml" filepath="$PROJECT_DIR$/.idea/modules/Android-UXSDKDemo-master-UXSDKDemo.iml" group="UXSDKDemo" />
       <module fileurl="file://$PROJECT_DIR$/UXSDKDemo.iml" filepath="$PROJECT_DIR$/UXSDKDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/UXSDKDemo-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/UXSDKDemo-app.iml" group="UXSDKDemo/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

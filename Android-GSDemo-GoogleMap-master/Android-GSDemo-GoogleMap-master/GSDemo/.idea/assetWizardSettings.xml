@@ -37,7 +37,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="F:\Android-App-Projects\Android-GSDemo-GoogleMap-master\Android-GSDemo-GoogleMap-master\GSDemo\app\src\main\res\drawable\ic_upload.png" />
+                                                <entry key="imagePath" value="F:\Android-App-Projects\Android-GSDemo-GoogleMap-master\Android-GSDemo-GoogleMap-master\GSDemo\app\src\main\res\drawable\erase_icon.png" />
                                                 <entry key="opacityPercent" value="80" />
                                                 <entry key="paddingPercent" value="5" />
                                                 <entry key="trimmed" value="true" />
@@ -73,8 +73,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="F:\Android-App-Projects\Android-GSDemo-GoogleMap-master\Android-GSDemo-GoogleMap-master\GSDemo\app\src\main\res\drawable\ic_upload.png" />
-                                      <entry key="outputName" value="ic_upload" />
+                                      <entry key="imageAsset" value="F:\Android-App-Projects\Android-GSDemo-GoogleMap-master\Android-GSDemo-GoogleMap-master\GSDemo\app\src\main\res\drawable\erase_icon.png" />
+                                      <entry key="outputName" value="ic_erase" />
                                       <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="2d2d2d" />
                                     </map>
@@ -329,7 +329,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/F:/Android%20studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/flip_camera_android/baseline_flip_camera_android_24.xml" />
+                                      <entry key="url" value="jar:file:/F:/Android%20studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/save/baseline_save_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -340,7 +340,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="2d2d2d" />
-                            <entry key="outputName" value="ic_baseline_flip_camera_android_24" />
+                            <entry key="outputName" value="ic_baseline_save_24" />
                             <entry key="sourceFile" value="F:\Android-App-Projects\Android-GSDemo-GoogleMap-master\Android-GSDemo-GoogleMap-master\GSDemo" />
                           </map>
                         </option>
