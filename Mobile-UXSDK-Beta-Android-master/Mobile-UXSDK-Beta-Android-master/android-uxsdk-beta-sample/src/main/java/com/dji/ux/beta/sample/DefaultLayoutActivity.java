@@ -346,6 +346,7 @@ public class DefaultLayoutActivity extends AppCompatActivity {
             waypointList.get(Waypoint_index).altitude +=1.0f;
             Aircraft_altitude_TextView.setText(String.valueOf(waypointList.get(Waypoint_index).altitude));
         });
+
         //##########################################
         // Decrease waypoint altitude Button
         //##########################################
@@ -617,7 +618,8 @@ public class DefaultLayoutActivity extends AppCompatActivity {
     private void update_waypointInfo_panel(){
         if(waypointList.size()>0) {
             int index = Waypoint_index;
-            Log.e(TAG,String.valueOf(index));
+            Log.e(TAG,String.valueOf(index) +"|" +String.valueOf(Aircraft_yawList.size())+"|"+String.valueOf(waypointList.size()));
+
             Aircraft_yaw_value = Aircraft_yawList.get(index);
             List<Float> GimbalAction = ActionItems.get(index);
             gimbal_pitch_value = GimbalAction.get(0);
@@ -630,7 +632,6 @@ public class DefaultLayoutActivity extends AppCompatActivity {
             Aircraft_yaw_slider.setProgress((int) Aircraft_yaw_value + 180);
             Payload_pitch_TextView.setText(String.valueOf(gimbal_pitch_value));
             Payload_pitch_slider.setProgress((int) gimbal_pitch_value + 90);
-
 
             if (ActionIDList.get(index).get(0).equals("Take_photo")) {
                 Take_photo_switch.setChecked(true);
@@ -922,7 +923,6 @@ public class DefaultLayoutActivity extends AppCompatActivity {
             Waypoint mWaypoint          = new Waypoint(PW_latitude, PW_longitude,PW_altitude);
             waypointList.add(mWaypoint);
 
-
             //Draw a marker on the map
             djiLatLngList.add(latLng);
             markerList.add(markWaypoint(map,latLng,djiLatLngList));
@@ -941,9 +941,9 @@ public class DefaultLayoutActivity extends AppCompatActivity {
             ActionItems.add(Arrays.asList(gimbal_pitch_value,gimbal_roll_value,gimbal_yaw_value));
             ActionIDList.add(Arrays.asList(ActionID,ActionParam));
             Aircraft_yawList.add(Aircraft_yaw_value);
-
         }
-
+        Waypoint_index = waypointList.size() -1;
+        update_waypointInfo_panel();
     }
     // Parawind edit------
     //region Lifecycle
@@ -1030,8 +1030,6 @@ public class DefaultLayoutActivity extends AppCompatActivity {
                     }catch (Exception e){
                         setResultToToast("Waypoint does not exist");
                     }
-
-
                 }
                 else{
                     onViewClick(mapWidget);
@@ -1045,7 +1043,6 @@ public class DefaultLayoutActivity extends AppCompatActivity {
                         if(getWaypointMissionOperator() == null) {
                             setResultToToast("Not support Waypoint1.0");
                         }
-
                         assert djiLatLng != null;
                         Waypoint mWaypoint = new Waypoint(djiLatLng.latitude, djiLatLng.longitude, 0);
                         waypointList.add(mWaypoint);
@@ -1054,7 +1051,6 @@ public class DefaultLayoutActivity extends AppCompatActivity {
                         // add marker
                         markWaypoint(map,djiLatLng,djiLatLngList);
                         update_waypoint_markers(djiLatLngList.indexOf(djiLatLng));
-
 
                         //Add Waypoints to Mission;
                         waypointMissionBuilder.addWaypoint(mWaypoint);
@@ -1065,7 +1061,7 @@ public class DefaultLayoutActivity extends AppCompatActivity {
                             waypointMissionBuilder.waypointCount(waypointList.size());
                         }
 
-                        Waypoint_index = waypointList.size() - 1;
+                        Waypoint_index = djiLatLngList.indexOf(djiLatLng);
                         addNewWaypoint();
                         update_waypointInfo_panel();
                     }
@@ -1115,8 +1111,9 @@ public class DefaultLayoutActivity extends AppCompatActivity {
     protected void onDestroy() {
         mapWidget.onDestroy();
         super.onDestroy();
+        // parawind edit-------------------------------------------------------
+        // remove all the WaypointMissionOperator and waypoints when not used
         removeListener();
-        clear_all_waypoints();
     }
 
     @Override
