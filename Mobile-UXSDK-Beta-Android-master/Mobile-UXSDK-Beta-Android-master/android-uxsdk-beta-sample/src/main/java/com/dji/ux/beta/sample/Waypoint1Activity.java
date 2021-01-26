@@ -558,7 +558,8 @@
 //                waypointList.clear();
 //                ActionItems.clear();
 //                waypointListString.clear();
-//                Aircraft_yawList.clear();
+//                Aircraft_yawList.
+//                ();
 //                waypointMissionBuilder.waypointList(waypointList);
 //                updateDroneLocation();
 //                break;

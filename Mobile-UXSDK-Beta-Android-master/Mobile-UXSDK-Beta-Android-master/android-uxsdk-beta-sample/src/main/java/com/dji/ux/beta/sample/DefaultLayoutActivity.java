@@ -797,10 +797,11 @@ public class DefaultLayoutActivity extends AppCompatActivity {
     //Finalizing the flight plan
     //####################################################
     private void configWayPointMission(){
+
         if (waypointMissionBuilder == null){
 
             waypointMissionBuilder = new WaypointMission.Builder().finishedAction(mFinishedAction)
-                    .headingMode(mHeadingMode)
+                    .headingMode(WaypointMissionHeadingMode.USING_WAYPOINT_HEADING)
                     .autoFlightSpeed(mSpeed)
                     .maxFlightSpeed(mSpeed)
                     .flightPathMode(WaypointMissionFlightPathMode.NORMAL)
@@ -809,14 +810,19 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         }else
         {
             waypointMissionBuilder.finishedAction(mFinishedAction)
-                    .headingMode(mHeadingMode)
+                    .headingMode(WaypointMissionHeadingMode.USING_WAYPOINT_HEADING)
                     .autoFlightSpeed(mSpeed)
                     .maxFlightSpeed(mSpeed)
                     .flightPathMode(WaypointMissionFlightPathMode.NORMAL)
                     .setGimbalPitchRotationEnabled(true);
 
         }
-
+        if(waypointMissionBuilder.getHeadingMode() == WaypointMissionHeadingMode.USING_WAYPOINT_HEADING){
+            setResultToToast("Waypoint heading mode");
+        }
+        else{
+            setResultToToast("Not waypoint heading mode");
+        }
         //#################################################################################
         //Add all the actions for each waypoint here !!
         //#################################################################################
@@ -830,11 +836,11 @@ public class DefaultLayoutActivity extends AppCompatActivity {
                 }
                 List<Float> GimbalActions = ActionItems.get(i);
                 List<String> ActionsID = ActionIDList.get(i);
-//                waypointMissionBuilder.getWaypointList().get(i).gimbalPitch = GimbalActions.get(0);
-//                waypointMissionBuilder.getWaypointList().get(i).heading = (int) Aircraft_yawList.get(i).intValue();
+                waypointMissionBuilder.getWaypointList().get(i).gimbalPitch = GimbalActions.get(0);
+                waypointMissionBuilder.getWaypointList().get(i).heading = (int) yaw;
 
-                waypointMissionBuilder.getWaypointList().get(i).addAction(new WaypointAction(WaypointActionType.GIMBAL_PITCH,GimbalActions.get(0).intValue()));
-                waypointMissionBuilder.getWaypointList().get(i).addAction(new WaypointAction(WaypointActionType.ROTATE_AIRCRAFT,yaw));
+//                waypointMissionBuilder.getWaypointList().get(i).addAction(new WaypointAction(WaypointActionType.GIMBAL_PITCH,GimbalActions.get(0).intValue()));
+//                waypointMissionBuilder.getWaypointList().get(i).addAction(new WaypointAction(WaypointActionType.ROTATE_AIRCRAFT,yaw));
                 if(ActionsID.get(0).equals("Take_photo")){
                     waypointMissionBuilder.getWaypointList().get(i).addAction(new WaypointAction(WaypointActionType.START_TAKE_PHOTO,0));
                 }
@@ -908,13 +914,11 @@ public class DefaultLayoutActivity extends AppCompatActivity {
             Double PW_longitude        = PW_coordinate.get(0);
             float PW_altitude          = PW_coordinate.get(2).floatValue();
 
-            gimbal_pitch_value         = (float) (PW.getGimbalAngles().get(1).floatValue()*-1);
+            gimbal_pitch_value         = (float) (PW.getGimbalAngles().get(1).floatValue());
             gimbal_roll_value          = (float) PW.getGimbalAngles().get(0).floatValue();
             gimbal_yaw_value           = (float) PW.getGimbalAngles().get(2).floatValue();
             Aircraft_yaw_value         = (float) PW.getDroneAngles().get(2).floatValue();
-            if(Aircraft_yaw_value >180){
-                Aircraft_yaw_value -= 360;
-            }
+
             ActionID                   = PW.getActioID();
             ActionParam                = PW.getActioParameter();
 
