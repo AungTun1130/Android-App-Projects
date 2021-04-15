@@ -329,7 +329,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/F:/Android%20studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/flip_camera_android/baseline_flip_camera_android_24.xml" />
+                                      <entry key="url" value="jar:file:/F:/Android%20studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/settings/baseline_settings_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -340,7 +340,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="2d2d2d" />
-                            <entry key="outputName" value="ic_baseline_flip_camera_android_24" />
+                            <entry key="outputName" value="ic_baseline_settings" />
                             <entry key="sourceFile" value="F:\Android-App-Projects\Android-GSDemo-GoogleMap-master\Android-GSDemo-GoogleMap-master\GSDemo" />
                           </map>
                         </option>

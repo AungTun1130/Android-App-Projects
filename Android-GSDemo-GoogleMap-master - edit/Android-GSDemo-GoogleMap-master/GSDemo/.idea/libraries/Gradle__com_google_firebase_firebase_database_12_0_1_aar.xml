@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.firebase:firebase-database:12.0.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c072100102ba595e98314eb7c301d6fb/jetified-firebase-database-12.0.1/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c072100102ba595e98314eb7c301d6fb/jetified-firebase-database-12.0.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c072100102ba595e98314eb7c301d6fb/jetified-firebase-database-12.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9751f24c969fed5b4a6aaf93a0dfdae3/jetified-firebase-database-12.0.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9751f24c969fed5b4a6aaf93a0dfdae3/jetified-firebase-database-12.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9751f24c969fed5b4a6aaf93a0dfdae3/jetified-firebase-database-12.0.1/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

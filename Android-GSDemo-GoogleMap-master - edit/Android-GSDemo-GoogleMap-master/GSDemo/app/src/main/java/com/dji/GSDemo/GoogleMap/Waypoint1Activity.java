@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
@@ -116,6 +117,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
     private Button config, upload, start, stop;
     private Button OpenPanel,btn_EachWaypoint;
     private Button Previous_waypoint_editMode,Next_waypoint_editMode;
+    private ImageButton setting_btn;
 
     private LinearLayout wayPointSettings;
     private LinearLayout PanelInfo;
@@ -281,7 +283,7 @@ public class Waypoint1Activity extends FragmentActivity implements View.OnClickL
         btn_EachWaypoint = (Button) findViewById(R.id.btn_EachWaypoint);
         Previous_waypoint_editMode = (Button) findViewById(R.id.btn_Previous_waypoint_editMode);
         Next_waypoint_editMode = (Button) findViewById(R.id.btn_Next_waypoint_editMode);
-
+        setting_btn =(Button)  findViewById(R.id.retsweoi);
 
         PanelInfo = findViewById(R.id.PanelInfo);
         //init LinearLayout
