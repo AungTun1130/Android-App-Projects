@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/Last_waypoint"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="Last Waypoint :" />
+
+    <TextView
+        android:id="@+id/Starting_waypoint_dialog_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Waypoint"
+        android:textAlignment="center"
+        android:layout_below="@id/Last_waypoint"/>
+
+    <Spinner
+        android:id="@+id/Starting_waypoint_dialog_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Starting_waypoint_dialog_textView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/Ending_waypoint_dialog_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Starting_waypoint_dialog_spinner"
+        android:layout_marginTop="10dp"
+        android:text="End Waypoint"
+        android:textAlignment="center" />
+
+    <Spinner
+        android:id="@+id/Ending_waypoint_dialog_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Ending_waypoint_dialog_textView"
+        android:layout_centerHorizontal="true"
+        android:gravity="center" />
+
+</RelativeLayout>

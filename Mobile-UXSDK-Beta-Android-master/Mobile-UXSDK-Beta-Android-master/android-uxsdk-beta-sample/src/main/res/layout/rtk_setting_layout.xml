@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentBottom="false"
+    android:background="#000000"
+    android:orientation="vertical">
+
+    <dji.ux.beta.hardwareaccessory.widget.rtk.RTKEnabledWidget
+        android:id="@+id/RTK_enable"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:visibility="visible" />
+
+
+    <TextView
+        android:id="@+id/rtk_servie_type_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/RTK_enable"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Select RTK Service Type  "
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/RTK_services_spinner"
+
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/RTK_enable"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_toRightOf="@id/rtk_servie_type_textview"
+        android:background="@drawable/uxsdk_system_status_button_background_selector"
+        android:backgroundTint="#4DA3FF"
+        android:backgroundTintMode="multiply"
+        android:popupTheme="@style/Widget.AppCompat.Light.PopupMenu" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rtk_servie_type_textview"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Reciving RTK signal. Ensure network is stable"
+        android:textColor="#919191" />
+
+    <LinearLayout
+        android:id="@+id/rtk_search_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView8"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TableLayout
+            android:id="@+id/Custom_network_rtk_panel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/NTRIP_host_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="NTRIP Host:"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF" />
+
+                <EditText
+                    android:id="@+id/NTRIP_input_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/background_blue"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:padding="5dp"
+                    android:textAlignment="textStart"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/Post_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Post:"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF" />
+
+                <EditText
+                    android:layout_margin="5dp"
+                    android:id="@+id/Post_input_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:padding="5dp"
+                    android:inputType="textPersonName"
+                    android:background="@color/background_blue"
+                    android:textColor="#FFFFFF" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/rtk_user_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="User:"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF" />
+
+                <EditText
+                    android:layout_margin="5dp"
+                    android:id="@+id/rtk_user_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:background="@color/background_blue"
+                    android:textColor="#FFFFFF" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/Password_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Password:"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF" />
+
+                <EditText
+                    android:id="@+id/rtk_password_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/background_blue"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    android:padding="5dp"
+                    android:textColor="#FFFFFF" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/rtk_mountpoint_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Mountpoint:"
+
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF" />
+
+                <EditText
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:id="@+id/rtk_mountpoint_input_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/background_blue"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textColor="#FFFFFF" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Save" />
+            </TableRow>
+        </TableLayout>
+
+        <Button
+            android:id="@+id/rtk_search_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Search mobile station" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rtk_connection_status_panel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rtk_search_panel"
+        android:orientation="vertical">
+
+        <dji.ux.beta.hardwareaccessory.widget.rtk.RTKWidget
+            android:id="@+id/RTK_status"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+
+            android:visibility="gone">
+
+        </dji.ux.beta.hardwareaccessory.widget.rtk.RTKWidget>
+
+        <dji.ux.beta.hardwareaccessory.widget.rtk.RTKSatelliteStatusWidget
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,5 +1,6 @@
 package com.dji.ux.beta.sample;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class readCSV extends MainActivity {
+    public static boolean ImportSuccess = false;
     private FileInputStream inputStream;
 
     private List<Parawind_waypoints> waypoints_csv = new ArrayList<Parawind_waypoints>();
@@ -47,19 +49,20 @@ public class readCSV extends MainActivity {
 
                     sample.setSubID(Integer.parseInt(csv_data[2].trim()));
 
+                    sample.setSubSubID(csv_data[3].trim());
+
                     List<Double> point = new ArrayList<>();
-                    for(String i : csv_data[3].substring(1,csv_data[3].length() -1).split(" ")){
+                    for(String i : csv_data[4].substring(1,csv_data[4].length() -1).split(" ")){
                         if(i.length()>0){
                             point.add(Double.parseDouble(i.trim()));
                         }
-
                     }
                     sample.setCoordinates(point);
 
-                    sample.setViewPoint(Boolean.parseBoolean(csv_data[4].trim().toLowerCase()));
+                    sample.setViewPoint(Boolean.parseBoolean(csv_data[5].trim().toLowerCase()));
 
                     List<Double> Gimbal= new ArrayList<>();
-                    for(String i : csv_data[5].substring(1,csv_data[5].length() -1).split(" ")){
+                    for(String i : csv_data[6].substring(1,csv_data[6].length() -1).split(" ")){
                         if(i.length()>0) {
                             Gimbal.add(Double.parseDouble(i.trim()));
                         }
@@ -67,26 +70,29 @@ public class readCSV extends MainActivity {
                     sample.setGimbalAngles(Gimbal);
 
                     List<Double> Drone= new ArrayList<>();
-                    Log.d("Drone", csv_data[6].substring(1,csv_data[6].length() -1));
-                    for(String i : csv_data[6].substring(1,csv_data[6].length() -1).split(" ")){
+                    Log.d("Drone", csv_data[7].substring(1,csv_data[7].length() -1));
+                    for(String i : csv_data[7].substring(1,csv_data[7].length() -1).split(" ")){
                         if(i.length()>0) {
                             Drone.add(Double.parseDouble(i.trim()));
                         }
                     }
                     sample.setDroneAngles(Drone);
 
-                    sample.setActioID(csv_data[7]);
-                    sample.setActioParameter(csv_data[8]);
+                    sample.setActioID(csv_data[8]);
+                    sample.setActioParameter(csv_data[9]);
                     waypoints_csv.add(sample);
 
                 }
+                MainActivity.ImportSuccess = true;
             }
             catch (IOException e){
-                Toast.makeText(this,"Read csv error",Toast.LENGTH_SHORT).show();
+                Log.d("CSV Read ", "Failed");
+                MainActivity.ImportSuccess =  false;
             }
         }
         else {
-            Toast.makeText(this,"File does not exist",Toast.LENGTH_SHORT).show();
+            Log.d("CSV Import ", "Failed");
+            MainActivity.ImportSuccess =  false;
         }
 
     }

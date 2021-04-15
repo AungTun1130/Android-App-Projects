@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="RTK_services">
+        <item>NONE</item>
+        <item>D-RTK2 Mobile Station</item>
+        <item>Network RTK</item>
+        <item>Custom Network RTK</item>
+
+    </string-array>
+</resources>

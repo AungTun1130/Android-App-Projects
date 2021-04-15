@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#17E8E8E8">
+
+    <ImageButton
+        android:id="@+id/close_all_setting_btn_2"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:background="#33000000" />
+
+    <ScrollView
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:background="@color/black">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/uxsdk_black"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            >
+
+            <ImageButton
+                android:id="@+id/flight_controller_setting"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#000000"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/uxsdk_ic_topbar_flight_mode" />
+
+            <ImageButton
+                android:id="@+id/obstacle_sensing_setting"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#000000"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                android:padding="10dp"
+                app:srcCompat="@drawable/uxsdk_ic_topbar_visual_normal" />
+
+            <ImageButton
+                android:id="@+id/remote_controller_setting"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#000000"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                android:padding="10dp"
+                app:srcCompat="@drawable/uxsdk_ic_topbar_hd" />
+
+            <ImageButton
+                android:id="@+id/image_transmission_setting"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#000000"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                android:padding="10dp"
+                app:srcCompat="@drawable/uxsdk_ic_topbar_battery_single_nor" />
+
+            <Button
+                android:id="@+id/RTK_setting"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#000000"
+                android:text="RTK"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/gimbal_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#000000"
+                android:text="Gimbal"
+                android:textColor="#FFFFFF"
+
+                android:textSize="8sp" />
+
+            <ImageButton
+                android:id="@+id/common_setting"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#000000"
+                android:tint="#FFFFFF"
+                android:padding="10dp"
+                app:srcCompat="@drawable/uxsdk_system_status_button_background_selector" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/uxsdk_black_80_percent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#000000">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:text="RTK"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/close_all_setting_btn_1"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:background="#00FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/uxsdk_ic_close" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <ViewStub
+                    android:id="@+id/rtk_viewStub"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout="@layout/rtk_setting_layout" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

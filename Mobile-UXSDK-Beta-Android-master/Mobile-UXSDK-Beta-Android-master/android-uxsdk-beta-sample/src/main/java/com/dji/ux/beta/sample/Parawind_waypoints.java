@@ -6,6 +6,7 @@ public class Parawind_waypoints {
     private int ID;
     private String Part;
     private int SubID;
+    private String SubSubID;
     private List<Double> Coordinates;
     private boolean IsViewPoint;
     private List<Double> GimbalAngles;
@@ -35,6 +36,14 @@ public class Parawind_waypoints {
 
     public void setSubID(int subID) {
         SubID = subID;
+    }
+
+    public String getSubSubID() {
+        return SubSubID;
+    }
+
+    public void setSubSubID(String subsubID) {
+        SubSubID = subsubID;
     }
 
     public List<Double> getCoordinates() {
@@ -86,7 +95,7 @@ public class Parawind_waypoints {
     }
 
     public String getAllParameter(){
-        return getID() + "," + getPart()  + "," +getSubID()   + "," + getCoordinates()  + "," + isViewPoint()  + "," +
+        return getID() + "," + getPart()  + "," +getSubID() +"," +getSubSubID()  + "," + getCoordinates()  + "," + isViewPoint()  + "," +
                 getGimbalAngles()  + "," + getDroneAngles()  + "," + getActioID()  + "," + getActioParameter();
     }
 }

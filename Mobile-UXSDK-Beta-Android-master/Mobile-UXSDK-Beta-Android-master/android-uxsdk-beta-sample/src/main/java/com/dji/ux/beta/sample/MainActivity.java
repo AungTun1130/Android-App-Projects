@@ -83,6 +83,7 @@ import dji.ux.beta.core.util.SettingDefinitions;
  */
 public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
+    public static String Latest_waypoint= null;
     //region Constants
     private static final String LAST_USED_BRIDGE_IP = "bridgeip";
     private static final int REQUEST_PERMISSION_CODE = 12345;
@@ -253,7 +254,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 missingPermission.add(eachPermission);
             }
         }
-        // Request for missing permissions
+        // Request for missing permissions1
         if (missingPermission.isEmpty()) {
             startSDKRegistration();
         } else {
@@ -453,6 +454,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 //readKML(uri);
                 readCSV file= new readCSV();
                 path =System.getenv("EXTERNAL_STORAGE") +"/"+path.substring(path.indexOf(":") + 1);
+                Toast.makeText(this, path, Toast.LENGTH_SHORT).show();
                 FileInputStream inputStream = null;
                 try {
                     File f = new File(path);
@@ -463,23 +465,31 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 file.setInputStream(inputStream);
                 parawindWaypointsList = file.getWaypoints_csv();
 
-                for(Parawind_waypoints parawind_waypoints: parawindWaypointsList){
-                    String text = parawind_waypoints.getActioID().toString() +"|" +"Gimbal :";
-                    for(Double angles: parawind_waypoints.getGimbalAngles()){
-                        text += angles.toString() +"|";
-                    }
-                    addLog(text);
-                    text ="DroneAngle:";
-                    for(Double drone:parawind_waypoints.getDroneAngles()){
-                        text+=drone.toString() +"|";
-                    }
-                    addLog(text);
+                if(ImportSuccess){
+                    for(Parawind_waypoints parawind_waypoints: parawindWaypointsList){
+                        String text = parawind_waypoints.getPart() +"|" +"Gimbal :";
+                        for(Double angles: parawind_waypoints.getGimbalAngles()){
+                            text += angles.toString() +"|";
+                        }
+                        addLog(text);
+                        text ="DroneAngle:";
+                        for(Double drone:parawind_waypoints.getDroneAngles()){
+                            text+=drone.toString() +"|";
+                        }
+                        addLog(text);
 
-                }
-                ImportSuccess = true;
+                    }
+                    ImportSuccess = true;
 
 //                String r = parawindWaypointsList.get(1).getPart();
-                Toast.makeText(this, "Import success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Import success", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    ImportSuccess = false;
+                    Toast.makeText(this, "Import Failed", Toast.LENGTH_SHORT).show();
+                }
+
+
 
             }
 

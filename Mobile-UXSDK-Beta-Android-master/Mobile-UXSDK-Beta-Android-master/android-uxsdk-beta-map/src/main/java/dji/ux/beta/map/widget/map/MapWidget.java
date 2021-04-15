@@ -163,7 +163,7 @@ public class MapWidget extends ConstraintLayoutWidget implements View.OnTouchLis
     private DJIPolyline flightPathLine;
     private List<DJILatLng> flightPathPoints = new ArrayList<>();
     @ColorInt
-    private int flightPathColor = Color.WHITE;
+    private int flightPathColor = Color.RED;
     private float flightPathWidth = 5;
     private boolean flightPathEnabled = true;
     //endregion

@@ -48,6 +48,7 @@
         android:required="true" />
 
     <application
+        android:requestLegacyExternalStorage="true"
         android:name="com.dji.ux.beta.sample.SampleApplication"
         android:allowBackup="true"
         android:icon="@mipmap/parawind_ic_launcher"

@@ -29,19 +29,24 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.PersistableBundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewStub;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.RadioGroup;
@@ -62,6 +67,7 @@ import com.dji.mapkit.core.models.annotations.DJIMarkerOptions;
 import com.dji.mapkit.core.models.annotations.DJIPolylineOptions;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -70,7 +76,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dji.common.airlink.PhysicalSource;
+import dji.common.flightcontroller.flyzone.FlyZoneCategory;
+import dji.common.gimbal.Axis;
+import dji.common.gimbal.ResetDirection;
 import dji.common.util.CommonCallbacks;
+import dji.keysdk.DJIKey;
+import dji.keysdk.FlightControllerKey;
+import dji.keysdk.KeyManager;
+import dji.sdk.flightcontroller.FlightController;
 import dji.sdk.mission.MissionControl;
 import dji.thirdparty.io.reactivex.android.schedulers.AndroidSchedulers;
 import dji.thirdparty.io.reactivex.disposables.CompositeDisposable;
@@ -116,7 +129,7 @@ import dji.common.gimbal.GimbalMode;
 /**
  * Displays a sample layout of widgets similar to that of the various DJI apps.
  */
-public class DefaultLayoutActivity extends AppCompatActivity {
+public class DefaultLayoutActivity extends AppCompatActivity implements start_end_waypoint_dialog.WaypointDialogListener {
 
     //region Fields
     private final static String TAG = "DefaultLayoutActivity";
@@ -155,6 +168,7 @@ public class DefaultLayoutActivity extends AppCompatActivity {
     private List<DJIMarker> markerList;
     private List<DJILatLng> djiLatLngList;
     private int current_map_type =0;
+    private boolean flyzone_enable=false;
     // mission waypoints
     private float altitude = 100.0f;
     private float mSpeed = 10.0f;
@@ -171,19 +185,27 @@ public class DefaultLayoutActivity extends AppCompatActivity {
     private Button altitude_decrease_btn;
     private Button del_waypoint_btn;
 
+
     private ImageButton upload_btn;
     private ImageButton clear_waypoints_btn;
     private ImageButton add_waypoint_btn;
-    private ImageButton my_location_btn;
+    private ImageButton flyzone_btn;
     private ImageButton map_type_btn;
     private ImageButton start_mission_btn;
     private ImageButton stop_mission_btn;
     private ImageButton open_close_panel_btn;
+    private ImageButton setting_btn;
+    private ImageButton Close_all_setting_btn_1;
+    private ImageButton Close_all_setting_btn_2;
 
+
+    private TextView CurrentPos;
     private EditText Photo_dist_interval_editText;
-    private ViewStub viewStub_map;
+    //private ViewStub viewStub_map;
     private ViewStub viewStub_waypoints;
     private ViewStub viewStub_mission;
+    private ViewStub viewStub_all_setting;
+
 
     private LinearLayout wayPointSettings;
     private LinearLayout PanelInfo;
@@ -217,19 +239,49 @@ public class DefaultLayoutActivity extends AppCompatActivity {
     private int currentGimbalId = 0;
     private float gimbal_pitch_value,gimbal_roll_value,gimbal_yaw_value;
     //Aircraft Info
-
+    private FlightController mFlightController;
     private int Waypoint_index;
-    private double droneLocationLat = 181, droneLocationLng = 181;
+
     private double droneHeadingDir;
     private float Aircraft_yaw_value;
     private List<Float> Aircraft_yawList = new ArrayList<>();
     private String ActionID,ActionParam;
     private List<List<String>> ActionIDList = new ArrayList<>();
     private List<Parawind_waypoints> parawindWaypointsList = new ArrayList<>();
-    private List<Waypoint> waypointList = new ArrayList<>();
+    private volatile List<Waypoint> waypointList = new ArrayList<>();
+    private volatile List<String> waypointList_SubsubID = new ArrayList<>();
     private List<String> waypointListString = new ArrayList<>();
     private List<List<Float>> ActionItems = new ArrayList<>();
 
+    // Waypoint Tracking
+    private volatile double droneLocationLat , droneLocationLng , droneLocationAlt;
+    private Button Set_start_end_waypoint;
+    private Button Reset_start_end_waypoint;
+    private Handler mainHandler = new Handler();
+    private volatile boolean mission_start = false;
+    private volatile int Passed_waypoint = 0;
+    private int starting_waypoint_index = -1;
+    private int ending_waypoint_index = -1;
+
+    // All setting
+    private ViewStub viewStub_rtk_setting;
+    //Flight controller setting
+    private ImageButton FlightController_btn;
+    // Obstacle sensing setting
+    private ImageButton ObstacleSensing_btn;
+    // Remote controller setting
+    private ImageButton RemoteController_btn;
+    //Image Transmission setting
+    private  ImageButton ImageTransmission_btn;
+    // Aircraft battery setting
+    private  ImageButton Battery_btn;
+    // Gimbal setting
+    private Button GimbalSetting_btn;
+    // Common setting
+    private  Button CommonSetting_btn;
+    //RTK setting
+    //private Button RtkSetting_btn;
+    //private Spinner rtk_service_type;
 
     private void parawind_ui_addition_init(){
         marker_icon_unselected = BitmapFactory.decodeResource(getResources(),R.drawable.ic_waypoint_off);
@@ -245,8 +297,8 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         clear_waypoints_btn.setOnClickListener(view -> clear_all_waypoints());
         add_waypoint_btn = findViewById(R.id.add_waypoint_btn);
         add_waypoint_btn.setOnClickListener(view -> add_and_edit_waypoints());
-        my_location_btn = findViewById(R.id.my_location_btn);
-        my_location_btn.setOnClickListener(view -> go_to_my_location_view());
+        flyzone_btn = findViewById(R.id.flyzone_btn);
+        flyzone_btn.setOnClickListener(view -> flyzone_view());
         map_type_btn = findViewById(R.id.map_type_btn);
         map_type_btn.setOnClickListener(view -> change_map_type());
 
@@ -255,15 +307,34 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         stop_mission_btn = findViewById(R.id.stop_mission_btn);
         stop_mission_btn.setOnClickListener(view -> stop_mission_func());
 
+        CurrentPos = findViewById(R.id.Current_pos);
+        Set_start_end_waypoint = findViewById(R.id.Set_starting_waypoint);
+        Set_start_end_waypoint.setOnClickListener(view -> Set_start_end_waypoint_func());
+        Reset_start_end_waypoint = findViewById(R.id.reset_starting_waypoint);
+        Reset_start_end_waypoint.setOnClickListener(view -> {starting_waypoint_index = -1; ending_waypoint_index = -1; MainActivity.Latest_waypoint = null;});
+
         // Editing panels for editing
         // Initialize the panel for editing itself
         editing_panel = findViewById(R.id.editing_panel);
 
         // Map setting edit
-        viewStub_map = findViewById(R.id.viewStub_map_setting_panel);
-        viewStub_map.inflate();
-        map_setting_btn = findViewById(R.id.map_setting_btn);
-        map_setting_btn.setOnClickListener(view -> change_to_map_setting_panel());
+//        viewStub_map = findViewById(R.id.viewStub_map_setting_panel);
+//        viewStub_map.inflate();
+//        map_setting_btn = findViewById(R.id.map_setting_btn);
+//        map_setting_btn.setOnClickListener(view -> change_to_map_setting_panel());
+        // all setting edit
+        viewStub_all_setting = findViewById(R.id.viewStub_all_setting_panel);
+        viewStub_all_setting.inflate();
+        viewStub_all_setting.setVisibility(View.GONE);
+        Close_all_setting_btn_1 = findViewById(R.id.close_all_setting_btn_1);
+        Close_all_setting_btn_1.setOnClickListener(view -> {viewStub_all_setting.setVisibility(View.GONE);});
+        Close_all_setting_btn_2 = findViewById(R.id.close_all_setting_btn_2);
+        Close_all_setting_btn_2.setOnClickListener(view -> {viewStub_all_setting.setVisibility(View.GONE);});
+
+        // RTK setting edit
+        viewStub_rtk_setting = findViewById(R.id.rtk_viewStub);
+        viewStub_rtk_setting.inflate();
+
 
         // Waypoints setting edit
         viewStub_waypoints = findViewById(R.id.viewStub_waypoints_setting_panel);
@@ -303,6 +374,58 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         Payload_yaw_TextView = findViewById(R.id.textView_PayloadYaw);
         Aircraft_yaw_TextView = findViewById(R.id.textView_AircraftYaw);
         // Button UI
+        setting_btn = findViewById(R.id.setting_btn);
+        setting_btn.setOnClickListener(view -> {
+            viewStub_all_setting.setVisibility(View.VISIBLE);
+            Spinner rtk_service_type = findViewById(R.id.RTK_services_spinner);
+
+            //// Create an ArrayAdapter using the string array and a default spinner layout
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+            R.array.RTK_services, android.R.layout.simple_spinner_item);
+            //// Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            //// Apply the adapter to the spinner
+            rtk_service_type.setAdapter(adapter);
+            rtk_service_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    ((TextView) adapterView.getChildAt(0)).setTextColor(Color.parseColor("#4DA3FF"));
+                    if(i==0){
+                        findViewById(R.id.Custom_network_rtk_panel).setVisibility(View.GONE);
+                        findViewById(R.id.rtk_search_btn).setVisibility(View.GONE);
+                    }
+                    if(i ==1){
+                        findViewById(R.id.Custom_network_rtk_panel).setVisibility(View.GONE);
+                        findViewById(R.id.rtk_search_btn).setVisibility(View.VISIBLE);
+                    }
+                    if(i == 3){
+                        findViewById(R.id.rtk_search_btn).setVisibility(View.GONE);
+                        findViewById(R.id.Custom_network_rtk_panel).setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+
+            //Button RtkSetting_btn = findViewById(R.id.RTK_setting);
+//            SystemStatusListPanelWidget systemStatusListPanelWidget= findViewById(R.id.widget_panel_system_status_list);
+//            if(systemStatusListPanelWidget.getVisibility() == View.GONE){
+//                systemStatusListPanelWidget.setVisibility(View.VISIBLE);
+//                Parawind_layout.setVisibility(View.GONE);
+//            }
+//            else {
+//                systemStatusListPanelWidget.setVisibility(View.GONE);
+//                if(!isMapMini){
+//                    Parawind_layout.setVisibility(View.VISIBLE);
+//                }
+//
+//            }
+        });
+
         //##########################################
         // Next waypoint Button
         //##########################################
@@ -363,6 +486,7 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         del_waypoint_btn.setOnClickListener(view -> {
             int index = Waypoint_index;
             waypointList.remove(index);
+            waypointList_SubsubID.remove(index);
             waypointMissionBuilder.getWaypointList().remove(index);
             ActionIDList.remove(index);
             Aircraft_yawList.remove(index);
@@ -435,24 +559,33 @@ public class DefaultLayoutActivity extends AppCompatActivity {
      * open mission setting panel
      * open waypoint setting panel
      * open map setting panel
+     * Set start and end waypoint
      */
-
+    private void Set_start_end_waypoint_func(){
+        start_end_waypoint_dialog start_end_waypoint_dialog = new start_end_waypoint_dialog(waypointList_SubsubID,Passed_waypoint,starting_waypoint_index,ending_waypoint_index);
+        start_end_waypoint_dialog.show(getSupportFragmentManager(),"Set start end waypoint dialog");
+    }
     private void upload_mission(){
         Toast.makeText(DefaultLayoutActivity.this, "Uploading mission...",Toast.LENGTH_SHORT).show();
-        configWayPointMission();
         uploadWayPointMission();
     }
 
     private void clear_all_waypoints(){
         Toast.makeText(DefaultLayoutActivity.this, "Clear",Toast.LENGTH_SHORT).show();
-        waypointList.clear();
-        waypointMissionBuilder.getWaypointList().clear();
-        ActionIDList.clear();
-        Aircraft_yawList.clear();
-        ActionItems.clear();
-        djiLatLngList.clear();
-        markerList.clear();
-        mapWidget.getMap().clear();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                waypointList.clear();
+                waypointList_SubsubID.clear();
+                waypointMissionBuilder.getWaypointList().clear();
+                ActionIDList.clear();
+                Aircraft_yawList.clear();
+                ActionItems.clear();
+                djiLatLngList.clear();
+                markerList.clear();
+                mapWidget.getMap().clear();
+            }
+        });
     }
 
     private void add_and_edit_waypoints(){
@@ -474,8 +607,21 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         open_close_editing_panel();
     }
 
-    private void go_to_my_location_view(){
-        Toast.makeText(DefaultLayoutActivity.this, "My location",Toast.LENGTH_SHORT).show();
+    private void flyzone_view(){
+        //Toast.makeText(DefaultLayoutActivity.this, "My location",Toast.LENGTH_SHORT).show();
+
+        if(mapWidget.getFlyZoneHelper().isTapToUnlockEnabled()){
+            mapWidget.getFlyZoneHelper().setTapToUnlockEnabled(false);
+            flyzone_enable = false;
+            Toast.makeText(DefaultLayoutActivity.this, "false",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            mapWidget.getFlyZoneHelper().setTapToUnlockEnabled(true);
+            flyzone_enable = true;
+            Toast.makeText(DefaultLayoutActivity.this, "true",Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 
     private void change_map_type(){
@@ -507,11 +653,13 @@ public class DefaultLayoutActivity extends AppCompatActivity {
     private void start_mission_func(){
         Toast.makeText(DefaultLayoutActivity.this, "Mission Start",Toast.LENGTH_SHORT).show();
         startWaypointMission();
+        mission_start = true;
     }
 
     private void stop_mission_func(){
         Toast.makeText(DefaultLayoutActivity.this, "Stop Mission",Toast.LENGTH_SHORT).show();
         stopWaypointMission();
+        mission_start = false;
     }
 
     private void open_close_editing_panel(){
@@ -530,34 +678,34 @@ public class DefaultLayoutActivity extends AppCompatActivity {
     private void change_to_mission_setting_panel(){
         mission_setting_btn.setBackgroundResource(R.color.colorDarkBackground);
         waypoint_setting_btn.setBackgroundResource(R.color.white);
-        map_setting_btn.setBackgroundResource(R.color.white);
+        //map_setting_btn.setBackgroundResource(R.color.white);
 
         viewStub_mission.setVisibility(View.VISIBLE);
-        viewStub_map.setVisibility(View.GONE);
+        //viewStub_map.setVisibility(View.GONE);
         viewStub_waypoints.setVisibility(View.GONE);
 
         wayPointSettings = (LinearLayout)getLayoutInflater().inflate(R.layout.mission_setting_layout, null);
-        speed_RG = (RadioGroup) wayPointSettings.findViewById(R.id.speed);
-        actionAfterFinished_RG = (RadioGroup) wayPointSettings.findViewById(R.id.actionAfterFinished);
-        heading_RG = (RadioGroup) wayPointSettings.findViewById(R.id.heading);
+        speed_RG = (RadioGroup) findViewById(R.id.speed);
+        actionAfterFinished_RG = (RadioGroup) findViewById(R.id.actionAfterFinished);
+        heading_RG = (RadioGroup)findViewById(R.id.heading);
         showSettingDialog();
     }
     private void change_to_waypoint_setting_panel(){
         mission_setting_btn.setBackgroundResource(R.color.white);
         waypoint_setting_btn.setBackgroundResource(R.color.colorDarkBackground);
-        map_setting_btn.setBackgroundResource(R.color.white);
+        //map_setting_btn.setBackgroundResource(R.color.white);
         viewStub_waypoints.setVisibility(View.VISIBLE);
         viewStub_mission.setVisibility(View.GONE);
-        viewStub_map.setVisibility(View.GONE);
+        //viewStub_map.setVisibility(View.GONE);
     }
-    private void change_to_map_setting_panel(){
-        mission_setting_btn.setBackgroundResource(R.color.white);
-        waypoint_setting_btn.setBackgroundResource(R.color.white);
-        map_setting_btn.setBackgroundResource(R.color.colorDarkBackground);
-        viewStub_map.setVisibility(View.VISIBLE);
-        viewStub_mission.setVisibility(View.GONE);
-        viewStub_waypoints.setVisibility(View.GONE);
-    }
+//    private void change_to_map_setting_panel(){
+//        mission_setting_btn.setBackgroundResource(R.color.white);
+//        waypoint_setting_btn.setBackgroundResource(R.color.white);
+//        map_setting_btn.setBackgroundResource(R.color.colorDarkBackground);
+//        viewStub_map.setVisibility(View.VISIBLE);
+//        viewStub_mission.setVisibility(View.GONE);
+//        viewStub_waypoints.setVisibility(View.GONE);
+//    }
 
     //####################################################
     //Editing each waypoint on sliders
@@ -691,7 +839,8 @@ public class DefaultLayoutActivity extends AppCompatActivity {
 
         @Override
         public void onExecutionUpdate(WaypointMissionExecutionEvent executionEvent) {
-
+            assert executionEvent.getProgress() != null;
+            Passed_waypoint =  executionEvent.getProgress().targetWaypointIndex;
         }
 
         @Override
@@ -739,8 +888,8 @@ public class DefaultLayoutActivity extends AppCompatActivity {
     // Starting the mission to the dji drone
     //#################################################################################
     private void startWaypointMission(){
-
         getWaypointMissionOperator().startMission(error -> setResultToToast("Mission Start: " + (error == null ? "Successfully" : error.getDescription())));
+
     }
     //#################################################################################
     // Stopping the mission to the dji drone
@@ -763,6 +912,7 @@ public class DefaultLayoutActivity extends AppCompatActivity {
             } else if (checkedId == R.id.HighSpeed){
                 mSpeed = 10.0f;
             }
+            setResultToToast("Speed:" +mSpeed);
         });
 
         actionAfterFinished_RG.setOnCheckedChangeListener((group, checkedId) -> {
@@ -794,9 +944,131 @@ public class DefaultLayoutActivity extends AppCompatActivity {
 
     }
     //####################################################
+    //Initialize Gimbal payload
+    //####################################################
+    private Gimbal getGimbalInstance() {
+        if (gimbal == null) {
+            initGimbal();
+        }
+        return gimbal;
+    }
+    private void initGimbal() {
+        if (DJISDKManager.getInstance() != null) {
+            BaseProduct product = DJISDKManager.getInstance().getProduct();
+            if (product != null) {
+                if (product instanceof Aircraft) {
+                    gimbal = ((Aircraft) product).getGimbals().get(currentGimbalId);
+                } else {
+                    gimbal = product.getGimbal();
+                }
+            }
+        }
+    }
+    private boolean isFeatureSupported() {
+
+        Gimbal gimbal = getGimbalInstance();
+        if (gimbal == null) {
+            return false;
+        }
+
+        DJIParamCapability capability = null;
+        if (gimbal.getCapabilities() != null) {
+            capability = gimbal.getCapabilities().get(CapabilityKey.ADJUST_YAW);
+        }
+
+        if (capability != null) {
+            return capability.isSupported();
+        }
+        return false;
+    }
+    //####################################################
+    //Initialize Flight controller
+    //####################################################
+    private void initFlightController() {
+
+        if (DJISDKManager.getInstance() != null) {
+            BaseProduct product = DJISDKManager.getInstance().getProduct();
+
+            if (product != null && product.isConnected()) {
+                if (product instanceof Aircraft) {
+                    mFlightController = ((Aircraft) product).getFlightController();
+                }
+            }
+
+            if (mFlightController != null) {
+                mFlightController.getState().setFlightMode(FlightMode.GPS_WAYPOINT);
+                mFlightController.setStateCallback(new FlightControllerState.Callback() {
+                    //Here is where the DJI app update the state of the drone to the app -Aung
+                    @Override
+                    public void onUpdate(FlightControllerState djiFlightControllerCurrentState) {
+                        droneLocationLat = djiFlightControllerCurrentState.getAircraftLocation().getLatitude();
+                        droneLocationLng = djiFlightControllerCurrentState.getAircraftLocation().getLongitude();
+                        droneLocationAlt = djiFlightControllerCurrentState.getAircraftLocation().getAltitude();
+
+                        droneHeadingDir = djiFlightControllerCurrentState.getAttitude().yaw;
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                String lat = String.format("%.6f",droneLocationLat);
+                                String lng = String.format("%.6f",droneLocationLng);
+                                String alt = String.format("%.3f",droneLocationAlt);
+                                String dir = String.format("%.2f",droneHeadingDir);
+                                String text = lat +"|"+ lng+"|" + alt + "|"+dir;
+                                CurrentPos.setText(text);
+                                if(mission_start && starting_waypoint_index != -1 && ending_waypoint_index !=-1){
+                                    TextView te = findViewById(R.id.current_pos_stat);
+                                    int wp = Passed_waypoint;
+
+                                    try {
+                                        List<String> wp_labels = waypointList_SubsubID.subList(starting_waypoint_index,ending_waypoint_index+1);
+                                        te.setText(wp_labels.get(wp));
+                                        MainActivity.Latest_waypoint = wp_labels.get(wp);
+                                    } catch (Exception e) {
+                                        setResultToToast("Wrong indexes");
+                                    }
+                                }
+
+
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+    }
+
+
+    //####################################################
     //Finalizing the flight plan
     //####################################################
     private void configWayPointMission(){
+        //###########################
+        //Change the gimbal mode here
+        //###########################
+        if (getGimbalInstance() != null) {
+            getGimbalInstance().setMode(GimbalMode.YAW_FOLLOW, new CommonCallbacks.CompletionCallback() {
+                @Override
+                public void onResult(DJIError error) {
+                    //setResultToToast("Yaw follow mode");
+                }
+            });
+            gimbal.setPitchRangeExtensionEnabled(true ,new CommonCallbacks.CompletionCallback() {
+                @Override
+                public void onResult(DJIError error) {
+
+                }
+            });
+            getGimbalInstance().reset(Axis.YAW_AND_PITCH, ResetDirection.CENTER, new CommonCallbacks.CompletionCallback() {
+                @Override
+                public void onResult(DJIError djiError) {
+
+                }
+            });
+        } else {
+            setResultToToast("Product disconnected");
+        }
 
         if (waypointMissionBuilder == null){
 
@@ -817,40 +1089,70 @@ public class DefaultLayoutActivity extends AppCompatActivity {
                     .setGimbalPitchRotationEnabled(true);
 
         }
-        if(waypointMissionBuilder.getHeadingMode() == WaypointMissionHeadingMode.USING_WAYPOINT_HEADING){
-            setResultToToast("Waypoint heading mode");
-        }
-        else{
-            setResultToToast("Not waypoint heading mode");
-        }
+//        if(waypointMissionBuilder.getHeadingMode() == WaypointMissionHeadingMode.USING_WAYPOINT_HEADING){
+//            setResultToToast("Waypoint heading mode");
+//        }
+//        else{
+//            setResultToToast("Not waypoint heading mode");
+//        }
         //#################################################################################
         //Add all the actions for each waypoint here !!
         //#################################################################################
-        if (waypointMissionBuilder.getWaypointList().size() > 0){
+        if (waypointList.size() > 0){
+            int start_wp_index;
+            int end_wp_index;
+            if(waypointMissionBuilder.getWaypointList().size()>0){
+                waypointMissionBuilder.getWaypointList().clear();
+            }
+            if(starting_waypoint_index != -1 && ending_waypoint_index != -1){
+                start_wp_index = starting_waypoint_index;
+                end_wp_index = ending_waypoint_index;
+            }
+            else{
+                start_wp_index = 0;
+                end_wp_index = waypointMissionBuilder.getWaypointList().size()-1;
+            }
+            String text = "Start Saypoint: " +waypointList_SubsubID.get(start_wp_index) +"\n"+
+                    "End Waypoint: "+waypointList_SubsubID.get(end_wp_index);
+            setResultToToast(text);
+//            List<Waypoint> wp_temp = waypointList.subList(start_wp_index,end_wp_index);
+//            waypointMissionBuilder.waypointList(wp_temp).waypointCount(wp_temp.size());
+            for (int i=start_wp_index; i<= end_wp_index; i++){
+                Waypoint temp = waypointList.get(i);
 
-            for (int i=0; i< waypointMissionBuilder.getWaypointList().size(); i++){
-                waypointMissionBuilder.getWaypointList().get(i).altitude = waypointList.get(i).altitude;
+                //waypointMissionBuilder.getWaypointList().get(i).altitude = waypointList.get(i).altitude;
+                temp.altitude = waypointList.get(i).altitude;
+
                 int yaw = Aircraft_yawList.get(i).intValue();
-                if(yaw >180){
-                    yaw -= 360;
-                }
+
                 List<Float> GimbalActions = ActionItems.get(i);
                 List<String> ActionsID = ActionIDList.get(i);
-                waypointMissionBuilder.getWaypointList().get(i).gimbalPitch = GimbalActions.get(0);
-                waypointMissionBuilder.getWaypointList().get(i).heading = (int) yaw;
+
+//                waypointMissionBuilder.getWaypointList().get(i).gimbalPitch = GimbalActions.get(0);
+//                waypointMissionBuilder.getWaypointList().get(i).heading = (int) yaw;
+                temp.gimbalPitch = GimbalActions.get(0);
+                temp.heading = (int) yaw;
 
 //                waypointMissionBuilder.getWaypointList().get(i).addAction(new WaypointAction(WaypointActionType.GIMBAL_PITCH,GimbalActions.get(0).intValue()));
 //                waypointMissionBuilder.getWaypointList().get(i).addAction(new WaypointAction(WaypointActionType.ROTATE_AIRCRAFT,yaw));
-                if(ActionsID.get(0).equals("Take_photo")){
-                    waypointMissionBuilder.getWaypointList().get(i).addAction(new WaypointAction(WaypointActionType.START_TAKE_PHOTO,0));
-                }
                 if(ActionsID.get(0).equals("Take_photo_interval")){
-                    waypointMissionBuilder.getWaypointList().get(i).shootPhotoDistanceInterval = Float.parseFloat(ActionsID.get(1));
-                }
+                    //waypointMissionBuilder.getWaypointList().get(i).shootPhotoDistanceInterval = Float.parseFloat(ActionsID.get(1));
+                    temp.shootPhotoDistanceInterval = Float.parseFloat(ActionsID.get(1));
 
+                    //
+                }
+                else{
+                    if(ActionsID.get(0).equals("Take_photo")){
+                        //waypointMissionBuilder.getWaypointList().get(i).addAction(new WaypointAction(WaypointActionType.START_TAKE_PHOTO,0));
+                        temp.addAction(new WaypointAction(WaypointActionType.START_TAKE_PHOTO,0));
+;
+                    }
+                }
+                waypointMissionBuilder.addWaypoint(temp);
             }
         }
-
+        waypointMissionBuilder.waypointCount(waypointMissionBuilder.getWaypointList().size());
+        setResultToToast(String.valueOf( waypointMissionBuilder.getWaypointList().size()));
         DJIError error = getWaypointMissionOperator().loadMission(waypointMissionBuilder.build());
         if (error == null) {
             setResultToToast("loadWaypoint succeeded");
@@ -926,6 +1228,7 @@ public class DefaultLayoutActivity extends AppCompatActivity {
             DJILatLng latLng            = new DJILatLng(PW_latitude,PW_longitude,PW_altitude);
             Waypoint mWaypoint          = new Waypoint(PW_latitude, PW_longitude,PW_altitude);
             waypointList.add(mWaypoint);
+            waypointList_SubsubID.add(PW.getID()+"|"+PW.getPart() +"|"+ PW.getSubSubID());
 
             //Draw a marker on the map
             djiLatLngList.add(latLng);
@@ -934,13 +1237,13 @@ public class DefaultLayoutActivity extends AppCompatActivity {
             DJIPolylineOptions polylineOptions = new DJIPolylineOptions().color(Color.BLUE).width(5);
             map.addPolyline(polylineOptions.addAll(djiLatLngList));
             //Add Waypoints to Waypoint arraylist;
-            if (waypointMissionBuilder != null) {
-                waypointMissionBuilder.waypointList(waypointList).waypointCount(waypointList.size());
-            }else
-            {
-                waypointMissionBuilder = new WaypointMission.Builder();
-                waypointMissionBuilder.waypointList(waypointList).waypointCount(waypointList.size());
-            }
+//            if (waypointMissionBuilder != null) {
+//                waypointMissionBuilder.waypointCount(waypointList.size());
+//            }else
+//            {
+//                waypointMissionBuilder = new WaypointMission.Builder();
+//                waypointMissionBuilder.waypointList(waypointList).waypointCount(waypointList.size());
+//            }
 
             ActionItems.add(Arrays.asList(gimbal_pitch_value,gimbal_roll_value,gimbal_yaw_value));
             ActionIDList.add(Arrays.asList(ActionID,ActionParam));
@@ -948,6 +1251,7 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         }
         Waypoint_index = waypointList.size() -1;
         update_waypointInfo_panel();
+
     }
     // Parawind edit------
     //region Lifecycle
@@ -991,12 +1295,13 @@ public class DefaultLayoutActivity extends AppCompatActivity {
                         setResultToToast(djiMarker.getTitle() + "drag started");
                         int index = markerList.indexOf(djiMarker);
                         // Draw Marker drawing on the map
-                        update_waypoint_markers(index);
+                        //update_waypoint_markers(index);
                     }
                 }
 
                 @Override
                 public void onMarkerDrag(DJIMarker djiMarker) {
+
                     //do nothing
                 }
 
@@ -1050,6 +1355,7 @@ public class DefaultLayoutActivity extends AppCompatActivity {
                         assert djiLatLng != null;
                         Waypoint mWaypoint = new Waypoint(djiLatLng.latitude, djiLatLng.longitude, 0);
                         waypointList.add(mWaypoint);
+                        waypointList_SubsubID.add("None");
                         // add new djiLatlng to list
                         djiLatLngList.add(djiLatLng);
                         // add marker
@@ -1057,14 +1363,14 @@ public class DefaultLayoutActivity extends AppCompatActivity {
                         update_waypoint_markers(djiLatLngList.indexOf(djiLatLng));
 
                         //Add Waypoints to Mission;
-                        waypointMissionBuilder.addWaypoint(mWaypoint);
-                        if (waypointMissionBuilder != null) {
-                            waypointMissionBuilder.waypointCount(waypointList.size());
-                        } else {
-                            waypointMissionBuilder = new WaypointMission.Builder();
-                            waypointMissionBuilder.waypointCount(waypointList.size());
-                        }
 
+//                        if (waypointMissionBuilder != null) {
+//                            waypointMissionBuilder.waypointCount(waypointList.size());
+//                        } else {
+//                            waypointMissionBuilder = new WaypointMission.Builder();
+//                            waypointMissionBuilder.waypointCount(waypointList.size());
+//                        }
+//                        waypointMissionBuilder.addWaypoint(mWaypoint);
                         Waypoint_index = djiLatLngList.indexOf(djiLatLng);
                         addNewWaypoint();
                         update_waypointInfo_panel();
@@ -1097,6 +1403,7 @@ public class DefaultLayoutActivity extends AppCompatActivity {
             systemStatusWidget.setStateChangeCallback(findViewById(R.id.widget_panel_system_status_list));
         }
 
+
         SimulatorIndicatorWidget simulatorIndicatorWidget = topBarPanel.getSimulatorIndicatorWidget();
         if (simulatorIndicatorWidget != null) {
             simulatorIndicatorWidget.setStateChangeCallback(findViewById(R.id.widget_simulator_control));
@@ -1106,6 +1413,13 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         if (gpsSignalWidget != null) {
             gpsSignalWidget.setStateChangeCallback(findViewById(R.id.widget_rtk));
         }
+        mapWidget.getFlyZoneHelper().setFlyZoneVisible(FlyZoneCategory.WARNING, true);
+        mapWidget.getFlyZoneHelper().setFlyZoneVisible(FlyZoneCategory.ENHANCED_WARNING, true);
+        mapWidget.getFlyZoneHelper().setFlyZoneVisible(FlyZoneCategory.AUTHORIZATION, true);
+        mapWidget.getFlyZoneHelper().setFlyZoneVisible(FlyZoneCategory.RESTRICTED, true);
+
+//        Waypoint_tracking tracking = new Waypoint_tracking(waypointList);
+//        new Thread(tracking).start();
     }
 
 
@@ -1137,6 +1451,7 @@ public class DefaultLayoutActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mapWidget.onResume();
+        initFlightController();
         compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(secondaryFPVWidget.getCameraName()
                 .observeOn(AndroidSchedulers.mainThread())
@@ -1147,6 +1462,9 @@ public class DefaultLayoutActivity extends AppCompatActivity {
                 .subscribe(pressed -> {
                     if (pressed) {
                         ViewExtensions.hide(systemStatusListPanelWidget);
+                        if(!isMapMini){
+                            Parawind_layout.setVisibility(View.VISIBLE);
+                        }
                     }
                 }));
 
@@ -1302,6 +1620,15 @@ public class DefaultLayoutActivity extends AppCompatActivity {
             secondaryFPVWidget.setVisibility(View.VISIBLE);
         }
     }
+
+    @Override
+    public void set_start_end_waypoint(int start_waypoint, int end_waypoint) {
+        starting_waypoint_index = start_waypoint;
+        ending_waypoint_index = end_waypoint;
+        String text = "Start Saypoint: " +waypointList_SubsubID.get(start_waypoint) +"\n"+
+                "End Waypoint: "+waypointList_SubsubID.get(end_waypoint);
+        setResultToToast(text);
+    }
     //endregion
 
     //region classes
@@ -1343,4 +1670,5 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         }
     }
     //endregion
+
 }
